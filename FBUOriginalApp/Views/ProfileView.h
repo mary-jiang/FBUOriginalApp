@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  ProfileView.h
 //  FBUOriginalApp
 //
 //  Created by Mary Jiang on 7/12/21.
@@ -7,8 +7,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+NS_ASSUME_NONNULL_BEGIN
 
+@interface ProfileView : UIView
 
 @end
 
+NS_ASSUME_NONNULL_END

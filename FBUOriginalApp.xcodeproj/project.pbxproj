@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,13 +12,29 @@
 		994D8A601720A034AFD160B2 /* Pods_FBUOriginalApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D92B9053C1B5778E9E7F2F2 /* Pods_FBUOriginalApp.framework */; };
 		AACE3BC3269C7ECB006699A6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3BC2269C7ECB006699A6 /* AppDelegate.m */; };
 		AACE3BC6269C7ECB006699A6 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3BC5269C7ECB006699A6 /* SceneDelegate.m */; };
-		AACE3BC9269C7ECB006699A6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3BC8269C7ECB006699A6 /* ViewController.m */; };
 		AACE3BCC269C7ECB006699A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AACE3BCA269C7ECB006699A6 /* Main.storyboard */; };
 		AACE3BCE269C7ECC006699A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AACE3BCD269C7ECC006699A6 /* Assets.xcassets */; };
 		AACE3BD1269C7ECC006699A6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AACE3BCF269C7ECC006699A6 /* LaunchScreen.storyboard */; };
 		AACE3BD4269C7ECC006699A6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3BD3269C7ECC006699A6 /* main.m */; };
 		AACE3BDE269C7ECC006699A6 /* FBUOriginalAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3BDD269C7ECC006699A6 /* FBUOriginalAppTests.m */; };
 		AACE3BE9269C7ECC006699A6 /* FBUOriginalAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3BE8269C7ECC006699A6 /* FBUOriginalAppUITests.m */; };
+		AACE3BFB269CADF4006699A6 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3BFA269CADF4006699A6 /* LoginViewController.m */; };
+		AACE3BFE269CAE00006699A6 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3BFD269CAE00006699A6 /* SignupViewController.m */; };
+		AACE3C01269CAE0B006699A6 /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3C00269CAE0B006699A6 /* FeedViewController.m */; };
+		AACE3C07269CAE1E006699A6 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3C06269CAE1E006699A6 /* ProfileViewController.m */; };
+		AACE3C0A269CAE33006699A6 /* UserSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3C09269CAE33006699A6 /* UserSearchViewController.m */; };
+		AACE3C0D269CAE39006699A6 /* CreatePostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3C0C269CAE39006699A6 /* CreatePostViewController.m */; };
+		AACE3C10269CAE78006699A6 /* SpotifySearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3C0F269CAE78006699A6 /* SpotifySearchViewController.m */; };
+		AACE3C13269CAF9C006699A6 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3C12269CAF9C006699A6 /* LoginView.m */; };
+		AACE3C16269CAFA4006699A6 /* SignupView.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3C15269CAFA4006699A6 /* SignupView.m */; };
+		AACE3C19269CAFAA006699A6 /* FeedView.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3C18269CAFAA006699A6 /* FeedView.m */; };
+		AACE3C1C269CAFB5006699A6 /* UserSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3C1B269CAFB5006699A6 /* UserSearchView.m */; };
+		AACE3C1F269CAFBB006699A6 /* ProfileView.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3C1E269CAFBB006699A6 /* ProfileView.m */; };
+		AACE3C22269CAFC1006699A6 /* CreatePostView.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3C21269CAFC1006699A6 /* CreatePostView.m */; };
+		AACE3C25269CAFCC006699A6 /* SpotifySearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3C24269CAFCC006699A6 /* SpotifySearchView.m */; };
+		AACE3C28269CDB45006699A6 /* SpotifyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3C27269CDB45006699A6 /* SpotifyCell.m */; };
+		AACE3C2B269CDBB0006699A6 /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3C2A269CDBB0006699A6 /* UserCell.m */; };
+		AACE3C2E269CE1D7006699A6 /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3C2D269CE1D7006699A6 /* PostCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,8 +66,6 @@
 		AACE3BC2269C7ECB006699A6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		AACE3BC4269C7ECB006699A6 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		AACE3BC5269C7ECB006699A6 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		AACE3BC7269C7ECB006699A6 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		AACE3BC8269C7ECB006699A6 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		AACE3BCB269C7ECB006699A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AACE3BCD269C7ECC006699A6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AACE3BD0269C7ECC006699A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -63,6 +77,40 @@
 		AACE3BE4269C7ECC006699A6 /* FBUOriginalAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FBUOriginalAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AACE3BE8269C7ECC006699A6 /* FBUOriginalAppUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FBUOriginalAppUITests.m; sourceTree = "<group>"; };
 		AACE3BEA269C7ECC006699A6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AACE3BF9269CADF4006699A6 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		AACE3BFA269CADF4006699A6 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		AACE3BFC269CAE00006699A6 /* SignupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
+		AACE3BFD269CAE00006699A6 /* SignupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
+		AACE3BFF269CAE0B006699A6 /* FeedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedViewController.h; sourceTree = "<group>"; };
+		AACE3C00269CAE0B006699A6 /* FeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
+		AACE3C05269CAE1E006699A6 /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		AACE3C06269CAE1E006699A6 /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		AACE3C08269CAE33006699A6 /* UserSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserSearchViewController.h; sourceTree = "<group>"; };
+		AACE3C09269CAE33006699A6 /* UserSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserSearchViewController.m; sourceTree = "<group>"; };
+		AACE3C0B269CAE39006699A6 /* CreatePostViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreatePostViewController.h; sourceTree = "<group>"; };
+		AACE3C0C269CAE39006699A6 /* CreatePostViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreatePostViewController.m; sourceTree = "<group>"; };
+		AACE3C0E269CAE78006699A6 /* SpotifySearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpotifySearchViewController.h; sourceTree = "<group>"; };
+		AACE3C0F269CAE78006699A6 /* SpotifySearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpotifySearchViewController.m; sourceTree = "<group>"; };
+		AACE3C11269CAF9C006699A6 /* LoginView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
+		AACE3C12269CAF9C006699A6 /* LoginView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
+		AACE3C14269CAFA4006699A6 /* SignupView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignupView.h; sourceTree = "<group>"; };
+		AACE3C15269CAFA4006699A6 /* SignupView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignupView.m; sourceTree = "<group>"; };
+		AACE3C17269CAFAA006699A6 /* FeedView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedView.h; sourceTree = "<group>"; };
+		AACE3C18269CAFAA006699A6 /* FeedView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedView.m; sourceTree = "<group>"; };
+		AACE3C1A269CAFB5006699A6 /* UserSearchView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserSearchView.h; sourceTree = "<group>"; };
+		AACE3C1B269CAFB5006699A6 /* UserSearchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserSearchView.m; sourceTree = "<group>"; };
+		AACE3C1D269CAFBB006699A6 /* ProfileView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileView.h; sourceTree = "<group>"; };
+		AACE3C1E269CAFBB006699A6 /* ProfileView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileView.m; sourceTree = "<group>"; };
+		AACE3C20269CAFC1006699A6 /* CreatePostView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreatePostView.h; sourceTree = "<group>"; };
+		AACE3C21269CAFC1006699A6 /* CreatePostView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreatePostView.m; sourceTree = "<group>"; };
+		AACE3C23269CAFCC006699A6 /* SpotifySearchView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpotifySearchView.h; sourceTree = "<group>"; };
+		AACE3C24269CAFCC006699A6 /* SpotifySearchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpotifySearchView.m; sourceTree = "<group>"; };
+		AACE3C26269CDB45006699A6 /* SpotifyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpotifyCell.h; sourceTree = "<group>"; };
+		AACE3C27269CDB45006699A6 /* SpotifyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpotifyCell.m; sourceTree = "<group>"; };
+		AACE3C29269CDBB0006699A6 /* UserCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserCell.h; sourceTree = "<group>"; };
+		AACE3C2A269CDBB0006699A6 /* UserCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserCell.m; sourceTree = "<group>"; };
+		AACE3C2C269CE1D7006699A6 /* PostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCell.h; sourceTree = "<group>"; };
+		AACE3C2D269CE1D7006699A6 /* PostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCell.m; sourceTree = "<group>"; };
 		DC0B7B4630C79D64309DECA7 /* Pods_FBUOriginalAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FBUOriginalAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E786334F2D666B89D293C5D7 /* Pods-FBUOriginalApp-FBUOriginalAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FBUOriginalApp-FBUOriginalAppUITests.release.xcconfig"; path = "Target Support Files/Pods-FBUOriginalApp-FBUOriginalAppUITests/Pods-FBUOriginalApp-FBUOriginalAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F5A1FBDF497959AB770B88A6 /* Pods_FBUOriginalApp_FBUOriginalAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FBUOriginalApp_FBUOriginalAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,7 +164,6 @@
 				212DBCA295AEFB8334289803 /* Pods-FBUOriginalAppTests.debug.xcconfig */,
 				14F9F1CF1156E2E7589307A7 /* Pods-FBUOriginalAppTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -145,12 +192,13 @@
 		AACE3BC0269C7ECB006699A6 /* FBUOriginalApp */ = {
 			isa = PBXGroup;
 			children = (
+				AACE3BF8269CA95C006699A6 /* View Controllers */,
+				AACE3BF7269CA8F0006699A6 /* Models */,
+				AACE3BF6269CA8EA006699A6 /* Views */,
 				AACE3BC1269C7ECB006699A6 /* AppDelegate.h */,
 				AACE3BC2269C7ECB006699A6 /* AppDelegate.m */,
 				AACE3BC4269C7ECB006699A6 /* SceneDelegate.h */,
 				AACE3BC5269C7ECB006699A6 /* SceneDelegate.m */,
-				AACE3BC7269C7ECB006699A6 /* ViewController.h */,
-				AACE3BC8269C7ECB006699A6 /* ViewController.m */,
 				AACE3BCA269C7ECB006699A6 /* Main.storyboard */,
 				AACE3BCD269C7ECC006699A6 /* Assets.xcassets */,
 				AACE3BCF269C7ECC006699A6 /* LaunchScreen.storyboard */,
@@ -176,6 +224,61 @@
 				AACE3BEA269C7ECC006699A6 /* Info.plist */,
 			);
 			path = FBUOriginalAppUITests;
+			sourceTree = "<group>";
+		};
+		AACE3BF6269CA8EA006699A6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AACE3C11269CAF9C006699A6 /* LoginView.h */,
+				AACE3C12269CAF9C006699A6 /* LoginView.m */,
+				AACE3C14269CAFA4006699A6 /* SignupView.h */,
+				AACE3C15269CAFA4006699A6 /* SignupView.m */,
+				AACE3C17269CAFAA006699A6 /* FeedView.h */,
+				AACE3C18269CAFAA006699A6 /* FeedView.m */,
+				AACE3C1A269CAFB5006699A6 /* UserSearchView.h */,
+				AACE3C1B269CAFB5006699A6 /* UserSearchView.m */,
+				AACE3C1D269CAFBB006699A6 /* ProfileView.h */,
+				AACE3C1E269CAFBB006699A6 /* ProfileView.m */,
+				AACE3C20269CAFC1006699A6 /* CreatePostView.h */,
+				AACE3C21269CAFC1006699A6 /* CreatePostView.m */,
+				AACE3C23269CAFCC006699A6 /* SpotifySearchView.h */,
+				AACE3C24269CAFCC006699A6 /* SpotifySearchView.m */,
+				AACE3C26269CDB45006699A6 /* SpotifyCell.h */,
+				AACE3C27269CDB45006699A6 /* SpotifyCell.m */,
+				AACE3C29269CDBB0006699A6 /* UserCell.h */,
+				AACE3C2A269CDBB0006699A6 /* UserCell.m */,
+				AACE3C2C269CE1D7006699A6 /* PostCell.h */,
+				AACE3C2D269CE1D7006699A6 /* PostCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AACE3BF7269CA8F0006699A6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AACE3BF8269CA95C006699A6 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AACE3BF9269CADF4006699A6 /* LoginViewController.h */,
+				AACE3BFA269CADF4006699A6 /* LoginViewController.m */,
+				AACE3BFC269CAE00006699A6 /* SignupViewController.h */,
+				AACE3BFD269CAE00006699A6 /* SignupViewController.m */,
+				AACE3BFF269CAE0B006699A6 /* FeedViewController.h */,
+				AACE3C00269CAE0B006699A6 /* FeedViewController.m */,
+				AACE3C05269CAE1E006699A6 /* ProfileViewController.h */,
+				AACE3C06269CAE1E006699A6 /* ProfileViewController.m */,
+				AACE3C08269CAE33006699A6 /* UserSearchViewController.h */,
+				AACE3C09269CAE33006699A6 /* UserSearchViewController.m */,
+				AACE3C0B269CAE39006699A6 /* CreatePostViewController.h */,
+				AACE3C0C269CAE39006699A6 /* CreatePostViewController.m */,
+				AACE3C0E269CAE78006699A6 /* SpotifySearchViewController.h */,
+				AACE3C0F269CAE78006699A6 /* SpotifySearchViewController.m */,
+			);
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -415,10 +518,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AACE3BC9269C7ECB006699A6 /* ViewController.m in Sources */,
+				AACE3C22269CAFC1006699A6 /* CreatePostView.m in Sources */,
+				AACE3C2B269CDBB0006699A6 /* UserCell.m in Sources */,
+				AACE3C0D269CAE39006699A6 /* CreatePostViewController.m in Sources */,
+				AACE3C1C269CAFB5006699A6 /* UserSearchView.m in Sources */,
+				AACE3BFB269CADF4006699A6 /* LoginViewController.m in Sources */,
+				AACE3C19269CAFAA006699A6 /* FeedView.m in Sources */,
+				AACE3C0A269CAE33006699A6 /* UserSearchViewController.m in Sources */,
+				AACE3C28269CDB45006699A6 /* SpotifyCell.m in Sources */,
 				AACE3BC3269C7ECB006699A6 /* AppDelegate.m in Sources */,
+				AACE3C07269CAE1E006699A6 /* ProfileViewController.m in Sources */,
+				AACE3C13269CAF9C006699A6 /* LoginView.m in Sources */,
+				AACE3C25269CAFCC006699A6 /* SpotifySearchView.m in Sources */,
 				AACE3BD4269C7ECC006699A6 /* main.m in Sources */,
 				AACE3BC6269C7ECB006699A6 /* SceneDelegate.m in Sources */,
+				AACE3C1F269CAFBB006699A6 /* ProfileView.m in Sources */,
+				AACE3C16269CAFA4006699A6 /* SignupView.m in Sources */,
+				AACE3C10269CAE78006699A6 /* SpotifySearchViewController.m in Sources */,
+				AACE3C01269CAE0B006699A6 /* FeedViewController.m in Sources */,
+				AACE3BFE269CAE00006699A6 /* SignupViewController.m in Sources */,
+				AACE3C2E269CE1D7006699A6 /* PostCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
