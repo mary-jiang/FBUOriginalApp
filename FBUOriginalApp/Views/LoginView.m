@@ -17,4 +17,12 @@
 }
 */
 
+- (IBAction)didTapLogIn:(id)sender {
+    
+}
+
+- (IBAction)didTapSignUp:(id)sender {
+}
+
+
 @end

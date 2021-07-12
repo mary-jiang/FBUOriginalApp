@@ -6,8 +6,11 @@
 //
 
 #import "LoginViewController.h"
+#import "LoginView.h"
 
 @interface LoginViewController ()
+
+@property (strong, nonatomic) IBOutlet LoginView *loginView;
 
 @end
 
