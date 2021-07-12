@@ -1,0 +1,6 @@
+framework module Pods_FBUOriginalApp_FBUOriginalAppUITests {
+  umbrella header "Pods-FBUOriginalApp-FBUOriginalAppUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
