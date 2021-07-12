@@ -70,7 +70,7 @@ App Name TBD is a music focused social media app where users can share about the
 * User can see who other users are following and who follow other users
 * Users can link last.fm to see more detailed listening activity based on time periods
 * Users can have a to listen to list
-* User can add to to listen to list by identifying
+* User can add to to listen to list by identifying music from a microphone recording (sort of like Shazam)
 
 ### 2. Screen Archetypes
 
@@ -153,16 +153,18 @@ Ranked from most interesting (to me) to least interesting
 
 #### User
 
-| Property | Type | Description |
-| -------- | -------- | -------- |
-| objectId | String | unique id for the user (default field) |
-| username | String | user's username (default field) |
-| password | String | user's password (default field) |
-| spotifyToken | String | the authorization token from the user's spotify account |
-| favArtists | Array | array of JSON objects that have info on each top artist of the user (probably 5 artists only) |
-| favSongs | Array | array of JSON objects that have info on each top song of the user (probably 5 songs only) |
-| profilePicture | File | the user's profile picture |
-| following | Array | array of user ids that this user follows |
+| Property       | Type   | Description                                                                                                   |
+| -------------- | ------ | ------------------------------------------------------------------------------------------------------------- |
+| objectId       | String | unique id for the user (default field)                                                                        |
+| username       | String | user's username (default field)                                                                               |
+| password       | String | user's password (default field)                                                                               |
+| spotifyToken   | String | the authorization token from the user's spotify account                                                       |
+|                |        |                                                                                                               |
+| refreshToken   | String | the refresh token from the user's spotify account that allows us to extend validity of the authorzation token |
+| favArtists     | Array  | array of JSON objects that have info on each top artist of the user (probably 5 artists only)                 |
+| favSongs       | Array  | array of JSON objects that have info on each top song of the user (probably 5 songs only)                     |
+| profilePicture | File   | the user's profile picture                                                                                    |
+| following      | Array  | array of user ids that this user follows |
 
 ### Networking
 - List of Parse network requests by screen (code snippets/examples for some still need to be worked out)
