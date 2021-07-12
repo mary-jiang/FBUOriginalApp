@@ -6,8 +6,11 @@
 //
 
 #import "SignupViewController.h"
+#import "SignupView.h"
 
 @interface SignupViewController ()
+
+@property (strong, nonatomic) IBOutlet SignupView *signupView;
 
 @end
 

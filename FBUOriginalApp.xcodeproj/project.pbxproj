@@ -35,6 +35,7 @@
 		AACE3C28269CDB45006699A6 /* SpotifyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3C27269CDB45006699A6 /* SpotifyCell.m */; };
 		AACE3C2B269CDBB0006699A6 /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3C2A269CDBB0006699A6 /* UserCell.m */; };
 		AACE3C2E269CE1D7006699A6 /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3C2D269CE1D7006699A6 /* PostCell.m */; };
+		AACE3C30269CF0D1006699A6 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = AACE3C2F269CF0D1006699A6 /* Keys.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,7 @@
 		AACE3C2A269CDBB0006699A6 /* UserCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserCell.m; sourceTree = "<group>"; };
 		AACE3C2C269CE1D7006699A6 /* PostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCell.h; sourceTree = "<group>"; };
 		AACE3C2D269CE1D7006699A6 /* PostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCell.m; sourceTree = "<group>"; };
+		AACE3C2F269CF0D1006699A6 /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		DC0B7B4630C79D64309DECA7 /* Pods_FBUOriginalAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FBUOriginalAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E786334F2D666B89D293C5D7 /* Pods-FBUOriginalApp-FBUOriginalAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FBUOriginalApp-FBUOriginalAppUITests.release.xcconfig"; path = "Target Support Files/Pods-FBUOriginalApp-FBUOriginalAppUITests/Pods-FBUOriginalApp-FBUOriginalAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F5A1FBDF497959AB770B88A6 /* Pods_FBUOriginalApp_FBUOriginalAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FBUOriginalApp_FBUOriginalAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -204,6 +206,7 @@
 				AACE3BCF269C7ECC006699A6 /* LaunchScreen.storyboard */,
 				AACE3BD2269C7ECC006699A6 /* Info.plist */,
 				AACE3BD3269C7ECC006699A6 /* main.m */,
+				AACE3C2F269CF0D1006699A6 /* Keys.plist */,
 			);
 			path = FBUOriginalApp;
 			sourceTree = "<group>";
@@ -388,6 +391,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AACE3C30269CF0D1006699A6 /* Keys.plist in Resources */,
 				AACE3BD1269C7ECC006699A6 /* LaunchScreen.storyboard in Resources */,
 				AACE3BCE269C7ECC006699A6 /* Assets.xcassets in Resources */,
 				AACE3BCC269C7ECB006699A6 /* Main.storyboard in Resources */,

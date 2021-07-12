@@ -11,6 +11,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SpotifyCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *associatedImageView;
+
 @end
 
 NS_ASSUME_NONNULL_END

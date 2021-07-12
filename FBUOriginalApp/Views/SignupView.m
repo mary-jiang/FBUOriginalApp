@@ -17,4 +17,12 @@
 }
 */
 
+- (IBAction)didTapSpotify:(id)sender {
+    
+}
+
+- (IBAction)didTapSignup:(id)sender {
+    
+}
+
 @end

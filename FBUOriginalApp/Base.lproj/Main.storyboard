@@ -99,12 +99,16 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
+                                    <action selector="didTapSignup:" destination="cFL-j5-xmW" eventType="touchUpInside" id="q7R-oO-Yx0"/>
                                     <segue destination="v1n-fj-y8q" kind="show" identifier="loginSegue" id="Def-9M-fEm"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ijg-MZ-X21">
                                 <rect key="frame" x="133.5" y="394" width="147" height="30"/>
                                 <state key="normal" title="Connect With Spotify"/>
+                                <connections>
+                                    <action selector="didTapSpotify:" destination="cFL-j5-xmW" eventType="touchUpInside" id="X6e-zO-LUK"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wtF-EC-0EV"/>
@@ -122,8 +126,15 @@
                             <constraint firstItem="x7E-LQ-iBl" firstAttribute="centerX" secondItem="cFL-j5-xmW" secondAttribute="centerX" id="uJn-0y-bMX"/>
                             <constraint firstItem="ijg-MZ-X21" firstAttribute="centerX" secondItem="cFL-j5-xmW" secondAttribute="centerX" id="wpR-SN-VSp"/>
                         </constraints>
+                        <connections>
+                            <outlet property="passwordField" destination="x7E-LQ-iBl" id="2Xw-Sk-feb"/>
+                            <outlet property="usernameField" destination="fv5-iY-iTS" id="08x-Ci-OW8"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="l6I-Tg-fHD"/>
+                    <connections>
+                        <outlet property="signupView" destination="cFL-j5-xmW" id="rQ6-2g-D3V"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RwW-Ht-wMp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -183,21 +194,39 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="contentLabel" destination="Dpt-5A-JlB" id="yW0-eY-yy6"/>
+                                            <outlet property="likesLabel" destination="d2z-cW-1oQ" id="kVT-gU-WPw"/>
+                                            <outlet property="profileImageView" destination="ugb-qY-2v9" id="Hh8-MX-xfk"/>
+                                            <outlet property="topicLabel" destination="aet-a6-BlR" id="lRR-6q-hHq"/>
+                                            <outlet property="usernameLabel" destination="Nrj-0y-IMO" id="F5n-vZ-YL0"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DFc-dU-d2l"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <connections>
+                            <outlet property="tableView" destination="nMl-b2-nPK" id="eIv-ob-c78"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="7KF-Iv-68k">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="YW5-nh-9W5"/>
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="YW5-nh-9W5">
+                            <connections>
+                                <action selector="didTapLogout:" destination="yG3-tt-GuY" id="QsF-dK-qqQ"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Create Post" id="cqD-sm-rGA">
                             <connections>
+                                <action selector="didTapCreatePost:" destination="yG3-tt-GuY" id="RHS-Fq-qhv"/>
                                 <segue destination="LIm-wI-sjo" kind="presentation" id="1U8-gQ-KVX"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="feedView" destination="i28-Zf-3ps" id="0jc-d4-yQC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SQR-6f-vu9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -254,12 +283,25 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MqL-JY-uq9"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <connections>
+                            <outlet property="chosenTopicImageView" destination="d9f-W1-YdG" id="9IK-D5-9ou"/>
+                            <outlet property="chosenTopicLabel" destination="8ug-iF-aKS" id="eLh-Qi-jnS"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="p77-hc-uJr">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Gvf-rk-cPF"/>
-                        <barButtonItem key="rightBarButtonItem" title="Post" id="7ZY-dp-tu8"/>
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Gvf-rk-cPF">
+                            <connections>
+                                <action selector="didTapCancel:" destination="K7A-15-gdk" id="ng0-XK-JUJ"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Post" id="7ZY-dp-tu8">
+                            <connections>
+                                <action selector="didTapPost:" destination="K7A-15-gdk" id="o1E-sx-zYO"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="createPostView" destination="quc-9D-BKV" id="ol3-F2-Dbi"/>
                         <segue destination="Ik8-az-hnI" kind="show" identifier="spotifySegue" id="SJz-B7-Fhz"/>
                     </connections>
                 </viewController>
@@ -309,6 +351,10 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="associatedImageView" destination="EUe-Pm-ZIm" id="B54-8r-2TA"/>
+                                            <outlet property="nameLabel" destination="Dju-mA-JrS" id="zaY-Ya-934"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -322,6 +368,12 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="FIJ-3C-DIi"/>
+                    <connections>
+                        <outlet property="searchBar" destination="czb-nC-buy" id="FfM-zR-mAG"/>
+                        <outlet property="spotifySearchView" destination="dNg-AY-U3k" id="aaX-by-UD7"/>
+                        <outlet property="tableView" destination="Iqi-dY-kmd" id="bzZ-dd-WgN"/>
+                        <outlet property="typeSegementedControl" destination="TlV-30-Lcg" id="aqD-jl-5y4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="boP-30-FZH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -365,14 +417,25 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="profileImageView" destination="wGv-3w-1XE" id="VHp-yG-OCF"/>
+                                            <outlet property="usernameLabel" destination="kNu-Ql-LJD" id="xG3-21-lTh"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ICs-8a-xb1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <connections>
+                            <outlet property="searchBar" destination="FPn-OR-3hf" id="2un-EP-mr9"/>
+                            <outlet property="tableView" destination="kjm-Ou-HZs" id="0Iu-xE-zGr"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="nj7-Ou-3yU"/>
+                    <connections>
+                        <outlet property="userSearchView" destination="ZkA-C3-JgN" id="5pN-uM-LO3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="01I-RO-j9V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -518,6 +581,26 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="YOt-bE-Wmg"/>
+                    <connections>
+                        <outlet property="artist1ImageView" destination="0Nc-9k-0TP" id="2PB-zW-E9Y"/>
+                        <outlet property="artist1Label" destination="qBZ-ju-f0c" id="EWq-yu-3zd"/>
+                        <outlet property="artist2ImageView" destination="Tt0-ip-A1u" id="qYG-Ir-h4g"/>
+                        <outlet property="artist2Label" destination="HnN-Bb-uyT" id="UpI-Nz-l0s"/>
+                        <outlet property="artist3ImageView" destination="Za8-OW-oVJ" id="LuM-Il-D81"/>
+                        <outlet property="artist3Label" destination="nS5-dn-5VL" id="DAt-2C-qfV"/>
+                        <outlet property="profileImageView" destination="szB-6c-a7y" id="a7I-NI-170"/>
+                        <outlet property="profileView" destination="7pJ-8E-eKe" id="1wE-Sv-iAY"/>
+                        <outlet property="song1ArtistLabel" destination="pyG-Jf-20M" id="SfQ-uO-GuX"/>
+                        <outlet property="song1ImageView" destination="lwh-3S-ne3" id="Jn5-nC-aR7"/>
+                        <outlet property="song1Label" destination="sMY-fW-kN9" id="OGi-SO-7dL"/>
+                        <outlet property="song2ArtistLabel" destination="BJx-Gb-DB3" id="XhS-Zc-yri"/>
+                        <outlet property="song2ImageView" destination="2Cm-gl-I9B" id="cH7-fY-w6s"/>
+                        <outlet property="song2Label" destination="xWx-Mw-MDx" id="FnP-Cl-dZL"/>
+                        <outlet property="song3ArtistLabel" destination="HJi-0W-vur" id="tfu-JQ-8R2"/>
+                        <outlet property="song3ImageView" destination="doa-Yf-Y3H" id="p1e-0O-Pys"/>
+                        <outlet property="song3Label" destination="hG7-bT-O0C" id="uuy-5W-I5X"/>
+                        <outlet property="usernameLabel" destination="3nA-CL-Aei" id="Gco-Uo-M4t"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AvR-Bn-7B6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

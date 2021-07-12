@@ -11,6 +11,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CreatePostView : UIView
 
+@property (weak, nonatomic) IBOutlet UILabel *chosenTopicLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *chosenTopicImageView;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -6,8 +6,11 @@
 //
 
 #import "UserSearchViewController.h"
+#import "UserSearchView.h"
 
 @interface UserSearchViewController ()
+
+@property (strong, nonatomic) IBOutlet UserSearchView *userSearchView;
 
 @end
 

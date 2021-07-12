@@ -6,8 +6,11 @@
 //
 
 #import "CreatePostViewController.h"
+#import "CreatePostView.h"
 
 @interface CreatePostViewController ()
+
+@property (strong, nonatomic) IBOutlet CreatePostView *createPostView;
 
 @end
 
@@ -16,6 +19,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+- (IBAction)didTapPost:(id)sender {
+    
+}
+
+- (IBAction)didTapCancel:(id)sender {
+    
 }
 
 /*

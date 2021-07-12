@@ -6,8 +6,11 @@
 //
 
 #import "ProfileViewController.h"
+#import "ProfileView.h"
 
 @interface ProfileViewController ()
+
+@property (strong, nonatomic) IBOutlet ProfileView *profileView;
 
 @end
 

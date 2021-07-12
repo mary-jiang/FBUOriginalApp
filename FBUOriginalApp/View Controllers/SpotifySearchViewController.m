@@ -6,8 +6,11 @@
 //
 
 #import "SpotifySearchViewController.h"
+#import "SpotifySearchView.h"
 
 @interface SpotifySearchViewController ()
+
+@property (strong, nonatomic) IBOutlet SpotifySearchView *spotifySearchView;
 
 @end
 

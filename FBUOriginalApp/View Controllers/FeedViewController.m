@@ -6,8 +6,11 @@
 //
 
 #import "FeedViewController.h"
+#import "FeedView.h"
 
 @interface FeedViewController ()
+
+@property (strong, nonatomic) IBOutlet FeedView *feedView;
 
 @end
 
@@ -16,6 +19,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+- (IBAction)didTapLogout:(id)sender {
+    
+}
+
+- (IBAction)didTapCreatePost:(id)sender {
+    
 }
 
 /*
