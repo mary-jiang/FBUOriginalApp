@@ -36,6 +36,10 @@
 		AACE3C2B269CDBB0006699A6 /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3C2A269CDBB0006699A6 /* UserCell.m */; };
 		AACE3C2E269CE1D7006699A6 /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3C2D269CE1D7006699A6 /* PostCell.m */; };
 		AACE3C30269CF0D1006699A6 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = AACE3C2F269CF0D1006699A6 /* Keys.plist */; };
+		AACE3C35269E074F006699A6 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3C34269E074F006699A6 /* APIManager.m */; };
+		AACE3C38269E088A006699A6 /* SpotifyLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3C37269E088A006699A6 /* SpotifyLoginViewController.m */; };
+		AACE3C3A269E08D7006699A6 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACE3C39269E08D7006699A6 /* WebKit.framework */; };
+		AACE3C3D269E0B62006699A6 /* SpotifyLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3C3C269E0B62006699A6 /* SpotifyLoginView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +117,13 @@
 		AACE3C2C269CE1D7006699A6 /* PostCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostCell.h; sourceTree = "<group>"; };
 		AACE3C2D269CE1D7006699A6 /* PostCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostCell.m; sourceTree = "<group>"; };
 		AACE3C2F269CF0D1006699A6 /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
+		AACE3C33269E074F006699A6 /* APIManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
+		AACE3C34269E074F006699A6 /* APIManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
+		AACE3C36269E088A006699A6 /* SpotifyLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpotifyLoginViewController.h; sourceTree = "<group>"; };
+		AACE3C37269E088A006699A6 /* SpotifyLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpotifyLoginViewController.m; sourceTree = "<group>"; };
+		AACE3C39269E08D7006699A6 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		AACE3C3B269E0B62006699A6 /* SpotifyLoginView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpotifyLoginView.h; sourceTree = "<group>"; };
+		AACE3C3C269E0B62006699A6 /* SpotifyLoginView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpotifyLoginView.m; sourceTree = "<group>"; };
 		DC0B7B4630C79D64309DECA7 /* Pods_FBUOriginalAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FBUOriginalAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E786334F2D666B89D293C5D7 /* Pods-FBUOriginalApp-FBUOriginalAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FBUOriginalApp-FBUOriginalAppUITests.release.xcconfig"; path = "Target Support Files/Pods-FBUOriginalApp-FBUOriginalAppUITests/Pods-FBUOriginalApp-FBUOriginalAppUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F5A1FBDF497959AB770B88A6 /* Pods_FBUOriginalApp_FBUOriginalAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FBUOriginalApp_FBUOriginalAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,6 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AACE3C3A269E08D7006699A6 /* WebKit.framework in Frameworks */,
 				994D8A601720A034AFD160B2 /* Pods_FBUOriginalApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -149,6 +161,7 @@
 		85340CBFA487AA2AD4CCF69E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AACE3C39269E08D7006699A6 /* WebKit.framework */,
 				3D92B9053C1B5778E9E7F2F2 /* Pods_FBUOriginalApp.framework */,
 				F5A1FBDF497959AB770B88A6 /* Pods_FBUOriginalApp_FBUOriginalAppUITests.framework */,
 				DC0B7B4630C79D64309DECA7 /* Pods_FBUOriginalAppTests.framework */,
@@ -194,6 +207,7 @@
 		AACE3BC0269C7ECB006699A6 /* FBUOriginalApp */ = {
 			isa = PBXGroup;
 			children = (
+				AACE3C32269DECED006699A6 /* API */,
 				AACE3BF8269CA95C006699A6 /* View Controllers */,
 				AACE3BF7269CA8F0006699A6 /* Models */,
 				AACE3BF6269CA8EA006699A6 /* Views */,
@@ -252,6 +266,8 @@
 				AACE3C2A269CDBB0006699A6 /* UserCell.m */,
 				AACE3C2C269CE1D7006699A6 /* PostCell.h */,
 				AACE3C2D269CE1D7006699A6 /* PostCell.m */,
+				AACE3C3B269E0B62006699A6 /* SpotifyLoginView.h */,
+				AACE3C3C269E0B62006699A6 /* SpotifyLoginView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -280,8 +296,19 @@
 				AACE3C0C269CAE39006699A6 /* CreatePostViewController.m */,
 				AACE3C0E269CAE78006699A6 /* SpotifySearchViewController.h */,
 				AACE3C0F269CAE78006699A6 /* SpotifySearchViewController.m */,
+				AACE3C36269E088A006699A6 /* SpotifyLoginViewController.h */,
+				AACE3C37269E088A006699A6 /* SpotifyLoginViewController.m */,
 			);
 			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		AACE3C32269DECED006699A6 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				AACE3C33269E074F006699A6 /* APIManager.h */,
+				AACE3C34269E074F006699A6 /* APIManager.m */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -527,12 +554,14 @@
 				AACE3C0D269CAE39006699A6 /* CreatePostViewController.m in Sources */,
 				AACE3C1C269CAFB5006699A6 /* UserSearchView.m in Sources */,
 				AACE3BFB269CADF4006699A6 /* LoginViewController.m in Sources */,
+				AACE3C3D269E0B62006699A6 /* SpotifyLoginView.m in Sources */,
 				AACE3C19269CAFAA006699A6 /* FeedView.m in Sources */,
 				AACE3C0A269CAE33006699A6 /* UserSearchViewController.m in Sources */,
 				AACE3C28269CDB45006699A6 /* SpotifyCell.m in Sources */,
 				AACE3BC3269C7ECB006699A6 /* AppDelegate.m in Sources */,
 				AACE3C07269CAE1E006699A6 /* ProfileViewController.m in Sources */,
 				AACE3C13269CAF9C006699A6 /* LoginView.m in Sources */,
+				AACE3C35269E074F006699A6 /* APIManager.m in Sources */,
 				AACE3C25269CAFCC006699A6 /* SpotifySearchView.m in Sources */,
 				AACE3BD4269C7ECC006699A6 /* main.m in Sources */,
 				AACE3BC6269C7ECB006699A6 /* SceneDelegate.m in Sources */,
@@ -540,6 +569,7 @@
 				AACE3C16269CAFA4006699A6 /* SignupView.m in Sources */,
 				AACE3C10269CAE78006699A6 /* SpotifySearchViewController.m in Sources */,
 				AACE3C01269CAE0B006699A6 /* FeedViewController.m in Sources */,
+				AACE3C38269E088A006699A6 /* SpotifyLoginViewController.m in Sources */,
 				AACE3BFE269CAE00006699A6 /* SignupViewController.m in Sources */,
 				AACE3C2E269CE1D7006699A6 /* PostCell.m in Sources */,
 			);

@@ -8,7 +8,7 @@
 #import "SignupViewController.h"
 #import "SignupView.h"
 
-@interface SignupViewController ()
+@interface SignupViewController () <SignupViewDelegate>
 
 @property (strong, nonatomic) IBOutlet SignupView *signupView;
 
@@ -19,6 +19,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.signupView.delegate = self;
+}
+
+- (void)didSignup {
+    NSLog(@"tapped signup");
+}
+
+- (void)didConnectWithSpotify {
+    NSLog(@"tapped connect with spotify");
+    [self performSegueWithIdentifier:@"spotifyAuthSegue" sender:nil];
 }
 
 /*

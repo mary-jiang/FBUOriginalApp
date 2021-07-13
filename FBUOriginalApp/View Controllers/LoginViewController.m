@@ -8,7 +8,7 @@
 #import "LoginViewController.h"
 #import "LoginView.h"
 
-@interface LoginViewController ()
+@interface LoginViewController () <LoginViewDelegate>
 
 @property (strong, nonatomic) IBOutlet LoginView *loginView;
 
@@ -19,6 +19,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+- (void)didLogin {
+    
 }
 
 /*

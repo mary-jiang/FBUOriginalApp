@@ -18,11 +18,11 @@
 */
 
 - (IBAction)didTapSpotify:(id)sender {
-    
+    [self.delegate didConnectWithSpotify];
 }
 
 - (IBAction)didTapSignup:(id)sender {
-    
+    [self.delegate didSignup];
 }
 
 @end
