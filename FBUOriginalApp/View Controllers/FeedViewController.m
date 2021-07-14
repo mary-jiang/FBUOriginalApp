@@ -7,6 +7,9 @@
 
 #import "FeedViewController.h"
 #import "FeedView.h"
+#import <Parse/Parse.h>
+#import "LoginViewController.h"
+#import "SceneDelegate.h"
 
 @interface FeedViewController ()
 
@@ -22,7 +25,18 @@
 }
 
 - (IBAction)didTapLogout:(id)sender {
+    // log out user from Parse
+    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+        // current user should now be null
+    }];
+
+    // create instance of scene delegate
+    SceneDelegate *myDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
     
+    // use scene delegate instance to set root view controller to be a new instance of LoginViewController to send back to log in screen
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    myDelegate.window.rootViewController = loginViewController;
 }
 
 - (IBAction)didTapCreatePost:(id)sender {
