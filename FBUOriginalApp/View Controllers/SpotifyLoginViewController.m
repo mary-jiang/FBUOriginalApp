@@ -10,7 +10,7 @@
 #import "SpotifyLoginView.h"
 #import "APIManager.h"
 
-@interface SpotifyLoginViewController ()
+@interface SpotifyLoginViewController () <WKNavigationDelegate>
 
 @property (strong, nonatomic) IBOutlet SpotifyLoginView *spotifyLoginView;
 
@@ -29,7 +29,7 @@
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
     NSString *key= [dict objectForKey: @"client_id"];
     
-    NSString *redirect_uri = @"https://github.com/mary-jiang/";
+    NSString *redirect_uri = @"fbuoriginalapp://";
     
     // prompt log in
     NSString *urlString = [NSString stringWithFormat:@"https://accounts.spotify.com/authorize?client_id=%@&scope=user-read-recently-played+user-top-read+user-library-read&redirect_uri=%@&response_type=code", key, redirect_uri];
@@ -48,6 +48,23 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+ // for all redirects done we need to check if we are redirecting to our custom scheme
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler{
+    NSString *requestURLString = navigationAction.request.URL.absoluteString;
+    // check for custom scheme
+    if ([requestURLString hasPrefix:@"fbuoriginalapp"]) {
+        // if we find a redirect with custom scheme, pull the needed code from the url and dismiss this view controller
+        NSString *authorizationCode = [requestURLString stringByReplacingOccurrencesOfString:@"fbuoriginalapp://?code=" withString:@""];
+        [[APIManager shared] exchangeCodeForTokenWithCompletion:authorizationCode completion:^(NSDictionary * tokenDictionary, NSError * error) {
+            NSLog(@"%@", tokenDictionary);
+        }];
+        decisionHandler(WKNavigationActionPolicyCancel);
+        [self dismissViewControllerAnimated:true completion:nil];
+    } else {
+        decisionHandler(WKNavigationActionPolicyAllow);
+    }
+}
 
 
 @end

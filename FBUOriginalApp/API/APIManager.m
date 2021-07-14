@@ -25,13 +25,23 @@
     NSString *key = [dict objectForKey: @"client_id"];
     NSString *secret = [dict objectForKey:@"client_secret"];
     
-    NSString *urlString =
-    [NSString stringWithFormat:
-     @"https://accounts.spotify.com/api/token?grant_type=authorization_code&code=%@&redirect_uri=fbuoriginalapp://&client_id=%@&client_secret=%@",
-     code, key, secret];
-    NSURL *url = [NSURL URLWithString:urlString];
+    // encode client id and client secret in a base 64 encoded string
+    NSString *clientIDAndSecretString = [NSString stringWithFormat:@"%@:%@", key, secret];
+    NSData *clientIDAndSecretData = [clientIDAndSecretString dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *clientIDandSecretEncoded = [clientIDAndSecretData base64EncodedStringWithOptions:0];
+    
+    // create data for request body parameters
+    NSString *queryParameters = [NSString stringWithFormat:@"grant_type=authorization_code&code=%@&redirect_uri=fbuoriginalapp://", code];
+    NSData *queryData = [queryParameters dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSURL *url = [NSURL URLWithString:@"https://accounts.spotify.com/api/token"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     [request setHTTPMethod:@"POST"];
+    // set body data
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:queryData];
+    // set header data
+    [request setValue:[NSString stringWithFormat:@"Basic %@", clientIDandSecretEncoded] forHTTPHeaderField:@"Authorization"];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
            if (error != nil) {
@@ -42,8 +52,6 @@
                NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
                completion(dataDictionary, nil);
            }
-        
-       
        }];
     [task resume];
 }
