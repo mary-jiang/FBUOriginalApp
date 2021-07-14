@@ -661,7 +661,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="bpV-4W-zal">
             <objects>
-                <tabBarController modalPresentationStyle="fullScreen" id="v1n-fj-y8q" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" modalPresentationStyle="fullScreen" id="v1n-fj-y8q" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="l93-6j-6Dj"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wil-zU-f6K">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
