@@ -11,6 +11,7 @@
 		9782A941F906F5487E5E7C03 /* Pods_FBUOriginalApp_FBUOriginalAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5A1FBDF497959AB770B88A6 /* Pods_FBUOriginalApp_FBUOriginalAppUITests.framework */; };
 		994D8A601720A034AFD160B2 /* Pods_FBUOriginalApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D92B9053C1B5778E9E7F2F2 /* Pods_FBUOriginalApp.framework */; };
 		AA27A349269F350600CF2BC5 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = AA27A348269F350600CF2BC5 /* Post.m */; };
+		AA27A34F269F8B5100CF2BC5 /* Topic.m in Sources */ = {isa = PBXBuildFile; fileRef = AA27A34E269F8B5100CF2BC5 /* Topic.m */; };
 		AACE3BC3269C7ECB006699A6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3BC2269C7ECB006699A6 /* AppDelegate.m */; };
 		AACE3BC6269C7ECB006699A6 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3BC5269C7ECB006699A6 /* SceneDelegate.m */; };
 		AACE3BCC269C7ECB006699A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AACE3BCA269C7ECB006699A6 /* Main.storyboard */; };
@@ -69,6 +70,8 @@
 		77238B195911A5271A821630 /* Pods-FBUOriginalApp-FBUOriginalAppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FBUOriginalApp-FBUOriginalAppUITests.debug.xcconfig"; path = "Target Support Files/Pods-FBUOriginalApp-FBUOriginalAppUITests/Pods-FBUOriginalApp-FBUOriginalAppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		AA27A347269F350600CF2BC5 /* Post.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
 		AA27A348269F350600CF2BC5 /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
+		AA27A34D269F8B5100CF2BC5 /* Topic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Topic.h; sourceTree = "<group>"; };
+		AA27A34E269F8B5100CF2BC5 /* Topic.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Topic.m; sourceTree = "<group>"; };
 		AACE3BBE269C7ECB006699A6 /* FBUOriginalApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FBUOriginalApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AACE3BC1269C7ECB006699A6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		AACE3BC2269C7ECB006699A6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -280,6 +283,8 @@
 			children = (
 				AA27A347269F350600CF2BC5 /* Post.h */,
 				AA27A348269F350600CF2BC5 /* Post.m */,
+				AA27A34D269F8B5100CF2BC5 /* Topic.h */,
+				AA27A34E269F8B5100CF2BC5 /* Topic.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -564,6 +569,7 @@
 				AA27A349269F350600CF2BC5 /* Post.m in Sources */,
 				AACE3C0A269CAE33006699A6 /* UserSearchViewController.m in Sources */,
 				AACE3C28269CDB45006699A6 /* SpotifyCell.m in Sources */,
+				AA27A34F269F8B5100CF2BC5 /* Topic.m in Sources */,
 				AACE3BC3269C7ECB006699A6 /* AppDelegate.m in Sources */,
 				AACE3C07269CAE1E006699A6 /* ProfileViewController.m in Sources */,
 				AACE3C13269CAF9C006699A6 /* LoginView.m in Sources */,

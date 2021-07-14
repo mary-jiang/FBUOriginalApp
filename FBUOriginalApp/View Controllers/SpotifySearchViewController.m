@@ -9,6 +9,7 @@
 #import "SpotifySearchView.h"
 #import "APIManager.h"
 #import <Parse/Parse.h>
+#import "Topic.h"
 
 @interface SpotifySearchViewController () <UISearchBarDelegate>
 
@@ -41,7 +42,7 @@
             NSLog(@"Error making search: %@", error.localizedDescription);
         } else {
             NSString *dictKey = [NSString stringWithFormat:@"%@s", type]; // dictionary has the data we want in "albums/artists/tracks" (depends on type)
-            self.results = results[dictKey][@"items"];
+            self.results = [Topic topicsWithArray:results[dictKey][@"items"]];
         }
     }];
 }
