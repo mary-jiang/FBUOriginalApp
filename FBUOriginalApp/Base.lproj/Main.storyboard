@@ -30,7 +30,6 @@
                                 <rect key="frame" x="180" y="812" width="54" height="30"/>
                                 <state key="normal" title="Sign Up"/>
                                 <connections>
-                                    <action selector="didTapSignUp:" destination="8bC-Xf-vdC" eventType="touchUpInside" id="dVR-h5-cYG"/>
                                     <segue destination="bth-fc-UuO" kind="show" identifier="signupSegue" id="Hiy-de-9Yz"/>
                                 </connections>
                             </button>

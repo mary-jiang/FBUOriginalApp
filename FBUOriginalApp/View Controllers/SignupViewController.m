@@ -29,6 +29,21 @@
 
 // SpotifyView delegate method that is called when Sign Up button is pressed
 - (void)didSignup {
+    [self registerUser];
+}
+
+// SpotifyView delegate method that is called when connect with spotify button is pressed
+- (void)didConnectWithSpotify {
+    [self performSegueWithIdentifier:@"spotifyAuthSegue" sender:nil];
+}
+
+// SpotifyLoginViewController delegate method that gets called when the SpotifyLoginViewController successfully obtains the access token info from Spotify
+- (void)didGetToken:(NSDictionary *)token {
+    self.accessToken = token[@"access_token"];
+    self.refreshToken = token[@"refresh_token"];
+}
+
+- (void)registerUser {
     if (self.accessToken != nil && self.refreshToken != nil) {
         // initialize user
         PFUser *newUser = [PFUser user];
@@ -50,17 +65,6 @@
     } else {
         NSLog(@"No authorization or refresh token, did not sign up user");
     }
-}
-
-// SpotifyView delegate method that is called when connect with spotify button is pressed
-- (void)didConnectWithSpotify {
-    [self performSegueWithIdentifier:@"spotifyAuthSegue" sender:nil];
-}
-
-// SpotifyLoginViewController delegate method that gets called when the SpotifyLoginViewController successfully obtains the access token info from Spotify
-- (void)didGetToken:(NSDictionary *)token {
-    self.accessToken = token[@"access_token"];
-    self.refreshToken = token[@"refresh_token"];
 }
 
 

@@ -18,11 +18,7 @@
 */
 
 - (IBAction)didTapLogIn:(id)sender {
-    
+    [self.delegate didLogin];
 }
-
-- (IBAction)didTapSignUp:(id)sender {
-}
-
 
 @end
