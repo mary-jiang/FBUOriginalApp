@@ -71,6 +71,7 @@ App Name TBD is a music focused social media app where users can share about the
 * Users can link last.fm to see more detailed listening activity based on time periods
 * Users can have a to listen to list
 * User can add to to listen to list by identifying music from a microphone recording (sort of like Shazam)
+* user can see friend recommendations based on music tastes
 
 ### 2. Screen Archetypes
 
@@ -145,7 +146,8 @@ Ranked from most interesting (to me) to least interesting
 | objectId | String | unique id for the user post (default field) |
 | author | Pointer to User | the post's author|
 | text | String | the post's text |
-| about | JSON Object | the artist/album/song that the post is about, this JSON object is fetched from the Spotify API and includes things like name, id, type, related images, artist (for albums/songs)|
+| spotifyID | String | the spotify ID for the music the post is talking about|
+| type | String | type of music the post is talking about (artist/album/track) |
 | likeCount | Number | the number of likes this post has |
 | likedBy | Array | an array of user ids that have liked this post |
 | createdAt | DateTime | the time the post was created at (default field) |
