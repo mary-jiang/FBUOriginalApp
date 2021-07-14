@@ -49,16 +49,22 @@
 }
 */
 
- // for all redirects done we need to check if we are redirecting to our custom scheme
+// for all redirects done we need to check if we are redirecting to our custom scheme
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler{
     NSString *requestURLString = navigationAction.request.URL.absoluteString;
     // check for custom scheme
     if ([requestURLString hasPrefix:@"fbuoriginalapp"]) {
-        // if we find a redirect with custom scheme, pull the needed code from the url and dismiss this view controller
+        // if we find a redirect with custom scheme, pull the needed code from the url, exchange it for the access token dictionary
         NSString *authorizationCode = [requestURLString stringByReplacingOccurrencesOfString:@"fbuoriginalapp://?code=" withString:@""];
         [[APIManager shared] exchangeCodeForTokenWithCompletion:authorizationCode completion:^(NSDictionary * tokenDictionary, NSError * error) {
-            NSLog(@"%@", tokenDictionary);
+            if (error != nil) {
+                NSLog(@"Error exchanging token: %@", error.localizedDescription);
+            } else {
+                [self.delegate didGetToken:tokenDictionary];
+            }
         }];
+        
+        // cancel the redirect and dismiss this view controller
         decisionHandler(WKNavigationActionPolicyCancel);
         [self dismissViewControllerAnimated:true completion:nil];
     } else {

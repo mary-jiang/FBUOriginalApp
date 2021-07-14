@@ -42,7 +42,6 @@
                                 </state>
                                 <connections>
                                     <action selector="didTapLogIn:" destination="8bC-Xf-vdC" eventType="touchUpInside" id="nzG-LZ-C7n"/>
-                                    <segue destination="v1n-fj-y8q" kind="show" identifier="loginSegue" id="SRd-3K-eqZ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -68,6 +67,7 @@
                     </view>
                     <connections>
                         <outlet property="loginView" destination="8bC-Xf-vdC" id="biN-cn-HDq"/>
+                        <segue destination="v1n-fj-y8q" kind="show" identifier="loginSegue" id="pxI-X5-rce"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -100,7 +100,6 @@
                                 </state>
                                 <connections>
                                     <action selector="didTapSignup:" destination="cFL-j5-xmW" eventType="touchUpInside" id="q7R-oO-Yx0"/>
-                                    <segue destination="v1n-fj-y8q" kind="show" identifier="loginSegue" id="Def-9M-fEm"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ijg-MZ-X21">
@@ -135,6 +134,7 @@
                     <connections>
                         <outlet property="signupView" destination="cFL-j5-xmW" id="rQ6-2g-D3V"/>
                         <segue destination="NU6-zU-1rP" kind="presentation" identifier="spotifyAuthSegue" id="KAD-Sf-wvt"/>
+                        <segue destination="v1n-fj-y8q" kind="show" identifier="loginSegue" id="CZ1-8P-CJo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RwW-Ht-wMp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -737,7 +737,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Def-9M-fEm"/>
+        <segue reference="pxI-X5-rce"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>

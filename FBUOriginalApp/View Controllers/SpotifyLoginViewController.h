@@ -9,7 +9,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol SpotifyLoginViewControllerDelegate
+
+- (void)didGetToken: (NSDictionary *)token;
+
+@end
+
 @interface SpotifyLoginViewController : UIViewController
+
+@property (weak, nonatomic) id<SpotifyLoginViewControllerDelegate>delegate;
 
 @end
 
