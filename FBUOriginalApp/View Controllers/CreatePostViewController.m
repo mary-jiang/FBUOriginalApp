@@ -8,7 +8,7 @@
 #import "CreatePostViewController.h"
 #import "CreatePostView.h"
 
-@interface CreatePostViewController ()
+@interface CreatePostViewController () <CreatePostViewDelegate>
 
 @property (strong, nonatomic) IBOutlet CreatePostView *createPostView;
 
@@ -19,6 +19,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.createPostView.delegate = self;
+    [self.createPostView createTopicTapGestureRecognizer];
 }
 
 - (IBAction)didTapPost:(id)sender {
@@ -27,6 +30,10 @@
 
 - (IBAction)didTapCancel:(id)sender {
     
+}
+
+- (void)didTapTopic {
+    [self performSegueWithIdentifier:@"spotifySearchSegue" sender:nil];
 }
 
 /*

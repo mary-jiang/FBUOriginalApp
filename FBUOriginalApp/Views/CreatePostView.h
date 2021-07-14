@@ -9,10 +9,20 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol CreatePostViewDelegate
+
+- (void)didTapTopic;
+
+@end
+
 @interface CreatePostView : UIView
 
 @property (weak, nonatomic) IBOutlet UILabel *chosenTopicLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *chosenTopicImageView;
+@property (weak, nonatomic) IBOutlet UIView *chosenTopicWrapper;
+@property (weak, nonatomic) id<CreatePostViewDelegate> delegate;
+
+- (void)createTopicTapGestureRecognizer;
 
 @end
 

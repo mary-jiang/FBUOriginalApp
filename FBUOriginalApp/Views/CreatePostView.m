@@ -17,4 +17,15 @@
 }
 */
 
+- (void)createTopicTapGestureRecognizer {
+    UITapGestureRecognizer *profileTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapTopic)];
+    [self.chosenTopicWrapper addGestureRecognizer:profileTapGestureRecognizer];
+    [self.chosenTopicWrapper setUserInteractionEnabled:true];
+}
+
+// tell the delegate that the topic section was tapped
+- (void)didTapTopic {
+    [self.delegate didTapTopic];
+}
+
 @end

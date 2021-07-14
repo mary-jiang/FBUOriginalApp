@@ -17,4 +17,9 @@
 }
 */
 
+- (NSString *)getType {
+    NSArray *types = @[@"album", @"artist", @"track"];
+    return types[self.typeSegmentedControl.selectedSegmentIndex];
+}
+
 @end
