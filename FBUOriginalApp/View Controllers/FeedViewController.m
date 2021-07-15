@@ -24,7 +24,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    // TODO: figure out when to refresh user's authorization token, for now just refresh when this feed is seen
+    // TODO: figure out when to refresh user's authorization token, for now just refresh when this feed is seen to ensure a working code
     PFUser *user = [PFUser currentUser];
     [[APIManager shared] refreshTokenWithCompletion:user[@"refreshToken"] completion:^(NSDictionary *tokens, NSError *error) {
         user[@"spotifyToken"] = tokens[@"access_token"];

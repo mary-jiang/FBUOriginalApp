@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Topic.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) id<CreatePostViewDelegate> delegate;
 
 - (void)createTopicTapGestureRecognizer;
+- (void)updateTopic: (Topic *)topic;
 
 @end
 

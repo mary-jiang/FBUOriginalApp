@@ -63,6 +63,12 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Topic *topic = self.results[indexPath.row];
+    [self.delegate didChooseTopic:topic];
+    [self.navigationController popViewControllerAnimated:true];
+}
+
 /*
 #pragma mark - Navigation
 

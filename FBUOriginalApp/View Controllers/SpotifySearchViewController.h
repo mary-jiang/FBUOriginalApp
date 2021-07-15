@@ -6,10 +6,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Topic.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol SpotifySearchViewControllerDelegate
+
+- (void)didChooseTopic:(Topic *)topic;
+
+@end
+
 @interface SpotifySearchViewController : UIViewController
+
+@property (weak, nonatomic) id<SpotifySearchViewControllerDelegate> delegate;
 
 @end
 

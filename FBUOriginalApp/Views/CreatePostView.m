@@ -28,4 +28,11 @@
     [self.delegate didTapTopic];
 }
 
+- (void)updateTopic:(Topic *)topic {
+    self.chosenTopicLabel.text = topic.name;
+    NSURL *imageURL = [NSURL URLWithString:topic.image];
+    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+    self.chosenTopicImageView.image = [UIImage imageWithData:imageData];
+}
+
 @end
