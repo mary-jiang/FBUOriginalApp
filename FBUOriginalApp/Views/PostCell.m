@@ -36,4 +36,18 @@
     self.topicImageView.image = [UIImage imageWithData:imageData];
 }
 
+- (void)setAuthor:(PFUser *)author {
+    _author = author;
+    
+    self.usernameLabel.text = self.author[@"username"];
+    
+    // check to see if there is a profile picture
+    PFFileObject *profilePicture = author[@"profilepicture"];
+    if (profilePicture != nil) {
+        NSURL *profileURL = [NSURL URLWithString:profilePicture.url];
+        NSData *profileData = [NSData dataWithContentsOfURL:profileURL];
+        self.profileImageView.image = [UIImage imageWithData:profileData];
+    }
+}
+
 @end

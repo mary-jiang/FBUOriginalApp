@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "Post.h"
 #import "Topic.h"
+#import <Parse/Parse.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -22,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (strong, nonatomic) Post *post;
 @property (strong, nonatomic) Topic *topic;
+@property (strong, nonatomic) PFUser *author;
 
 @end
 

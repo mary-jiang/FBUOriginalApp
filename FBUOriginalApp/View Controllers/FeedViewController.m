@@ -19,6 +19,7 @@
 @property (strong, nonatomic) IBOutlet FeedView *feedView;
 @property (strong, nonatomic) NSArray *posts;
 @property (strong, nonatomic) PFUser *user;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
@@ -31,15 +32,20 @@
     // TODO: figure out when to refresh user's authorization token, for now just refresh when this feed is seen to ensure a working code
     PFUser *user = [PFUser currentUser];
     self.user = user;
-    [[APIManager shared] refreshTokenWithCompletion:user[@"refreshToken"] completion:^(NSDictionary *tokens, NSError *error) {
-        self.user[@"spotifyToken"] = tokens[@"access_token"];
-        [self.user saveInBackground];
-    }];
+//    [[APIManager shared] refreshTokenWithCompletion:user[@"refreshToken"] completion:^(NSDictionary *tokens, NSError *error) {
+//        self.user[@"spotifyToken"] = tokens[@"access_token"];
+//        [self.user saveInBackground];
+//    }];
     
     self.feedView.tableView.delegate = self;
     self.feedView.tableView.dataSource = self;
     
     [self fetchPosts];
+    
+    //setup refresh control
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
+    [self.feedView.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
 - (IBAction)didTapLogout:(id)sender {
@@ -75,6 +81,7 @@
             self.posts = posts;
             [self.feedView.tableView reloadData];
         }
+        [self.refreshControl endRefreshing];
     }];
 }
 
@@ -92,6 +99,13 @@
         } else {
             Topic *topic = [[Topic alloc] initWithDictionary:data];
             cell.topic = topic;
+        }
+    }];
+    [post[@"author"] fetchIfNeededInBackgroundWithBlock:^(PFObject *author, NSError *error) {
+        if (error != nil) {
+            NSLog(@"%@", error.localizedDescription);
+        } else {
+            cell.author = (PFUser *)author;
         }
     }];
     return cell;
