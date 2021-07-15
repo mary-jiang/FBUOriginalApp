@@ -10,8 +10,9 @@
 #import "APIManager.h"
 #import <Parse/Parse.h>
 #import "Topic.h"
+#import "SpotifyCell.h"
 
-@interface SpotifySearchViewController () <UISearchBarDelegate>
+@interface SpotifySearchViewController () <UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet SpotifySearchView *spotifySearchView;
 @property (strong, nonatomic) NSArray *results;
@@ -24,6 +25,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.spotifySearchView.searchBar.delegate = self;
+    self.spotifySearchView.tableView.delegate = self;
+    self.spotifySearchView.tableView.dataSource = self;
+    
     
 }
 
@@ -43,10 +47,21 @@
         } else {
             NSString *dictKey = [NSString stringWithFormat:@"%@s", type]; // dictionary has the data we want in "albums/artists/tracks" (depends on type)
             self.results = [Topic topicsWithArray:results[dictKey][@"items"]];
+            [self.spotifySearchView.tableView reloadData];
         }
     }];
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.results.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    SpotifyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SpotifyCell"];
+    Topic *topic = self.results[indexPath.row];
+    cell.topic = topic;
+    return cell;
+}
 
 /*
 #pragma mark - Navigation

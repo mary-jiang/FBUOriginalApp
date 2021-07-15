@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Topic.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -13,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *associatedImageView;
+@property (strong, nonatomic) Topic *topic;
 
 @end
 

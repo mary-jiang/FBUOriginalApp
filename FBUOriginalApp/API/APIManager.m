@@ -95,8 +95,8 @@
 }
 
 - (void)searchSpotifyWithCompletion:(NSString *)query type:(NSString *)type authorization:(NSString *)authorization completion:(void(^)(NSDictionary *, NSError *))completion {
-    // the search query must have spaces encoded as '+'
-    NSString *encodedQuery = [query stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    // the search query must be encoded
+    NSString *encodedQuery = [query stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];
     // construct request
     NSString *urlString = [NSString stringWithFormat:@"https://api.spotify.com/v1/search?q=%@&type=%@", encodedQuery, type];
     NSURL *url = [NSURL URLWithString:urlString];
