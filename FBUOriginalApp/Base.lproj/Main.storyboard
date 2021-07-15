@@ -320,6 +320,7 @@
                             <outlet property="chosenTopicImageView" destination="d9f-W1-YdG" id="9IK-D5-9ou"/>
                             <outlet property="chosenTopicLabel" destination="8ug-iF-aKS" id="eLh-Qi-jnS"/>
                             <outlet property="chosenTopicWrapper" destination="e9J-rX-B0s" id="t1V-aU-BMD"/>
+                            <outlet property="postTextView" destination="9aV-K8-MTA" id="jyM-pd-kFv"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="p77-hc-uJr">
@@ -364,10 +365,10 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SpotifyCell" id="36Q-YH-Qcg" customClass="SpotifyCell">
-                                        <rect key="frame" x="0.0" y="24" width="414" height="66"/>
+                                        <rect key="frame" x="0.0" y="25" width="414" height="66"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="36Q-YH-Qcg" id="JVU-4l-HQI">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="66"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="66.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="254" verticalHuggingPriority="256" horizontalCompressionResistancePriority="755" verticalCompressionResistancePriority="754" translatesAutoresizingMaskIntoConstraints="NO" id="EUe-Pm-ZIm">

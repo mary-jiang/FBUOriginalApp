@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *chosenTopicLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *chosenTopicImageView;
 @property (weak, nonatomic) IBOutlet UIView *chosenTopicWrapper;
+@property (weak, nonatomic) IBOutlet UITextView *postTextView;
 @property (weak, nonatomic) id<CreatePostViewDelegate> delegate;
 
 - (void)createTopicTapGestureRecognizer;

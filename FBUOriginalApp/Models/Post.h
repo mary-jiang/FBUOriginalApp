@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSArray *likedBy;
 @property (strong, nonatomic) NSNumber *likeCount;
 
++ (void) createPostWithText: (NSString *)text withId: (NSString *)spotifyId withType: (NSString *)type withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
 @end
 
