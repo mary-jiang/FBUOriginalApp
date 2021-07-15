@@ -12,11 +12,13 @@
 #import "SceneDelegate.h"
 #import "APIManager.h"
 #import "PostCell.h"
+#import "Topic.h"
 
 @interface FeedViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet FeedView *feedView;
 @property (strong, nonatomic) NSArray *posts;
+@property (strong, nonatomic) PFUser *user;
 
 @end
 
@@ -27,11 +29,12 @@
     // Do any additional setup after loading the view.
     
     // TODO: figure out when to refresh user's authorization token, for now just refresh when this feed is seen to ensure a working code
-//    PFUser *user = [PFUser currentUser];
-//    [[APIManager shared] refreshTokenWithCompletion:user[@"refreshToken"] completion:^(NSDictionary *tokens, NSError *error) {
-//        user[@"spotifyToken"] = tokens[@"access_token"];
-//        [user saveInBackground];
-//    }];
+    PFUser *user = [PFUser currentUser];
+    self.user = user;
+    [[APIManager shared] refreshTokenWithCompletion:user[@"refreshToken"] completion:^(NSDictionary *tokens, NSError *error) {
+        self.user[@"spotifyToken"] = tokens[@"access_token"];
+        [self.user saveInBackground];
+    }];
     
     self.feedView.tableView.delegate = self;
     self.feedView.tableView.dataSource = self;
@@ -83,6 +86,14 @@
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
     Post *post = self.posts[indexPath.row];
     cell.post = post;
+    [[APIManager shared] getTopicWithCompletion:post[@"spotifyId"] type:post[@"type"] authorization:self.user[@"spotifyToken"] completion:^(NSDictionary *data, NSError *error) {
+        if (error != nil) {
+            NSLog(@"%@", error.localizedDescription);
+        } else {
+            Topic *topic = [[Topic alloc] initWithDictionary:data];
+            cell.topic = topic;
+        }
+    }];
     return cell;
 }
 
