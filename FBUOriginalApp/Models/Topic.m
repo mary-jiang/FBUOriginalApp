@@ -13,8 +13,13 @@
     self = [super init];
     if (self) {
         self.name = dictionary[@"name"];
-        self.type = dictionary[@"type"];
         self.spotifyId = dictionary[@"id"];
+        
+        self.type = dictionary[@"type"];
+        // when getting data directly from album endpoint the dictionary does not have a type, so if nothing set type to album
+        if ([self.type length] == 0){
+            self.type = @"album";
+        }
         
         NSArray *images = [NSArray array]; // initialize an images array so we can look for this topic's associated image
         // the image array is stored in different places for tracks compared to albums or artists

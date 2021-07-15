@@ -6,6 +6,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Post.h"
+#import "Topic.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,7 +18,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *topicLabel;
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *likesLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *topicImageView;
 
+@property (strong, nonatomic) Post *post;
+@property (strong, nonatomic) Topic *topic;
 
 @end
 
