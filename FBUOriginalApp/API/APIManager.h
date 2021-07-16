@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)refreshTokenWithCompletion:(NSString *)refreshToken completion:(void(^)(NSDictionary *, NSError *))completion;
 - (void)searchSpotifyWithCompletion:(NSString *)query type:(NSString *)type authorization:(NSString *)authorization completion:(void(^)(NSDictionary *, NSError *))completion;
 - (void)getTopicWithCompletion: (NSString *)spotifyId type:(NSString *)type authorization:(NSString *)authorization completion:(void(^)(NSDictionary *, NSError *))completion;
+- (void)getTopArtistsWithCompletion: (NSString *)authorization completion:(void(^)(NSDictionary *, NSError *))completion;
+- (void)getTopSongsWithCompletion: (NSString *)authorization completion:(void(^)(NSDictionary *, NSError *))completion;
 
 @end
 

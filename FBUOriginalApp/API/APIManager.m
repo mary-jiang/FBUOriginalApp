@@ -49,6 +49,18 @@
     [self baseAPIGetRequestWithCompletion:url authorization:authorization completion:completion];
 }
 
+- (void)getTopArtistsWithCompletion: (NSString *)authorization completion:(void(^)(NSDictionary *, NSError *))completion {
+    NSString *urlString = [NSString stringWithFormat:@"https://api.spotify.com/v1/me/top/artists?limit=3"];
+    NSURL *url = [NSURL URLWithString:urlString];
+    [self baseAPIGetRequestWithCompletion:url authorization:authorization completion:completion];
+}
+
+- (void)getTopSongsWithCompletion: (NSString *)authorization completion:(void(^)(NSDictionary *, NSError *))completion {
+    NSString *urlString = [NSString stringWithFormat:@"https://api.spotify.com/v1/me/top/tracks?limit=3"];
+    NSURL *url = [NSURL URLWithString:urlString];
+    [self baseAPIGetRequestWithCompletion:url authorization:authorization completion:completion];
+}
+
 - (void)baseTokenRequestWithCompletion: (NSData *)data completion:(void(^)(NSDictionary *, NSError *))completion {
     // get client id and client secret from Keys.plist
     NSString *path = [[NSBundle mainBundle] pathForResource: @"Keys" ofType: @"plist"];
