@@ -85,55 +85,25 @@
 }
 
 - (void)updateTopArtists {
-    [[APIManager shared] getTopicWithCompletion:self.user[@"artist1"] type:@"artist" authorization:self.user[@"spotifyToken"]  completion:^(NSDictionary *result, NSError *error) {
+    NSString *allIds = [NSString stringWithFormat:@"%@,%@,%@", self.user[@"artist1"], self.user[@"artist2"], self.user[@"artist3"]];
+    [[APIManager shared] getMultipleTopicsWithCompletion:allIds type:@"artist" authorization:self.user[@"spotifyToken"] completion:^(NSDictionary *results, NSError *error) {
         if (error != nil) {
             NSLog(@"%@", error.localizedDescription);
         } else {
-            Topic *topic = [[Topic alloc] initWithDictionary:result];
-            [self.profileView updateArtist1WithTopic:topic];
-        }
-    }];
-    [[APIManager shared] getTopicWithCompletion:self.user[@"artist2"] type:@"artist" authorization:self.user[@"spotifyToken"]  completion:^(NSDictionary *result, NSError *error) {
-        if (error != nil) {
-            NSLog(@"%@", error.localizedDescription);
-        } else {
-            Topic *topic = [[Topic alloc] initWithDictionary:result];
-            [self.profileView updateArtist2WithTopic:topic];
-        }
-    }];
-    [[APIManager shared] getTopicWithCompletion:self.user[@"artist3"] type:@"artist" authorization:self.user[@"spotifyToken"]  completion:^(NSDictionary *result, NSError *error) {
-        if (error != nil) {
-            NSLog(@"%@", error.localizedDescription);
-        } else {
-            Topic *topic = [[Topic alloc] initWithDictionary:result];
-            [self.profileView updateArtist3WithTopic:topic];
+            NSArray *artists = [Topic topicsWithArray:results[@"artists"]];
+            [self.profileView updateAllArtistsWithTopics:artists];
         }
     }];
 }
 
 - (void)updateTopSongs {
-    [[APIManager shared] getTopicWithCompletion:self.user[@"song1"] type:@"track" authorization:self.user[@"spotifyToken"]  completion:^(NSDictionary *result, NSError *error) {
+    NSString *allIds = [NSString stringWithFormat:@"%@,%@,%@", self.user[@"song1"], self.user[@"song2"], self.user[@"song3"]];
+    [[APIManager shared] getMultipleTopicsWithCompletion:allIds type:@"track" authorization:self.user[@"spotifyToken"] completion:^(NSDictionary *results, NSError *error) {
         if (error != nil) {
             NSLog(@"%@", error.localizedDescription);
         } else {
-            Topic *topic = [[Topic alloc] initWithDictionary:result];
-            [self.profileView updateSong1WithTopic:topic];
-        }
-    }];
-    [[APIManager shared] getTopicWithCompletion:self.user[@"song2"] type:@"track" authorization:self.user[@"spotifyToken"]  completion:^(NSDictionary *result, NSError *error) {
-        if (error != nil) {
-            NSLog(@"%@", error.localizedDescription);
-        } else {
-            Topic *topic = [[Topic alloc] initWithDictionary:result];
-            [self.profileView updateSong2WithTopic:topic];
-        }
-    }];
-    [[APIManager shared] getTopicWithCompletion:self.user[@"song3"] type:@"track" authorization:self.user[@"spotifyToken"]  completion:^(NSDictionary *result, NSError *error) {
-        if (error != nil) {
-            NSLog(@"%@", error.localizedDescription);
-        } else {
-            Topic *topic = [[Topic alloc] initWithDictionary:result];
-            [self.profileView updateSong3WithTopic:topic];
+            NSArray *songs = [Topic topicsWithArray:results[@"tracks"]];
+            [self.profileView updateAllSongsWithTopics:songs];
         }
     }];
 }

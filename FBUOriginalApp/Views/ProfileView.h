@@ -37,13 +37,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) id<ProfileViewDelegate> delegate;
 
 - (void)createAllTapGestureRecognizers;
-- (void)updateProfilePicture:(UIImage *)image;
+- (void)updateProfilePicture: (UIImage *)image;
 - (void)updateUIBasedOnUser: (PFUser *) user;
 
+- (void)updateAllArtistsWithTopics: (NSArray *)topics;
 - (void)updateArtist1WithTopic: (Topic *) topic;
 - (void)updateArtist2WithTopic: (Topic *) topic;
 - (void)updateArtist3WithTopic: (Topic *) topic;
 
+- (void)updateAllSongsWithTopics: (NSArray *) topics;
 - (void)updateSong1WithTopic: (Topic *) topic;
 - (void)updateSong2WithTopic: (Topic *) topic;
 - (void)updateSong3WithTopic: (Topic *) topic;

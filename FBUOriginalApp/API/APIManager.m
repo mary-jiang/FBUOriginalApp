@@ -6,6 +6,7 @@
 //
 
 #import "APIManager.h"
+#import "Topic.h"
 
 @implementation APIManager
 
@@ -39,26 +40,29 @@
     NSString *encodedQuery = [query stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];
     // construct request
     NSString *urlString = [NSString stringWithFormat:@"https://api.spotify.com/v1/search?q=%@&type=%@", encodedQuery, type];
-    NSURL *url = [NSURL URLWithString:urlString];
-    [self baseAPIGetRequestWithCompletion:url authorization:authorization completion:completion];
+    [self baseAPIGetRequestWithCompletion:urlString authorization:authorization completion:completion];
 }
 
 - (void)getTopicWithCompletion: (NSString *)spotifyId type:(NSString *)type authorization:(NSString *)authorization completion:(void(^)(NSDictionary *, NSError *))completion {
     NSString *urlString = [NSString stringWithFormat:@"https://api.spotify.com/v1/%@s/%@", type, spotifyId];
-    NSURL *url = [NSURL URLWithString:urlString];
-    [self baseAPIGetRequestWithCompletion:url authorization:authorization completion:completion];
+    [self baseAPIGetRequestWithCompletion:urlString authorization:authorization completion:completion];
+}
+
+- (void)getMultipleTopicsWithCompletion: (NSString *)ids type:(NSString *)type authorization:(NSString *)authorization completion:(void(^)(NSDictionary *, NSError *))completion{
+    // need to encode the commas that seperate each of the ids
+    NSString *encodedIds = [ids stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet alphanumericCharacterSet]];
+    NSString *urlString = [NSString stringWithFormat:@"https://api.spotify.com/v1/%@s?ids=%@", type, encodedIds];
+    [self baseAPIGetRequestWithCompletion:urlString authorization:authorization completion:completion];
 }
 
 - (void)getTopArtistsWithCompletion: (NSString *)authorization completion:(void(^)(NSDictionary *, NSError *))completion {
     NSString *urlString = [NSString stringWithFormat:@"https://api.spotify.com/v1/me/top/artists?limit=3"];
-    NSURL *url = [NSURL URLWithString:urlString];
-    [self baseAPIGetRequestWithCompletion:url authorization:authorization completion:completion];
+    [self baseAPIGetRequestWithCompletion:urlString authorization:authorization completion:completion];
 }
 
 - (void)getTopSongsWithCompletion: (NSString *)authorization completion:(void(^)(NSDictionary *, NSError *))completion {
     NSString *urlString = [NSString stringWithFormat:@"https://api.spotify.com/v1/me/top/tracks?limit=3"];
-    NSURL *url = [NSURL URLWithString:urlString];
-    [self baseAPIGetRequestWithCompletion:url authorization:authorization completion:completion];
+    [self baseAPIGetRequestWithCompletion:urlString authorization:authorization completion:completion];
 }
 
 - (void)baseTokenRequestWithCompletion: (NSData *)data completion:(void(^)(NSDictionary *, NSError *))completion {
@@ -95,7 +99,8 @@
     [task resume];
 }
 
-- (void)baseAPIGetRequestWithCompletion: (NSURL *) url authorization: (NSString *) authorization completion:(void(^)(NSDictionary *, NSError *))completion {
+- (void)baseAPIGetRequestWithCompletion: (NSString *) urlString authorization: (NSString *) authorization completion:(void(^)(NSDictionary *, NSError *))completion {
+    NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     [request setHTTPMethod:@"GET"];
     [request setValue:[NSString stringWithFormat:@"Bearer %@", authorization] forHTTPHeaderField:@"Authorization"];

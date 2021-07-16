@@ -42,6 +42,12 @@
     }
 }
 
+- (void)updateAllArtistsWithTopics: (NSArray *)topics {
+    [self updateArtist1WithTopic:topics[0]];
+    [self updateArtist2WithTopic:topics[1]];
+    [self updateArtist3WithTopic:topics[2]];
+}
+
 - (void)updateArtist1WithTopic: (Topic *) topic{
     self.artist1Label.text = topic.name;
     NSURL *imageURL = [NSURL URLWithString:topic.image];
@@ -61,6 +67,12 @@
     NSURL *imageURL = [NSURL URLWithString:topic.image];
     NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
     self.artist3ImageView.image = [UIImage imageWithData:imageData];
+}
+
+- (void)updateAllSongsWithTopics: (NSArray *) topics {
+    [self updateSong1WithTopic:topics[0]];
+    [self updateSong2WithTopic:topics[1]];
+    [self updateSong3WithTopic:topics[2]];
 }
 
 - (void)updateSong1WithTopic: (Topic *) topic{
