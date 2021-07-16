@@ -63,4 +63,26 @@
     self.artist3ImageView.image = [UIImage imageWithData:imageData];
 }
 
+- (void)updateSong1WithTopic: (Topic *) topic{
+    self.song1Label.text = topic.name;
+    NSURL *imageURL = [NSURL URLWithString:topic.image];
+    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+    self.song1ImageView.image = [UIImage imageWithData:imageData];
+}
+
+- (void)updateSong2WithTopic: (Topic *) topic{
+    self.song2Label.text = topic.name;
+    NSURL *imageURL = [NSURL URLWithString:topic.image];
+    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+    self.song2ImageView.image = [UIImage imageWithData:imageData];
+}
+
+- (void)updateSong3WithTopic: (Topic *) topic{
+    self.song3Label.text = topic.name;
+    NSURL *imageURL = [NSURL URLWithString:topic.image];
+    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+    self.song3ImageView.image = [UIImage imageWithData:imageData];
+}
+
+
 @end

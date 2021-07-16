@@ -39,9 +39,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)createAllTapGestureRecognizers;
 - (void)updateProfilePicture:(UIImage *)image;
 - (void)updateUIBasedOnUser: (PFUser *) user;
+
 - (void)updateArtist1WithTopic: (Topic *) topic;
 - (void)updateArtist2WithTopic: (Topic *) topic;
 - (void)updateArtist3WithTopic: (Topic *) topic;
+
+- (void)updateSong1WithTopic: (Topic *) topic;
+- (void)updateSong2WithTopic: (Topic *) topic;
+- (void)updateSong3WithTopic: (Topic *) topic;
 
 @end
 

@@ -63,6 +63,24 @@
         }
     }];
     
+    [[APIManager shared] getTopSongsWithCompletion:self.user[@"spotifyToken"] completion:^(NSDictionary *results, NSError *error) {
+        if (error != nil) {
+            NSLog(@"%@", error.localizedDescription);
+        } else {
+            NSArray *songs = results[@"items"];
+            self.user[@"song1"] = songs[0][@"id"];
+            self.user[@"song2"] = songs[1][@"id"];
+            self.user[@"song3"] = songs[2][@"id"];
+            [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                if (succeeded) {
+                    [self updateTopSongs];
+                } else {
+                    NSLog(@"%@", error.localizedDescription);
+                }
+            }];
+        }
+    }];
+    
     [self.profileView updateUIBasedOnUser:self.user];
 }
 
@@ -89,6 +107,33 @@
         } else {
             Topic *topic = [[Topic alloc] initWithDictionary:result];
             [self.profileView updateArtist3WithTopic:topic];
+        }
+    }];
+}
+
+- (void)updateTopSongs {
+    [[APIManager shared] getTopicWithCompletion:self.user[@"song1"] type:@"track" authorization:self.user[@"spotifyToken"]  completion:^(NSDictionary *result, NSError *error) {
+        if (error != nil) {
+            NSLog(@"%@", error.localizedDescription);
+        } else {
+            Topic *topic = [[Topic alloc] initWithDictionary:result];
+            [self.profileView updateSong1WithTopic:topic];
+        }
+    }];
+    [[APIManager shared] getTopicWithCompletion:self.user[@"song2"] type:@"track" authorization:self.user[@"spotifyToken"]  completion:^(NSDictionary *result, NSError *error) {
+        if (error != nil) {
+            NSLog(@"%@", error.localizedDescription);
+        } else {
+            Topic *topic = [[Topic alloc] initWithDictionary:result];
+            [self.profileView updateSong2WithTopic:topic];
+        }
+    }];
+    [[APIManager shared] getTopicWithCompletion:self.user[@"song3"] type:@"track" authorization:self.user[@"spotifyToken"]  completion:^(NSDictionary *result, NSError *error) {
+        if (error != nil) {
+            NSLog(@"%@", error.localizedDescription);
+        } else {
+            Topic *topic = [[Topic alloc] initWithDictionary:result];
+            [self.profileView updateSong3WithTopic:topic];
         }
     }];
 }
