@@ -9,6 +9,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol ProfileViewDelegate
+
+- (void)didTapProfilePicture;
+
+@end
+
 @interface ProfileView : UIView
 
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
@@ -26,6 +32,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *song2Label;
 @property (weak, nonatomic) IBOutlet UILabel *song3Label;
 
+@property (weak, nonatomic) id<ProfileViewDelegate> delegate;
+
+- (void)createAllTapGestureRecognizers;
+- (void)updateProfilePicture:(UIImage *)image;
 
 @end
 

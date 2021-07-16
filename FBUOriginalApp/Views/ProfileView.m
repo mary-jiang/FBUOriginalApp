@@ -17,6 +17,18 @@
 }
 */
 
+- (void)createAllTapGestureRecognizers {
+    UITapGestureRecognizer *profileTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapProfile)];
+    [self.profileImageView addGestureRecognizer:profileTapGestureRecognizer];
+    [self.profileImageView setUserInteractionEnabled:true];
+}
 
+- (void)didTapProfile {
+    [self.delegate didTapProfilePicture];
+}
+
+- (void)updateProfilePicture:(UIImage *)image {
+    self.profileImageView.image = image;
+}
 
 @end
