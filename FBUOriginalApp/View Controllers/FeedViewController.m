@@ -32,15 +32,15 @@
     // TODO: figure out when to refresh user's authorization token, for now just refresh when this feed is seen to ensure a working code
     PFUser *user = [PFUser currentUser];
     self.user = user;
-//    [[APIManager shared] refreshTokenWithCompletion:user[@"refreshToken"] completion:^(NSDictionary *tokens, NSError *error) {
-//        self.user[@"spotifyToken"] = tokens[@"access_token"];
-//        [self.user saveInBackground];
-//    }];
+    [[APIManager shared] refreshTokenWithCompletion:user[@"refreshToken"] completion:^(NSDictionary *tokens, NSError *error) {
+        self.user[@"spotifyToken"] = tokens[@"access_token"];
+        [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            [self fetchPosts];
+        }];
+    }];
     
     self.feedView.tableView.delegate = self;
     self.feedView.tableView.dataSource = self;
-    
-    [self fetchPosts];
     
     //setup refresh control
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -49,15 +49,11 @@
 }
 
 - (IBAction)didTapLogout:(id)sender {
-    // log out user from Parse
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
-        // current user should now be null
     }];
-
-    // create instance of scene delegate
+    
     SceneDelegate *myDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
     
-    // use scene delegate instance to set root view controller to be a new instance of LoginViewController to send back to log in screen
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
     myDelegate.window.rootViewController = loginViewController;
@@ -68,12 +64,10 @@
 }
 
 - (void)fetchPosts {
-    // construct query
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     query.limit = 20;
     [query orderByDescending:@"createdAt"];
     
-    // fetch data asynchronously
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError * error) {
         if (error != nil) {
             NSLog(@"%@", error.localizedDescription);

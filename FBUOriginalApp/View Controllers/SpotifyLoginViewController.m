@@ -24,7 +24,6 @@
 
     self.spotifyLoginView.webkitView.navigationDelegate = self;
     
-    // code to pull api keys from keys.plist
     NSString *path = [[NSBundle mainBundle] pathForResource: @"Keys" ofType: @"plist"];
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
     NSString *key= [dict objectForKey: @"client_id"];

@@ -18,8 +18,8 @@
 */
 
 - (void)createTopicTapGestureRecognizer {
-    UITapGestureRecognizer *profileTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapTopic)];
-    [self.chosenTopicWrapper addGestureRecognizer:profileTapGestureRecognizer];
+    UITapGestureRecognizer *topicTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapTopic)];
+    [self.chosenTopicWrapper addGestureRecognizer:topicTapGestureRecognizer];
     [self.chosenTopicWrapper setUserInteractionEnabled:true];
 }
 

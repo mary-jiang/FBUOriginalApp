@@ -45,15 +45,13 @@
 
 - (void)registerUser {
     if (self.accessToken != nil && self.refreshToken != nil) {
-        // initialize user
         PFUser *newUser = [PFUser user];
-        // set user properties
+    
         newUser.username = self.signupView.usernameField.text;
         newUser.password = self.signupView.passwordField.text;
         newUser[@"spotifyToken"] = self.accessToken;
         newUser[@"refreshToken"] = self.refreshToken;
         
-        // call sign up function
         [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
             if (error != nil) {
                 NSLog(@"Error signing up user: %@", error.localizedDescription);
