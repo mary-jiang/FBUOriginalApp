@@ -42,4 +42,25 @@
     }
 }
 
+- (void)updateArtist1WithTopic: (Topic *) topic{
+    self.artist1Label.text = topic.name;
+    NSURL *imageURL = [NSURL URLWithString:topic.image];
+    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+    self.artist1ImageView.image = [UIImage imageWithData:imageData];
+}
+
+- (void)updateArtist2WithTopic: (Topic *) topic{
+    self.artist2Label.text = topic.name;
+    NSURL *imageURL = [NSURL URLWithString:topic.image];
+    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+    self.artist2ImageView.image = [UIImage imageWithData:imageData];
+}
+
+- (void)updateArtist3WithTopic: (Topic *) topic{
+    self.artist3Label.text = topic.name;
+    NSURL *imageURL = [NSURL URLWithString:topic.image];
+    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+    self.artist3ImageView.image = [UIImage imageWithData:imageData];
+}
+
 @end

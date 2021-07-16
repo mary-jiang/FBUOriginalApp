@@ -7,7 +7,8 @@
 
 #import "ProfileViewController.h"
 #import "ProfileView.h"
-
+#import "APIManager.h"
+#import "Topic.h"
 
 @interface ProfileViewController () <ProfileViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -44,7 +45,52 @@
         }
     }
     
+    [[APIManager shared] getTopArtistsWithCompletion:self.user[@"spotifyToken"] completion:^(NSDictionary *results, NSError *error) {
+        if (error != nil) {
+            NSLog(@"%@", error.localizedDescription);
+        } else {
+            NSArray *artists = results[@"items"];
+            self.user[@"artist1"] = artists[0][@"id"];
+            self.user[@"artist2"] = artists[1][@"id"];
+            self.user[@"artist3"] = artists[2][@"id"];
+            [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                if (succeeded) {
+                    [self updateTopArtists];
+                } else {
+                    NSLog(@"%@", error.localizedDescription);
+                }
+            }];
+        }
+    }];
+    
     [self.profileView updateUIBasedOnUser:self.user];
+}
+
+- (void)updateTopArtists {
+    [[APIManager shared] getTopicWithCompletion:self.user[@"artist1"] type:@"artist" authorization:self.user[@"spotifyToken"]  completion:^(NSDictionary *result, NSError *error) {
+        if (error != nil) {
+            NSLog(@"%@", error.localizedDescription);
+        } else {
+            Topic *topic = [[Topic alloc] initWithDictionary:result];
+            [self.profileView updateArtist1WithTopic:topic];
+        }
+    }];
+    [[APIManager shared] getTopicWithCompletion:self.user[@"artist2"] type:@"artist" authorization:self.user[@"spotifyToken"]  completion:^(NSDictionary *result, NSError *error) {
+        if (error != nil) {
+            NSLog(@"%@", error.localizedDescription);
+        } else {
+            Topic *topic = [[Topic alloc] initWithDictionary:result];
+            [self.profileView updateArtist2WithTopic:topic];
+        }
+    }];
+    [[APIManager shared] getTopicWithCompletion:self.user[@"artist3"] type:@"artist" authorization:self.user[@"spotifyToken"]  completion:^(NSDictionary *result, NSError *error) {
+        if (error != nil) {
+            NSLog(@"%@", error.localizedDescription);
+        } else {
+            Topic *topic = [[Topic alloc] initWithDictionary:result];
+            [self.profileView updateArtist3WithTopic:topic];
+        }
+    }];
 }
 
 - (void)didTapProfilePicture {
