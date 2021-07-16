@@ -31,4 +31,15 @@
     self.profileImageView.image = image;
 }
 
+- (void)updateUIBasedOnUser: (PFUser *) user{
+    self.usernameLabel.text = user[@"username"];
+    
+    PFFileObject *profilePicture = user[@"profilePicture"];
+    if (profilePicture != nil) {
+        NSURL *profileURL = [NSURL URLWithString:profilePicture.url];
+        NSData *profileData = [NSData dataWithContentsOfURL:profileURL];
+        self.profileImageView.image = [UIImage imageWithData:profileData];
+    }
+}
+
 @end
