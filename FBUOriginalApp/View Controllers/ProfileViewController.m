@@ -130,12 +130,40 @@
     [self performSegueWithIdentifier:@"spotifySegue" sender:@"artist"];
 }
 
+- (void)didTapArtist2 {
+    self.itemToBeChanged = @"artist2";
+    [self performSegueWithIdentifier:@"spotifySegue" sender:@"artist"];
+}
+
+- (void)didTapArtist3 {
+    self.itemToBeChanged = @"artist3";
+    [self performSegueWithIdentifier:@"spotifySegue" sender:@"artist"];
+}
+
 - (void)didChooseTopic:(Topic *)topic {
     if ([self.itemToBeChanged isEqual:@"artist1"]) {
         self.user[@"artist1"] = topic.spotifyId;
         [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
             if (succeeded) {
                 [self.profileView updateArtist1WithTopic:topic];
+            } else {
+                NSLog(@"%@", error.localizedDescription);
+            }
+        }];
+    } else if ([self.itemToBeChanged isEqual:@"artist2"]) {
+        self.user[@"artist2"] = topic.spotifyId;
+        [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+            if (succeeded) {
+                [self.profileView updateArtist2WithTopic:topic];
+            } else {
+                NSLog(@"%@", error.localizedDescription);
+            }
+        }];
+    } else if ([self.itemToBeChanged isEqual:@"artist3"]) {
+        self.user[@"artist3"] = topic.spotifyId;
+        [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+            if (succeeded) {
+                [self.profileView updateArtist3WithTopic:topic];
             } else {
                 NSLog(@"%@", error.localizedDescription);
             }

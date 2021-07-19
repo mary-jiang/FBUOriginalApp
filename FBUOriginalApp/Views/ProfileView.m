@@ -25,6 +25,14 @@
     UITapGestureRecognizer *artist1TapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapArtist1)];
     [self.artist1ImageView addGestureRecognizer:artist1TapGestureRecognizer];
     [self.artist1ImageView setUserInteractionEnabled:true];
+    
+    UITapGestureRecognizer *artist2TapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapArtist2)];
+    [self.artist2ImageView addGestureRecognizer:artist2TapGestureRecognizer];
+    [self.artist2ImageView setUserInteractionEnabled:true];
+    
+    UITapGestureRecognizer *artist3TapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapArtist3)];
+    [self.artist3ImageView addGestureRecognizer:artist3TapGestureRecognizer];
+    [self.artist3ImageView setUserInteractionEnabled:true];
 }
 
 - (void)didTapProfile {
@@ -33,6 +41,14 @@
 
 - (void)didTapArtist1 {
     [self.delegate didTapArtist1];
+}
+
+- (void)didTapArtist2 {
+    [self.delegate didTapArtist2];
+}
+
+- (void)didTapArtist3 {
+    [self.delegate didTapArtist3];
 }
 
 - (void)updateProfilePicture:(UIImage *)image {

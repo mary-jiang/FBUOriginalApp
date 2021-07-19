@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)didTapProfilePicture;
 - (void)didTapArtist1;
+- (void)didTapArtist2;
+- (void)didTapArtist3;
 
 @end
 
