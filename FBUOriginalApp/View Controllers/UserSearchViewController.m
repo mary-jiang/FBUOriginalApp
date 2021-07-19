@@ -9,6 +9,7 @@
 #import "UserSearchView.h"
 #import <Parse/Parse.h>
 #import "UserCell.h"
+#import "ProfileViewController.h"
 
 @interface UserSearchViewController () <UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource>
 
@@ -34,9 +35,8 @@
 }
 
 - (void)getUsersBasedOnQuery:(NSString *)search {
-    NSString *formattedQuery = [NSString stringWithFormat:@"username BEGINSWITH '%@'", search];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:formattedQuery];
-//    PFQuery *query = [PFQuery queryWithClassName:@"User" predicate:predicate];
+    NSString *formattedSearch = [NSString stringWithFormat:@"username BEGINSWITH '%@'", search];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:formattedSearch];
     PFQuery *query = [PFUser queryWithPredicate:predicate];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error) {
@@ -63,14 +63,22 @@
     return self.users.count;
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    if ([segue.identifier isEqual:@"profileSegue"]) {
+        UITableViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.userSearchView.tableView indexPathForCell:tappedCell];
+        PFUser *user = self.users[indexPath.row];
+        ProfileViewController *profileViewController = [segue destinationViewController];
+        profileViewController.user = user;
+    }
 }
-*/
+
 
 @end

@@ -540,6 +540,7 @@
                                         <connections>
                                             <outlet property="profileImageView" destination="wGv-3w-1XE" id="VHp-yG-OCF"/>
                                             <outlet property="usernameLabel" destination="kNu-Ql-LJD" id="xG3-21-lTh"/>
+                                            <segue destination="IO2-CL-0q2" kind="show" identifier="profileSegue" id="fJC-KM-2cl"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -879,7 +880,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="CZ1-8P-CJo"/>
-        <segue reference="nda-9k-sb4"/>
+        <segue reference="fJC-KM-2cl"/>
         <segue reference="FQ1-Hm-oLy"/>
     </inferredMetricsTieBreakers>
     <resources>
