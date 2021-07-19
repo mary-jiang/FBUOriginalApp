@@ -33,6 +33,18 @@
     UITapGestureRecognizer *artist3TapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapArtist3)];
     [self.artist3ImageView addGestureRecognizer:artist3TapGestureRecognizer];
     [self.artist3ImageView setUserInteractionEnabled:true];
+    
+    UITapGestureRecognizer *song1TapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapSong1)];
+    [self.song1ImageView addGestureRecognizer:song1TapGestureRecognizer];
+    [self.song1ImageView setUserInteractionEnabled:true];
+    
+    UITapGestureRecognizer *song2TapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapSong2)];
+    [self.song2ImageView addGestureRecognizer:song2TapGestureRecognizer];
+    [self.song2ImageView setUserInteractionEnabled:true];
+    
+    UITapGestureRecognizer *song3TapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapSong3)];
+    [self.song3ImageView addGestureRecognizer:song3TapGestureRecognizer];
+    [self.song3ImageView setUserInteractionEnabled:true];
 }
 
 - (void)didTapProfile {
@@ -49,6 +61,18 @@
 
 - (void)didTapArtist3 {
     [self.delegate didTapArtist3];
+}
+
+- (void)didTapSong1 {
+    [self.delegate didTapSong1];
+}
+
+- (void)didTapSong2 {
+    [self.delegate didTapSong2];
+}
+
+- (void)didTapSong3 {
+    [self.delegate didTapSong3];
 }
 
 - (void)updateProfilePicture:(UIImage *)image {

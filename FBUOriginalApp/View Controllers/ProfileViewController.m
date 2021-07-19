@@ -140,6 +140,21 @@
     [self performSegueWithIdentifier:@"spotifySegue" sender:@"artist"];
 }
 
+- (void)didTapSong1 {
+    self.itemToBeChanged = @"song1";
+    [self performSegueWithIdentifier:@"spotifySegue" sender:@"song"];
+}
+
+- (void)didTapSong2 {
+    self.itemToBeChanged = @"song2";
+    [self performSegueWithIdentifier:@"spotifySegue" sender:@"song"];
+}
+
+- (void)didTapSong3 {
+    self.itemToBeChanged = @"song3";
+    [self performSegueWithIdentifier:@"spotifySegue" sender:@"song"];
+}
+
 - (void)didChooseTopic:(Topic *)topic {
     if ([self.itemToBeChanged isEqual:@"artist1"]) {
         self.user[@"artist1"] = topic.spotifyId;
@@ -164,6 +179,33 @@
         [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
             if (succeeded) {
                 [self.profileView updateArtist3WithTopic:topic];
+            } else {
+                NSLog(@"%@", error.localizedDescription);
+            }
+        }];
+    } else if ([self.itemToBeChanged isEqual:@"song1"]) {
+        self.user[@"song1"] = topic.spotifyId;
+        [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+            if (succeeded) {
+                [self.profileView updateSong1WithTopic:topic];
+            } else {
+                NSLog(@"%@", error.localizedDescription);
+            }
+        }];
+    } else if ([self.itemToBeChanged isEqual:@"song2"]) {
+        self.user[@"song2"] = topic.spotifyId;
+        [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+            if (succeeded) {
+                [self.profileView updateSong2WithTopic:topic];
+            } else {
+                NSLog(@"%@", error.localizedDescription);
+            }
+        }];
+    } else if ([self.itemToBeChanged isEqual:@"song3"]) {
+        self.user[@"song3"] = topic.spotifyId;
+        [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+            if (succeeded) {
+                [self.profileView updateSong3WithTopic:topic];
             } else {
                 NSLog(@"%@", error.localizedDescription);
             }
