@@ -12,6 +12,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol PostCellDelegate;
+
 @interface PostCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
@@ -24,6 +26,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) Post *post;
 @property (strong, nonatomic) Topic *topic;
 @property (strong, nonatomic) PFUser *author;
+
+@property (weak, nonatomic) id<PostCellDelegate> delegate;
+
+@end
+
+@protocol PostCellDelegate
+
+- (void)postCell: (PostCell *)postCell didTap: (PFUser *)user;
 
 @end
 

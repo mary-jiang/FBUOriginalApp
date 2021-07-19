@@ -9,12 +9,13 @@
 #import "FeedView.h"
 #import <Parse/Parse.h>
 #import "LoginViewController.h"
+#import "ProfileViewController.h"
 #import "SceneDelegate.h"
 #import "APIManager.h"
 #import "PostCell.h"
 #import "Topic.h"
 
-@interface FeedViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface FeedViewController () <UITableViewDelegate, UITableViewDataSource, PostCellDelegate>
 
 @property (strong, nonatomic) IBOutlet FeedView *feedView;
 @property (strong, nonatomic) NSArray *posts;
@@ -86,6 +87,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
     Post *post = self.posts[indexPath.row];
+    cell.delegate = self;
     cell.post = post;
     [[APIManager shared] getTopicWithCompletion:post[@"spotifyId"] type:post[@"type"] authorization:self.user[@"spotifyToken"] completion:^(NSDictionary *data, NSError *error) {
         if (error != nil) {
@@ -105,14 +107,24 @@
     return cell;
 }
 
-/*
+// delegate method for post cell that tells us that the user in postCell was tapped
+- (void)postCell:(PostCell *)postCell didTap:(PFUser *)user {
+    [self performSegueWithIdentifier:@"profileSegue" sender:user];
+}
+
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    if ([segue.identifier isEqual:@"profileSegue"]) {
+        ProfileViewController *profileViewController = [segue destinationViewController];
+        profileViewController.user = sender;
+    }
 }
-*/
+
 
 @end
