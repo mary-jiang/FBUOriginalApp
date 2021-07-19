@@ -20,4 +20,17 @@
     // Configure the view for the selected state
 }
 
+- (void)setUser:(PFUser *)user {
+    _user = user;
+    
+    self.usernameLabel.text = self.user.username;
+    
+    PFFileObject *profilePicture = self.user[@"profilePicture"];
+    if (profilePicture != nil) {
+        NSURL *profileURL = [NSURL URLWithString:profilePicture.url];
+        NSData *profileData = [NSData dataWithContentsOfURL:profileURL];
+        self.profileImageView.image = [UIImage imageWithData:profileData];
+    }
+}
+
 @end

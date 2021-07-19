@@ -47,13 +47,19 @@
         }
     }
     
-    // check if the user already has top artists, if not pull them from spotify (only check 1 because all or nothing)
+    // TODO: Create a better way of pulling and displaying default top artists/songs for users who may not have 3 top based on spotify
+    
+    // check if the user already has top artists, if not pull them from spotify (only check 1 because all or nothing for now)
     if (self.user[@"artist1"] == nil) {
         [[APIManager shared] getTopArtistsWithCompletion:self.user[@"spotifyToken"] completion:^(NSDictionary *results, NSError *error) {
             if (error != nil) {
                 NSLog(@"%@", error.localizedDescription);
             } else {
                 NSArray *artists = results[@"items"];
+//                for (int i = 0; i < artists.count ; i++){
+//                    NSString *field = [NSString stringWithFormat:@"artist%d", i+1];
+//                    self.user[field] = artists[i][@"id"];
+//                }
                 self.user[@"artist1"] = artists[0][@"id"];
                 self.user[@"artist2"] = artists[1][@"id"];
                 self.user[@"artist3"] = artists[2][@"id"];

@@ -54,7 +54,7 @@
     self.usernameLabel.text = self.author[@"username"];
     
     // check to see if there is a profile picture
-    PFFileObject *profilePicture = author[@"profilePicture"];
+    PFFileObject *profilePicture = self.author[@"profilePicture"];
     if (profilePicture != nil) {
         NSURL *profileURL = [NSURL URLWithString:profilePicture.url];
         NSData *profileData = [NSData dataWithContentsOfURL:profileURL];
