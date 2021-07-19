@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol ProfileViewDelegate
 
 - (void)didTapProfilePicture;
+- (void)didTapArtist1;
 
 @end
 

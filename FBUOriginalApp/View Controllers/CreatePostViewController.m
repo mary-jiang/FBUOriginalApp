@@ -62,6 +62,8 @@
     if ([segue.identifier isEqual:@"spotifySearchSegue"]) {
         SpotifySearchViewController *spotifySearchViewController = [segue destinationViewController];
         spotifySearchViewController.delegate = self;
+        spotifySearchViewController.searchArtistsOnly = false;
+        spotifySearchViewController.searchSongsOnly = false;
     }
 }
 

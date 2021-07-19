@@ -18,6 +18,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SpotifySearchViewController : UIViewController
 
+@property (nonatomic) BOOL searchArtistsOnly;
+@property (nonatomic) BOOL searchSongsOnly;
+
 @property (weak, nonatomic) id<SpotifySearchViewControllerDelegate> delegate;
 
 @end

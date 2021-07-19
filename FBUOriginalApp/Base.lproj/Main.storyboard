@@ -488,7 +488,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="boP-30-FZH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1113" y="3137"/>
+            <point key="canvasLocation" x="1526" y="2413"/>
         </scene>
         <!--User Search View Controller-->
         <scene sceneID="CYs-TE-GdW">
@@ -773,11 +773,12 @@
                     <navigationItem key="navigationItem" id="YOt-bE-Wmg"/>
                     <connections>
                         <outlet property="profileView" destination="7pJ-8E-eKe" id="1wE-Sv-iAY"/>
+                        <segue destination="Ik8-az-hnI" kind="show" identifier="spotifySegue" id="FQ1-Hm-oLy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AvR-Bn-7B6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3189.8550724637685" y="1612.5"/>
+            <point key="canvasLocation" x="3193" y="1613"/>
         </scene>
         <!--Home-->
         <scene sceneID="Nw5-2J-guY">
@@ -877,6 +878,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="CZ1-8P-CJo"/>
+        <segue reference="FQ1-Hm-oLy"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>

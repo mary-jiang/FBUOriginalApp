@@ -9,11 +9,13 @@
 #import "ProfileView.h"
 #import "APIManager.h"
 #import "Topic.h"
+#import "SpotifySearchViewController.h"
 
-@interface ProfileViewController () <ProfileViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface ProfileViewController () <ProfileViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, SpotifySearchViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet ProfileView *profileView;
 @property (strong, nonatomic) UIImagePickerController *imagePickerVC;
+@property (strong, nonatomic) NSString *itemToBeChanged;
 
 @end
 
@@ -45,41 +47,52 @@
         }
     }
     
-    [[APIManager shared] getTopArtistsWithCompletion:self.user[@"spotifyToken"] completion:^(NSDictionary *results, NSError *error) {
-        if (error != nil) {
-            NSLog(@"%@", error.localizedDescription);
-        } else {
-            NSArray *artists = results[@"items"];
-            self.user[@"artist1"] = artists[0][@"id"];
-            self.user[@"artist2"] = artists[1][@"id"];
-            self.user[@"artist3"] = artists[2][@"id"];
-            [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                if (succeeded) {
-                    [self updateTopArtists];
-                } else {
-                    NSLog(@"%@", error.localizedDescription);
-                }
-            }];
-        }
-    }];
+    // check if the user already has top artists, if not pull them from spotify (only check 1 because all or nothing)
+    if (self.user[@"artist1"] == nil) {
+        [[APIManager shared] getTopArtistsWithCompletion:self.user[@"spotifyToken"] completion:^(NSDictionary *results, NSError *error) {
+            if (error != nil) {
+                NSLog(@"%@", error.localizedDescription);
+            } else {
+                NSArray *artists = results[@"items"];
+                self.user[@"artist1"] = artists[0][@"id"];
+                self.user[@"artist2"] = artists[1][@"id"];
+                self.user[@"artist3"] = artists[2][@"id"];
+                [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                    if (succeeded) {
+                        [self updateTopArtists];
+                    } else {
+                        NSLog(@"%@", error.localizedDescription);
+                    }
+                }];
+            }
+        }];
+    } else {
+        [self updateTopArtists];
+    }
     
-    [[APIManager shared] getTopSongsWithCompletion:self.user[@"spotifyToken"] completion:^(NSDictionary *results, NSError *error) {
-        if (error != nil) {
-            NSLog(@"%@", error.localizedDescription);
-        } else {
-            NSArray *songs = results[@"items"];
-            self.user[@"song1"] = songs[0][@"id"];
-            self.user[@"song2"] = songs[1][@"id"];
-            self.user[@"song3"] = songs[2][@"id"];
-            [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                if (succeeded) {
-                    [self updateTopSongs];
-                } else {
-                    NSLog(@"%@", error.localizedDescription);
-                }
-            }];
-        }
-    }];
+    // check if the user already has top songs, if not pull them from spotify (only check 1 because all or nothing)
+    if (self.user[@"song1"] == nil) {
+        [[APIManager shared] getTopSongsWithCompletion:self.user[@"spotifyToken"] completion:^(NSDictionary *results, NSError *error) {
+            if (error != nil) {
+                NSLog(@"%@", error.localizedDescription);
+            } else {
+                NSArray *songs = results[@"items"];
+                self.user[@"song1"] = songs[0][@"id"];
+                self.user[@"song2"] = songs[1][@"id"];
+                self.user[@"song3"] = songs[2][@"id"];
+                [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                    if (succeeded) {
+                        [self updateTopSongs];
+                    } else {
+                        NSLog(@"%@", error.localizedDescription);
+                    }
+                }];
+            }
+        }];
+    } else {
+        [self updateTopSongs];
+    }
+    
     
     [self.profileView updateUIBasedOnUser:self.user];
 }
@@ -110,6 +123,24 @@
 
 - (void)didTapProfilePicture {
     [self presentViewController:self.imagePickerVC animated:YES completion:nil];
+}
+
+- (void)didTapArtist1 {
+    self.itemToBeChanged = @"artist1";
+    [self performSegueWithIdentifier:@"spotifySegue" sender:@"artist"];
+}
+
+- (void)didChooseTopic:(Topic *)topic {
+    if ([self.itemToBeChanged isEqual:@"artist1"]) {
+        self.user[@"artist1"] = topic.spotifyId;
+        [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+            if (succeeded) {
+                [self.profileView updateArtist1WithTopic:topic];
+            } else {
+                NSLog(@"%@", error.localizedDescription);
+            }
+        }];
+    }
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
@@ -160,14 +191,30 @@
     return [PFFileObject fileObjectWithName:@"image.png" data:imageData];
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    if ([segue.identifier isEqual:@"spotifySegue"]) {
+        SpotifySearchViewController *spotifySearchViewController = [segue destinationViewController];
+        spotifySearchViewController.delegate = self;
+        if ([sender isEqual:@"artist"]) {
+            spotifySearchViewController.searchArtistsOnly = true;
+            spotifySearchViewController.searchSongsOnly = false;
+        } else if ([sender isEqual:@"song"]) {
+            spotifySearchViewController.searchSongsOnly = true;
+            spotifySearchViewController.searchArtistsOnly = false;
+        } else {
+            spotifySearchViewController.searchSongsOnly = false;
+            spotifySearchViewController.searchArtistsOnly = false;
+        }
+    }
+    
 }
-*/
+
 
 @end

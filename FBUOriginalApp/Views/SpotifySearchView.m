@@ -22,4 +22,16 @@
     return types[self.typeSegmentedControl.selectedSegmentIndex];
 }
 
+- (void)artistsOnly {
+    [self.typeSegmentedControl setEnabled:false forSegmentAtIndex:0];
+    [self.typeSegmentedControl setEnabled:false forSegmentAtIndex:2];
+    self.typeSegmentedControl.selectedSegmentIndex = 1;
+}
+
+- (void)songsOnly {
+    [self.typeSegmentedControl setEnabled:false forSegmentAtIndex:0];
+    [self.typeSegmentedControl setEnabled:false forSegmentAtIndex:1];
+    self.typeSegmentedControl.selectedSegmentIndex = 2;
+}
+
 @end

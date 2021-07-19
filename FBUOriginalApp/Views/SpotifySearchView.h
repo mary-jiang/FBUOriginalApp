@@ -15,7 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
-- (NSString *)getType; // returns the type selected on the segemented control
+- (NSString *)getType;
+- (void)artistsOnly; // sets the segmented control so that only artists can be searched
+- (void)songsOnly; // sets the segmented control so that only songs can be searched
 
 @end
 

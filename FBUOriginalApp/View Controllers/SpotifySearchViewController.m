@@ -28,7 +28,11 @@
     self.spotifySearchView.tableView.delegate = self;
     self.spotifySearchView.tableView.dataSource = self;
     
-    
+    if (self.searchSongsOnly) {
+        [self.spotifySearchView songsOnly];
+    } else if (self.searchArtistsOnly) {
+        [self.spotifySearchView artistsOnly];
+    }
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {

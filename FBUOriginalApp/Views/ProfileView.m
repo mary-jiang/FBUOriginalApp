@@ -21,10 +21,18 @@
     UITapGestureRecognizer *profileTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapProfile)];
     [self.profileImageView addGestureRecognizer:profileTapGestureRecognizer];
     [self.profileImageView setUserInteractionEnabled:true];
+    
+    UITapGestureRecognizer *artist1TapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapArtist1)];
+    [self.artist1ImageView addGestureRecognizer:artist1TapGestureRecognizer];
+    [self.artist1ImageView setUserInteractionEnabled:true];
 }
 
 - (void)didTapProfile {
     [self.delegate didTapProfilePicture];
+}
+
+- (void)didTapArtist1 {
+    [self.delegate didTapArtist1];
 }
 
 - (void)updateProfilePicture:(UIImage *)image {
