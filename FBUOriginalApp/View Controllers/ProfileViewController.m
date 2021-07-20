@@ -61,9 +61,9 @@
 
 - (void)updateProfile {
     // TODO: Create a better way of pulling and displaying default top artists/songs for users who may not have 3 top based on spotify
-    
-    // check if the user already has top artists, if not pull them from spotify (only check 1 because all or nothing for now)
-    if (self.user[@"artist1"] == nil) {
+    // for now just display "choose song/artist" if not enough data so that user can manually input tops if there is not enough data
+    // check if the user already has top artists, if not pull them from spotify
+    if (self.user[@"artist1"] == nil || self.user[@"artist2"] == nil || self.user[@"artist3"] == nil ) {
         [[APIManager shared] getTopArtistsWithCompletion:self.token numberOfArtists:3 completion:^(NSDictionary *results, NSError *error) {
             if (error != nil) {
                 NSLog(@"%@", error.localizedDescription);
@@ -74,39 +74,43 @@
 //                    NSString *field = [NSString stringWithFormat:@"artist%d", i+1];
 //                    self.user[field] = artists[i][@"id"];
 //                }
-                self.user[@"artist1"] = artists[0][@"id"];
-                self.user[@"artist2"] = artists[1][@"id"];
-                self.user[@"artist3"] = artists[2][@"id"];
-                [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                    if (succeeded) {
-                        [self updateTopArtists];
-                    } else {
-                        NSLog(@"%@", error.localizedDescription);
-                    }
-                }];
+                if (artists.count == 3) {
+                    self.user[@"artist1"] = artists[0][@"id"];
+                    self.user[@"artist2"] = artists[1][@"id"];
+                    self.user[@"artist3"] = artists[2][@"id"];
+                    [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                        if (succeeded) {
+                            [self updateTopArtists];
+                        } else {
+                            NSLog(@"%@", error.localizedDescription);
+                        }
+                    }];
+                }
             }
         }];
     } else {
         [self updateTopArtists];
     }
     
-    // check if the user already has top songs, if not pull them from spotify (only check 1 because all or nothing)
-    if (self.user[@"song1"] == nil) {
+    // check if the user already has top songs, if not pull them from spotify
+    if (self.user[@"song1"] == nil || self.user[@"song2"] == nil || self.user[@"song3"] == nil) {
         [[APIManager shared] getTopSongsWithCompletion:self.token numberOfSongs:3 completion:^(NSDictionary *results, NSError *error) {
             if (error != nil) {
                 NSLog(@"%@", error.localizedDescription);
             } else {
                 NSArray *songs = results[@"items"];
-                self.user[@"song1"] = songs[0][@"id"];
-                self.user[@"song2"] = songs[1][@"id"];
-                self.user[@"song3"] = songs[2][@"id"];
-                [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                    if (succeeded) {
-                        [self updateTopSongs];
-                    } else {
-                        NSLog(@"%@", error.localizedDescription);
-                    }
-                }];
+                if (songs.count == 3) {
+                    self.user[@"song1"] = songs[0][@"id"];
+                    self.user[@"song2"] = songs[1][@"id"];
+                    self.user[@"song3"] = songs[2][@"id"];
+                    [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                        if (succeeded) {
+                            [self updateTopSongs];
+                        } else {
+                            NSLog(@"%@", error.localizedDescription);
+                        }
+                    }];
+                }
             }
         }];
     } else {
