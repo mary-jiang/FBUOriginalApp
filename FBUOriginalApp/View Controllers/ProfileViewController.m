@@ -16,6 +16,7 @@
 @property (strong, nonatomic) IBOutlet ProfileView *profileView;
 @property (strong, nonatomic) UIImagePickerController *imagePickerVC;
 @property (strong, nonatomic) NSString *itemToBeChanged;
+@property (strong, nonatomic) NSString *token;
 
 @end
 
@@ -45,17 +46,30 @@
             NSLog(@"Camera 🚫 available so we will use photo library instead");
             self.imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         }
+        
+        self.token = self.user[@"spotifyToken"];
+        [self updateProfile];
+    } else {
+        // refresh the token for the user whose profile this is so that the authorization remains valid and usable
+        [[APIManager shared] refreshTokenWithCompletion:self.user[@"refreshToken"] completion:^(NSDictionary *tokens, NSError *error) {
+            self.token = tokens[@"access_token"];
+            [self updateProfile];
+        }];
     }
     
+}
+
+- (void)updateProfile {
     // TODO: Create a better way of pulling and displaying default top artists/songs for users who may not have 3 top based on spotify
     
     // check if the user already has top artists, if not pull them from spotify (only check 1 because all or nothing for now)
     if (self.user[@"artist1"] == nil) {
-        [[APIManager shared] getTopArtistsWithCompletion:self.user[@"spotifyToken"] completion:^(NSDictionary *results, NSError *error) {
+        [[APIManager shared] getTopArtistsWithCompletion:self.token numberOfArtists:3 completion:^(NSDictionary *results, NSError *error) {
             if (error != nil) {
                 NSLog(@"%@", error.localizedDescription);
             } else {
                 NSArray *artists = results[@"items"];
+//                NSString *combinedIds = @""; // concat ids to this string in order to get all of the topics at once from Spotify
 //                for (int i = 0; i < artists.count ; i++){
 //                    NSString *field = [NSString stringWithFormat:@"artist%d", i+1];
 //                    self.user[field] = artists[i][@"id"];
@@ -78,7 +92,7 @@
     
     // check if the user already has top songs, if not pull them from spotify (only check 1 because all or nothing)
     if (self.user[@"song1"] == nil) {
-        [[APIManager shared] getTopSongsWithCompletion:self.user[@"spotifyToken"] completion:^(NSDictionary *results, NSError *error) {
+        [[APIManager shared] getTopSongsWithCompletion:self.token numberOfSongs:3 completion:^(NSDictionary *results, NSError *error) {
             if (error != nil) {
                 NSLog(@"%@", error.localizedDescription);
             } else {
@@ -99,13 +113,12 @@
         [self updateTopSongs];
     }
     
-    
     [self.profileView updateUIBasedOnUser:self.user];
 }
 
 - (void)updateTopArtists {
     NSString *allIds = [NSString stringWithFormat:@"%@,%@,%@", self.user[@"artist1"], self.user[@"artist2"], self.user[@"artist3"]];
-    [[APIManager shared] getMultipleTopicsWithCompletion:allIds type:@"artist" authorization:self.user[@"spotifyToken"] completion:^(NSDictionary *results, NSError *error) {
+    [[APIManager shared] getMultipleTopicsWithCompletion:allIds type:@"artist" authorization:self.token completion:^(NSDictionary *results, NSError *error) {
         if (error != nil) {
             NSLog(@"%@", error.localizedDescription);
         } else {
@@ -117,7 +130,7 @@
 
 - (void)updateTopSongs {
     NSString *allIds = [NSString stringWithFormat:@"%@,%@,%@", self.user[@"song1"], self.user[@"song2"], self.user[@"song3"]];
-    [[APIManager shared] getMultipleTopicsWithCompletion:allIds type:@"track" authorization:self.user[@"spotifyToken"] completion:^(NSDictionary *results, NSError *error) {
+    [[APIManager shared] getMultipleTopicsWithCompletion:allIds type:@"track" authorization:self.token completion:^(NSDictionary *results, NSError *error) {
         if (error != nil) {
             NSLog(@"%@", error.localizedDescription);
         } else {

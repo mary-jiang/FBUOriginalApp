@@ -55,13 +55,13 @@
     [self baseAPIGetRequestWithCompletion:urlString authorization:authorization completion:completion];
 }
 
-- (void)getTopArtistsWithCompletion: (NSString *)authorization completion:(void(^)(NSDictionary *, NSError *))completion {
-    NSString *urlString = [NSString stringWithFormat:@"https://api.spotify.com/v1/me/top/artists?limit=3"];
+- (void)getTopArtistsWithCompletion: (NSString *)authorization numberOfArtists:(int)numOfArtists completion:(void(^)(NSDictionary *, NSError *))completion {
+    NSString *urlString = [NSString stringWithFormat:@"https://api.spotify.com/v1/me/top/artists?limit=%d", numOfArtists];
     [self baseAPIGetRequestWithCompletion:urlString authorization:authorization completion:completion];
 }
 
-- (void)getTopSongsWithCompletion: (NSString *)authorization completion:(void(^)(NSDictionary *, NSError *))completion {
-    NSString *urlString = [NSString stringWithFormat:@"https://api.spotify.com/v1/me/top/tracks?limit=3"];
+- (void)getTopSongsWithCompletion: (NSString *)authorization numberOfSongs:(int)numOfSongs completion:(void(^)(NSDictionary *, NSError *))completion {
+    NSString *urlString = [NSString stringWithFormat:@"https://api.spotify.com/v1/me/top/tracks?limit=%d", numOfSongs];
     [self baseAPIGetRequestWithCompletion:urlString authorization:authorization completion:completion];
 }
 
