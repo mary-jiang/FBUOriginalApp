@@ -12,6 +12,7 @@
 		994D8A601720A034AFD160B2 /* Pods_FBUOriginalApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D92B9053C1B5778E9E7F2F2 /* Pods_FBUOriginalApp.framework */; };
 		AA27A349269F350600CF2BC5 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = AA27A348269F350600CF2BC5 /* Post.m */; };
 		AA27A34F269F8B5100CF2BC5 /* Topic.m in Sources */ = {isa = PBXBuildFile; fileRef = AA27A34E269F8B5100CF2BC5 /* Topic.m */; };
+		AA57D1DE26A879C3004A2E55 /* MatchingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AA57D1DD26A879C3004A2E55 /* MatchingHelper.m */; };
 		AACE3BC3269C7ECB006699A6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3BC2269C7ECB006699A6 /* AppDelegate.m */; };
 		AACE3BC6269C7ECB006699A6 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3BC5269C7ECB006699A6 /* SceneDelegate.m */; };
 		AACE3BCC269C7ECB006699A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AACE3BCA269C7ECB006699A6 /* Main.storyboard */; };
@@ -72,6 +73,8 @@
 		AA27A348269F350600CF2BC5 /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		AA27A34D269F8B5100CF2BC5 /* Topic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Topic.h; sourceTree = "<group>"; };
 		AA27A34E269F8B5100CF2BC5 /* Topic.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Topic.m; sourceTree = "<group>"; };
+		AA57D1DC26A879C3004A2E55 /* MatchingHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchingHelper.h; sourceTree = "<group>"; };
+		AA57D1DD26A879C3004A2E55 /* MatchingHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchingHelper.m; sourceTree = "<group>"; };
 		AACE3BBE269C7ECB006699A6 /* FBUOriginalApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FBUOriginalApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AACE3BC1269C7ECB006699A6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		AACE3BC2269C7ECB006699A6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -224,6 +227,8 @@
 				AACE3BCA269C7ECB006699A6 /* Main.storyboard */,
 				AACE3BCD269C7ECC006699A6 /* Assets.xcassets */,
 				AACE3BCF269C7ECC006699A6 /* LaunchScreen.storyboard */,
+				AA57D1DC26A879C3004A2E55 /* MatchingHelper.h */,
+				AA57D1DD26A879C3004A2E55 /* MatchingHelper.m */,
 				AACE3BD2269C7ECC006699A6 /* Info.plist */,
 				AACE3BD3269C7ECC006699A6 /* main.m */,
 				AACE3C2F269CF0D1006699A6 /* Keys.plist */,
@@ -583,6 +588,7 @@
 				AACE3C01269CAE0B006699A6 /* FeedViewController.m in Sources */,
 				AACE3C38269E088A006699A6 /* SpotifyLoginViewController.m in Sources */,
 				AACE3BFE269CAE00006699A6 /* SignupViewController.m in Sources */,
+				AA57D1DE26A879C3004A2E55 /* MatchingHelper.m in Sources */,
 				AACE3C2E269CE1D7006699A6 /* PostCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
