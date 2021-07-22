@@ -47,6 +47,20 @@
     [self.song3ImageView setUserInteractionEnabled:true];
 }
 
+- (void)disableFollowing {
+    [self.followButton setEnabled:false];
+    self.followButton.alpha = 0;
+}
+
+// if following is true make the button say "unfollow", else says "follow"
+- (void)updateFollowButton: (BOOL) following{
+    if (following) {
+        [self.followButton setTitle:@"Unfollow" forState:UIControlStateNormal];
+    } else {
+        [self.followButton setTitle:@"Follow" forState:UIControlStateNormal];
+    }
+}
+
 - (void)didTapProfile {
     [self.delegate didTapProfilePicture];
 }
@@ -73,6 +87,10 @@
 
 - (void)didTapSong3 {
     [self.delegate didTapSong3];
+}
+
+- (IBAction)followButtonPressed:(id)sender {
+    [self.delegate didTapFollow];
 }
 
 - (void)updateProfilePicture:(UIImage *)image {

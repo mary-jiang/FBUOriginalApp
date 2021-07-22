@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)didTapSong2;
 - (void)didTapSong3;
 
+- (void)didTapFollow;
+
 @end
 
 @interface ProfileView : UIView
@@ -41,10 +43,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *song1Label;
 @property (weak, nonatomic) IBOutlet UILabel *song2Label;
 @property (weak, nonatomic) IBOutlet UILabel *song3Label;
+@property (weak, nonatomic) IBOutlet UIButton *followButton;
 
 @property (weak, nonatomic) id<ProfileViewDelegate> delegate;
 
 - (void)createAllTapGestureRecognizers;
+- (void)disableFollowing;
+- (void)updateFollowButton: (BOOL) following;
 - (void)updateProfilePicture: (UIImage *)image;
 - (void)updateUIBasedOnUser: (PFUser *) user;
 

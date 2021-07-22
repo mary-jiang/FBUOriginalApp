@@ -28,9 +28,11 @@
     
     self.profileView.delegate = self;
     
-    // if we were not passed in a user this is the current user's profile, should be able to edit profile picture
+    // if we were not passed in a user this is the current user's profile, should be able to edit profile picture and remove follow button
     if (self.user == nil) {
         self.user = [PFUser currentUser];
+        
+        [self.profileView disableFollowing];
         
         [self.profileView createAllTapGestureRecognizers];
         
@@ -50,6 +52,13 @@
         self.token = self.user[@"spotifyToken"];
         [self updateProfile];
     } else {
+        // if current user viewing own profile not from profile page still don't let them edit stuff but disable follow button
+        if ([[PFUser currentUser].objectId isEqual:self.user.objectId]) {
+            [self.profileView disableFollowing];
+        }
+        
+        [self.profileView updateFollowButton:[self alreadyFollowing]];
+        
         // refresh the token for the user whose profile this is so that the authorization remains valid and usable
         [[APIManager shared] refreshTokenWithCompletion:self.user[@"refreshToken"] completion:^(NSDictionary *tokens, NSError *error) {
             self.token = tokens[@"access_token"];
@@ -120,6 +129,15 @@
     [self.profileView updateUIBasedOnUser:self.user];
 }
 
+- (BOOL)alreadyFollowing {
+    PFUser *currentUser = [PFUser currentUser];
+    NSArray *currentlyFollowing = currentUser[@"following"];
+    if (currentlyFollowing != nil && [currentlyFollowing containsObject:self.user.objectId]) {
+        return true;
+    }
+    return false;
+}
+
 - (void)updateTopArtists {
     NSString *allIds = [NSString stringWithFormat:@"%@,%@,%@", self.user[@"artist1"], self.user[@"artist2"], self.user[@"artist3"]];
     [[APIManager shared] getMultipleTopicsWithCompletion:allIds type:@"artist" authorization:self.token completion:^(NSDictionary *results, NSError *error) {
@@ -176,6 +194,22 @@
 - (void)didTapSong3 {
     self.itemToBeChanged = @"song3";
     [self performSegueWithIdentifier:@"spotifySegue" sender:@"song"];
+}
+
+- (void)didTapFollow {
+    PFUser *currentUser = [PFUser currentUser];
+    if ([self alreadyFollowing]) {
+        [currentUser removeObject:self.user.objectId forKey:@"following"];
+    } else {
+        [currentUser addObject:self.user.objectId forKey:@"following"];
+    }
+    [currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if (succeeded) {
+            [self.profileView updateFollowButton:[self alreadyFollowing]];
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
 }
 
 - (void)didChooseTopic:(Topic *)topic {
