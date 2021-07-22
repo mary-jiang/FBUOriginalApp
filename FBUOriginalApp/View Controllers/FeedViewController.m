@@ -112,6 +112,16 @@
     [self performSegueWithIdentifier:@"profileSegue" sender:user];
 }
 
+- (void)doubleTappedPostCellWithPost:(Post *)post {
+    PFUser *user = [PFUser currentUser];
+    [Post likePostWithId:post.objectId withUserId:user.objectId withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        if (succeeded) {
+            NSLog(@"you did something alright bestie :)");
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+}
 
 #pragma mark - Navigation
 

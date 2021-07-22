@@ -62,4 +62,15 @@
     }
 }
 
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    for (UITouch* touch in touches) {
+            if (touch.tapCount == 2)
+            {
+                [self.delegate doubleTappedPostCellWithPost:self.post];
+            }
+        }
+
+        [super touchesEnded:touches withEvent:event];
+}
+
 @end
