@@ -107,16 +107,24 @@
     return cell;
 }
 
-// delegate method for post cell that tells us that the user in postCell was tapped
-- (void)postCell:(PostCell *)postCell didTap:(PFUser *)user {
+// delegate method for post cell that tells us that the username/profile pic in postCell was tapped
+- (void)postCellUserTapped:(PostCell *)postCell user:(PFUser *)user {
     [self performSegueWithIdentifier:@"profileSegue" sender:user];
 }
 
-- (void)doubleTappedPostCellWithPost:(Post *)post {
+- (void)doubleTappedPostCell:(PostCell *)postCell withPost: (Post *)post {
     PFUser *user = [PFUser currentUser];
     [Post likePostWithId:post.objectId withUserId:user.objectId withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
-            NSLog(@"you did something alright bestie :)");
+            // fetch the new updated post and give it to the cell to update UI
+            PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+            [query getObjectInBackgroundWithId:post.objectId block:^(PFObject *object, NSError *error) {
+                if (error != nil) {
+                    NSLog(@"%@", error.localizedDescription);
+                } else {
+                    postCell.post = (Post *)object;
+                }
+            }];
         } else {
             NSLog(@"%@", error.localizedDescription);
         }

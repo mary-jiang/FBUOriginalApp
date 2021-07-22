@@ -23,7 +23,7 @@
 }
 
 - (void)didTapProfile {
-    [self.delegate postCell:self didTap:self.author];
+    [self.delegate postCellUserTapped:self user:self.author];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -66,7 +66,7 @@
     for (UITouch* touch in touches) {
             if (touch.tapCount == 2)
             {
-                [self.delegate doubleTappedPostCellWithPost:self.post];
+                [self.delegate doubleTappedPostCell:self withPost:self.post];
             }
         }
 
