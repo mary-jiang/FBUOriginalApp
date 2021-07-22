@@ -65,9 +65,14 @@
 }
 
 - (void)fetchPosts {
+    PFUser *currentUser = [PFUser currentUser];
+    NSMutableArray *following = currentUser[@"following"];
+    [following addObject:currentUser.objectId];
+    
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     query.limit = 20;
     [query orderByDescending:@"createdAt"];
+    [query whereKey:@"author" containedIn:following];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError * error) {
         if (error != nil) {
