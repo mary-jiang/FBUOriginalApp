@@ -11,6 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MatchingHelper : NSObject
 
++ (void)calculateCompatibility: (NSString *)user1 user2: (NSString *)user2;
+
 @end
 
 NS_ASSUME_NONNULL_END

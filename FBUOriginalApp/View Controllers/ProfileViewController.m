@@ -10,6 +10,7 @@
 #import "APIManager.h"
 #import "Topic.h"
 #import "SpotifySearchViewController.h"
+#import "MatchingHelper.h"
 
 @interface ProfileViewController () <ProfileViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, SpotifySearchViewControllerDelegate>
 
@@ -62,6 +63,7 @@
         // refresh the token for the user whose profile this is so that the authorization remains valid and usable
         [[APIManager shared] refreshTokenWithCompletion:self.user[@"refreshToken"] completion:^(NSDictionary *tokens, NSError *error) {
             self.token = tokens[@"access_token"];
+            
             [self updateProfile];
         }];
     }
