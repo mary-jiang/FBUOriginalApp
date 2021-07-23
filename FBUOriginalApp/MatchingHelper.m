@@ -10,8 +10,12 @@
 
 @implementation MatchingHelper
 
-// TODO: should probably give this a completion block so that whatever is calling it can use the actual score
-+ (void)calculateCompatibility: (NSString *)user1 user2: (NSString *)user2 {
+// TODO: actually implementing the matching algorithim here (will use the other methods in here to help)
++ (void)getUserMatch: (PFUser *)newUser {
+    
+}
+
++ (void)calculateCompatibilityWithCompletion: (NSString *)user1 user2: (NSString *)user2 completion:(void(^)(NSNumber *, NSError *))completion{
     __block NSArray *user1Artists;
     __block NSArray *user2Artists;
     __block NSArray *user1Songs;
@@ -23,32 +27,32 @@
     
     [[APIManager shared] getTopArtistsWithCompletion:user1 numberOfArtists:50 completion:^(NSDictionary *results, NSError *error) {
         if (error != nil) {
-            NSLog(@"error getting user 1 artists: %@", error.localizedDescription);
+            completion(nil, error);
         } else {
             user1Artists = [MatchingHelper spotifyIdArrayFromDictionaries:results[@"items"]];
             [[APIManager shared] getTopArtistsWithCompletion:user2 numberOfArtists:50 completion:^(NSDictionary *results, NSError *error) {
                 if (error != nil) {
-                    NSLog(@"error getting user 2 artists: %@", error.localizedDescription);
+                    completion(nil, error);
                 } else {
                     user2Artists = [MatchingHelper spotifyIdArrayFromDictionaries:results[@"items"]];
                     [[APIManager shared] getTopSongsWithCompletion:user1 numberOfSongs:50 completion:^(NSDictionary *results, NSError *error) {
                         if (error != nil) {
-                            NSLog(@"error getting user 1 songs: %@", error.localizedDescription);
+                            completion(nil, error);
                         } else {
                             user1Songs = [MatchingHelper spotifyIdArrayFromDictionaries:results[@"items"]];
                             [[APIManager shared] getTopSongsWithCompletion:user2 numberOfSongs:50 completion:^(NSDictionary *results, NSError *error) {
                                 if (error != nil) {
-                                    NSLog(@"error getting user 2 songs: %@", error.localizedDescription);
+                                    completion(nil, error);
                                 } else {
                                     user2Songs = [MatchingHelper spotifyIdArrayFromDictionaries:results[@"items"]];
                                     [MatchingHelper mostListenedToGenresWithCompletion:user1 completion:^(NSArray *results, NSError *error) {
                                         if (error != nil) {
-                                            NSLog(@"error getting user 1 genres: %@", error.localizedDescription);
+                                            completion(nil, error);
                                         } else {
                                             user1Genres = results;
                                             [MatchingHelper mostListenedToGenresWithCompletion:user2 completion:^(NSArray *results, NSError *error) {
                                                 if (error != nil) {
-                                                    NSLog(@"error getting user 2 genres: %@", error.localizedDescription);
+                                                    completion(nil, error);
                                                 } else {
                                                     user2Genres = results;
                                                     
@@ -59,7 +63,7 @@
                                                     
                                                     score = artistScore + songScore + genreScore;
                                                     
-                                                    NSLog(@"%f", score);
+                                                    completion([NSNumber numberWithDouble:score], nil);
                                                 }
                                             }];
                                         }
@@ -74,17 +78,17 @@
     }];
 }
 
-+ (void)addScoreToParse: (double)score user1: (PFUser *)user1 user2: (PFUser *)user2 {
++ (void)addScoreToParse: (NSNumber *)score user1: (PFUser *)user1 user2: (PFUser *)user2 {
     // make 2 compatibility score objects to represent the score relationship in both directions (user1->user2 and user2->user1)
     PFObject *compatibilityScore1 = [PFObject objectWithClassName:@"CompatibilityScore"];
     compatibilityScore1[@"user1"] = user1;
     compatibilityScore1[@"user2"] = user2;
-    compatibilityScore1[@"score"] = [NSNumber numberWithDouble:score];
+    compatibilityScore1[@"score"] = score;
     
     PFObject *compatibilityScore2 =[PFObject objectWithClassName:@"CompatibilityScore"];
     compatibilityScore2[@"user1"] = user2;
     compatibilityScore2[@"user2"] = user1;
-    compatibilityScore2[@"score"] = [NSNumber numberWithDouble:score];
+    compatibilityScore2[@"score"] = score;
     
     [compatibilityScore1 saveInBackground];
     [compatibilityScore2 saveInBackground];
@@ -124,8 +128,6 @@
     return scoreTotal;
 }
 
-
-//TODO: add a completion block to this that sends the array of genres to who ever is calling this
 + (void)mostListenedToGenresWithCompletion:(NSString *)authorization completion:(void(^)(NSArray *, NSError *))completion {
     NSMutableDictionary *genreFrequencyList = [NSMutableDictionary dictionary];
     // only artists have genre information
