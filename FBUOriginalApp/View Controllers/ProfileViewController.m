@@ -64,6 +64,8 @@
         [[APIManager shared] refreshTokenWithCompletion:self.user[@"refreshToken"] completion:^(NSDictionary *tokens, NSError *error) {
             self.token = tokens[@"access_token"];
             
+            [MatchingHelper addScoreToParse:100.0 user1:[PFUser currentUser] user2:self.user];
+            
             [self updateProfile];
         }];
     }

@@ -74,6 +74,22 @@
     }];
 }
 
++ (void)addScoreToParse: (double)score user1: (PFUser *)user1 user2: (PFUser *)user2 {
+    // make 2 compatibility score objects to represent the score relationship in both directions (user1->user2 and user2->user1)
+    PFObject *compatibilityScore1 = [PFObject objectWithClassName:@"CompatibilityScore"];
+    compatibilityScore1[@"user1"] = user1;
+    compatibilityScore1[@"user2"] = user2;
+    compatibilityScore1[@"score"] = [NSNumber numberWithDouble:score];
+    
+    PFObject *compatibilityScore2 =[PFObject objectWithClassName:@"CompatibilityScore"];
+    compatibilityScore2[@"user1"] = user2;
+    compatibilityScore2[@"user2"] = user1;
+    compatibilityScore2[@"score"] = [NSNumber numberWithDouble:score];
+    
+    [compatibilityScore1 saveInBackground];
+    [compatibilityScore2 saveInBackground];
+}
+
 + (NSArray *)spotifyIdArrayFromDictionaries: (NSArray *)dictionaries {
     NSMutableArray *ids = [NSMutableArray array];
     for (NSDictionary *dictionary in dictionaries) {
