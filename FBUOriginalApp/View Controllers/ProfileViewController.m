@@ -10,7 +10,6 @@
 #import "APIManager.h"
 #import "Topic.h"
 #import "SpotifySearchViewController.h"
-#import "MatchingHelper.h"
 
 @interface ProfileViewController () <ProfileViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, SpotifySearchViewControllerDelegate>
 
@@ -77,7 +76,7 @@
     if (self.user[@"artist1"] == nil || self.user[@"artist2"] == nil || self.user[@"artist3"] == nil ) {
         [[APIManager shared] getTopArtistsWithCompletion:self.token numberOfArtists:3 completion:^(NSDictionary *results, NSError *error) {
             if (error != nil) {
-                NSLog(@"%@", error.localizedDescription);
+                NSLog(@"get top artists for updating profile error: %@", error.localizedDescription);
             } else {
                 NSArray *artists = results[@"items"];
 //                NSString *combinedIds = @""; // concat ids to this string in order to get all of the topics at once from Spotify

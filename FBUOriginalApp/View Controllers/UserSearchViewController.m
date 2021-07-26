@@ -10,6 +10,7 @@
 #import <Parse/Parse.h>
 #import "UserCell.h"
 #import "ProfileViewController.h"
+#import "MatchingHelper.h"
 
 @interface UserSearchViewController () <UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource>
 
@@ -23,6 +24,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [MatchingHelper getUserMatchWithCompletion:[PFUser currentUser] completion:^(PFUser *user, NSError *error) {
+        if (error != nil) {
+            NSLog(@"Error recommending user: %@", error.localizedDescription);
+        } else {
+            NSLog(@"Recomended user: %@", user[@"username"]);
+        }
+    }];
     
     self.userSearchView.searchBar.delegate = self;
     

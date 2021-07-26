@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MatchingHelper : NSObject
 
++ (void)getUserMatchWithCompletion: (PFUser *)newUser completion:(void(^)(PFUser *, NSError *))completion;
 @end
 
 NS_ASSUME_NONNULL_END

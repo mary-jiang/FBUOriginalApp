@@ -30,10 +30,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    // TODO: figure out when to refresh user's authorization token, for now just refresh when this feed is seen to ensure a working code
-    PFUser *user = [PFUser currentUser];
-    self.user = user;
-    [[APIManager shared] refreshTokenWithCompletion:user[@"refreshToken"] completion:^(NSDictionary *tokens, NSError *error) {
+    // TODO: figure out when to refresh user's authorization token, for now just refresh when this feed is seen to ensure a working code (add in error checks here)
+    self.user = [PFUser currentUser];
+    [[APIManager shared] refreshTokenWithCompletion:self.user[@"refreshToken"] completion:^(NSDictionary *tokens, NSError *error) {
         self.user[@"spotifyToken"] = tokens[@"access_token"];
         [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             [self fetchPosts];
@@ -67,6 +66,10 @@
 - (void)fetchPosts {
     PFUser *currentUser = [PFUser currentUser];
     NSMutableArray *following = currentUser[@"following"];
+    // possibility following is nil, if it is we need to initialize it before adding things
+    if (following == nil) {
+        following = [NSMutableArray array];
+    }
     [following addObject:currentUser.objectId];
     
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
@@ -76,7 +79,7 @@
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError * error) {
         if (error != nil) {
-            NSLog(@"%@", error.localizedDescription);
+            NSLog(@"Fetch posts error: %@", error.localizedDescription);
         } else {
             self.posts = posts;
             [self.feedView.tableView reloadData];
@@ -96,7 +99,7 @@
     cell.post = post;
     [[APIManager shared] getTopicWithCompletion:post[@"spotifyId"] type:post[@"type"] authorization:self.user[@"spotifyToken"] completion:^(NSDictionary *data, NSError *error) {
         if (error != nil) {
-            NSLog(@"%@", error.localizedDescription);
+            NSLog(@"get topic for cell error: %@", error.localizedDescription);
         } else {
             Topic *topic = [[Topic alloc] initWithDictionary:data];
             cell.topic = topic;
@@ -104,7 +107,7 @@
     }];
     [post[@"author"] fetchIfNeededInBackgroundWithBlock:^(PFObject *author, NSError *error) {
         if (error != nil) {
-            NSLog(@"%@", error.localizedDescription);
+            NSLog(@"get author for cell error: %@", error.localizedDescription);
         } else {
             cell.author = (PFUser *)author;
         }
@@ -125,13 +128,13 @@
             PFQuery *query = [PFQuery queryWithClassName:@"Post"];
             [query getObjectInBackgroundWithId:post.objectId block:^(PFObject *object, NSError *error) {
                 if (error != nil) {
-                    NSLog(@"%@", error.localizedDescription);
+                    NSLog(@"get updated like post error: %@", error.localizedDescription);
                 } else {
                     postCell.post = (Post *)object;
                 }
             }];
         } else {
-            NSLog(@"%@", error.localizedDescription);
+            NSLog(@"error liking post: %@", error.localizedDescription);
         }
     }];
 }
