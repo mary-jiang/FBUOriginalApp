@@ -16,6 +16,7 @@
 
 @property (strong, nonatomic) IBOutlet UserSearchView *userSearchView;
 @property (strong, nonatomic) NSArray *users;
+@property (nonatomic) BOOL showingRecommendation;
 
 @end
 
@@ -25,18 +26,26 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [MatchingHelper getUserMatchWithCompletion:[PFUser currentUser] completion:^(PFUser *user, NSError *error) {
-        if (error != nil) {
-            NSLog(@"Error recommending user: %@", error.localizedDescription);
-        } else {
-            NSLog(@"Recomended user: %@", user[@"username"]);
-        }
-    }];
-    
     self.userSearchView.searchBar.delegate = self;
     
     self.userSearchView.tableView.delegate = self;
     self.userSearchView.tableView.dataSource = self;
+    
+    [self showRecommendedUser];
+}
+
+- (void)showRecommendedUser {
+    [MatchingHelper getUserMatchWithCompletion:[PFUser currentUser] completion:^(PFUser *user, NSError *error) {
+        if (error != nil) {
+            NSLog(@"Error recommending user: %@", error.localizedDescription);
+        } else {
+            NSMutableArray *recommendedUsers = [NSMutableArray array];
+            [recommendedUsers addObject:user];
+            self.users = (NSArray *) recommendedUsers;
+            self.showingRecommendation = true;
+            [self.userSearchView.tableView reloadData];
+        }
+    }];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
@@ -53,6 +62,7 @@
             NSLog(@"%@", error.localizedDescription);
         } else {
             self.users = results;
+            self.showingRecommendation = false;
             [self.userSearchView.tableView reloadData];
         }
     }];
@@ -70,6 +80,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.users.count;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (self.showingRecommendation) {
+        return @"Recommended User";
+    }
+    return @"";
 }
 
 
