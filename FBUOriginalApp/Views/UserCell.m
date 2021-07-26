@@ -25,12 +25,15 @@
     
     self.usernameLabel.text = self.user.username;
     
+    NSURL *profileURL;
     PFFileObject *profilePicture = self.user[@"profilePicture"];
     if (profilePicture != nil) {
-        NSURL *profileURL = [NSURL URLWithString:profilePicture.url];
-        NSData *profileData = [NSData dataWithContentsOfURL:profileURL];
-        self.profileImageView.image = [UIImage imageWithData:profileData];
+        profileURL = [NSURL URLWithString:profilePicture.url];
+    } else {
+        profileURL = [NSURL URLWithString:@"https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png"];
     }
+    NSData *profileData = [NSData dataWithContentsOfURL:profileURL];
+    self.profileImageView.image = [UIImage imageWithData:profileData];
 }
 
 @end
