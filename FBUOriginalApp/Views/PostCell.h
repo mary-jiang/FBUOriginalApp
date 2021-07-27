@@ -29,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (weak, nonatomic) id<PostCellDelegate> delegate;
 
+- (void)displayPlaceholder;
+
 @end
 
 @protocol PostCellDelegate

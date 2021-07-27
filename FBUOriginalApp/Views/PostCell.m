@@ -6,6 +6,7 @@
 //
 
 #import "PostCell.h"
+#import "UIImageView+AFNetworking.h"
 
 @implementation PostCell
 
@@ -44,8 +45,21 @@
     
     self.topicLabel.text = self.topic.name;
     NSURL *imageURL = [NSURL URLWithString:self.topic.image];
-    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
-    self.topicImageView.image = [UIImage imageWithData:imageData];
+    NSURLRequest *request = [NSURLRequest requestWithURL:imageURL];
+    [self.topicImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+        if (response) {
+            self.topicImageView.alpha = 0;
+            self.topicImageView.image = image;
+            
+            [UIView animateWithDuration:0.3 animations:^{
+                self.topicImageView.alpha = 1;
+            }];
+        } else {
+            self.topicImageView.image = image;
+        }
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+        // for now do nothing when fails
+    }];
 }
 
 - (void)setAuthor:(PFUser *)author {
@@ -53,13 +67,38 @@
     
     self.usernameLabel.text = self.author[@"username"];
     
-    // check to see if there is a profile picture
+    NSURL *profileURL;
     PFFileObject *profilePicture = self.author[@"profilePicture"];
     if (profilePicture != nil) {
-        NSURL *profileURL = [NSURL URLWithString:profilePicture.url];
-        NSData *profileData = [NSData dataWithContentsOfURL:profileURL];
-        self.profileImageView.image = [UIImage imageWithData:profileData];
+        profileURL = [NSURL URLWithString:profilePicture.url];
+    } else {
+        profileURL = [NSURL URLWithString:@"https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png"];
     }
+    NSURLRequest *request = [NSURLRequest requestWithURL:profileURL];
+    [self.profileImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+        if (response) {
+            self.profileImageView.alpha = 0;
+            self.profileImageView.image = image;
+            
+            [UIView animateWithDuration:0.3 animations:^{
+                self.profileImageView.alpha = 1;
+            }];
+        } else {
+            self.profileImageView.image = image;
+        }
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+        // for now do nothing when fails
+    }];
+}
+
+- (void)displayPlaceholder {
+    self.profileImageView.image = nil;
+    self.topicImageView.image = nil;
+    
+    self.usernameLabel.text = @"";
+    self.topicLabel.text = @"";
+    self.likesLabel.text = @"";
+    self.contentLabel.text = @"";
 }
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
