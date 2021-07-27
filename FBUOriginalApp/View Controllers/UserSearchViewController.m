@@ -11,6 +11,7 @@
 #import "UserCell.h"
 #import "ProfileViewController.h"
 #import "MatchingHelper.h"
+#import "MBProgressHUD.h"
 
 @interface UserSearchViewController () <UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource>
 
@@ -35,6 +36,10 @@
 }
 
 - (void)showRecommendedUser {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.userSearchView animated:YES];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.label.text = @"Loading Recommended User";
+    
     [MatchingHelper getUserMatchWithCompletion:[PFUser currentUser] completion:^(PFUser *user, NSError *error) {
         if (error != nil) {
             NSLog(@"Error recommending user: %@", error.localizedDescription);
@@ -44,6 +49,7 @@
             self.users = (NSArray *) recommendedUsers;
             self.showingRecommendation = true;
             [self.userSearchView.tableView reloadData];
+            [hud hideAnimated:YES];
         }
     }];
 }

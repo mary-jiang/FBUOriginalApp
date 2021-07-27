@@ -14,6 +14,7 @@
 #import "APIManager.h"
 #import "PostCell.h"
 #import "Topic.h"
+#import "MBProgressHUD.h"
 
 @interface FeedViewController () <UITableViewDelegate, UITableViewDataSource, PostCellDelegate>
 
@@ -64,6 +65,10 @@
 }
 
 - (void)fetchPosts {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.feedView animated:YES];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.label.text = @"Loading Posts";
+    
     PFUser *currentUser = [PFUser currentUser];
     NSMutableArray *following = currentUser[@"following"];
     // possibility following is nil, if it is we need to initialize it before adding things
@@ -85,6 +90,7 @@
             [self.feedView.tableView reloadData];
         }
         [self.refreshControl endRefreshing];
+        [hud hideAnimated:YES];
     }];
 }
 

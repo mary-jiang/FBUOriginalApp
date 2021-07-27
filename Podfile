@@ -7,6 +7,7 @@ target 'FBUOriginalApp' do
 
   # Pods for FBUOriginalApp
   pod 'Parse'
+  pod 'MBProgressHUD', '~> 1.2.0'
 
   target 'FBUOriginalAppTests' do
     inherit! :search_paths
