@@ -52,6 +52,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)updateFollowButton: (BOOL) following;
 - (void)updateProfilePicture: (UIImage *)image;
 - (void)updateUIBasedOnUser: (PFUser *) user;
+- (void)displayBeforeLoadingPlaceholders;
+- (void)displayNoArtistDataPlaceholders;
+- (void)displayNoSongDataPlaceholders;
 
 - (void)updateAllArtistsWithTopics: (NSArray *)topics;
 - (void)updateArtist1WithTopic: (Topic *) topic;

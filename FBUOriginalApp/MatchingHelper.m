@@ -34,7 +34,7 @@
                 completion(nil, error);
             } else {
                 // if score < prevScore don't even check user2's other connections, send prevUser as recommendation
-                if (prevScore != nil && [score doubleValue] < [prevScore doubleValue]) {
+                if (prevScore != nil && [score doubleValue] <= [prevScore doubleValue]) {
                     [MatchingHelper addScoreToParse:score user1:user1 user2:user2];
                     completion(prevUser, nil);
                 } else {

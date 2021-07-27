@@ -94,6 +94,52 @@
     [self.delegate didTapFollow];
 }
 
+- (void)displayBeforeLoadingPlaceholders {
+    self.artist1ImageView.image = nil;
+    self.artist2ImageView.image = nil;
+    self.artist3ImageView.image = nil;
+    
+    self.artist1Label.text = @"";
+    self.artist2Label.text = @"";
+    self.artist3Label.text = @"";
+    
+    self.song1ImageView.image = nil;
+    self.song2ImageView.image = nil;
+    self.song3ImageView.image = nil;
+    
+    self.song1Label.text = @"";
+    self.song2Label.text = @"";
+    self.song3Label.text = @"";
+}
+
+- (void)displayNoArtistDataPlaceholders {
+    NSURL *placeholderURL = [NSURL URLWithString:@"https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png"];
+    NSData *placeholderData = [NSData dataWithContentsOfURL:placeholderURL];
+    UIImage *placeholderImage = [UIImage imageWithData:placeholderData];
+    
+    self.artist1ImageView.image = placeholderImage;
+    self.artist2ImageView.image = placeholderImage;
+    self.artist3ImageView.image = placeholderImage;
+    
+    self.artist1Label.text = @"N/A";
+    self.artist2Label.text = @"N/A";
+    self.artist3Label.text = @"N/A";
+}
+
+- (void)displayNoSongDataPlaceholders {
+    NSURL *placeholderURL = [NSURL URLWithString:@"https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png"];
+    NSData *placeholderData = [NSData dataWithContentsOfURL:placeholderURL];
+    UIImage *placeholderImage = [UIImage imageWithData:placeholderData];
+
+    self.song1ImageView.image = placeholderImage;
+    self.song2ImageView.image = placeholderImage;
+    self.song3ImageView.image = placeholderImage;
+    
+    self.song1Label.text = @"N/A";
+    self.song2Label.text = @"N/A";
+    self.song3Label.text = @"N/A";
+}
+
 - (void)updateProfilePicture:(UIImage *)image {
     self.profileImageView.image = image;
 }

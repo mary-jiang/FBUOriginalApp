@@ -28,6 +28,8 @@
     
     self.profileView.delegate = self;
     
+    [self.profileView displayBeforeLoadingPlaceholders];
+    
     // if we were not passed in a user this is the current user's profile, should be able to edit profile picture and remove follow button
     if (self.user == nil) {
         self.user = [PFUser currentUser];
@@ -95,6 +97,8 @@
                             NSLog(@"%@", error.localizedDescription);
                         }
                     }];
+                } else {
+                    [self.profileView displayNoArtistDataPlaceholders];
                 }
             }
         }];
@@ -120,6 +124,8 @@
                             NSLog(@"%@", error.localizedDescription);
                         }
                     }];
+                } else {
+                    [self.profileView displayNoSongDataPlaceholders];
                 }
             }
         }];

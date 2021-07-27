@@ -587,7 +587,6 @@
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="szB-6c-a7y">
                                                 <rect key="frame" x="157" y="20" width="100" height="100"/>
-                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="BuR-uu-9Hz"/>
                                                     <constraint firstAttribute="height" constant="100" id="ZUh-JD-7o5"/>
@@ -613,7 +612,6 @@
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0Nc-9k-0TP">
                                                 <rect key="frame" x="51" y="212" width="80" height="80"/>
-                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="80" id="FXF-kB-RK0"/>
                                                     <constraint firstAttribute="width" constant="80" id="JaA-50-NTq"/>
@@ -621,7 +619,6 @@
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Za8-OW-oVJ">
                                                 <rect key="frame" x="283" y="212" width="80" height="80"/>
-                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="80" id="Etz-RJ-Rag"/>
                                                     <constraint firstAttribute="height" constant="80" id="x3v-WA-6wU"/>
@@ -647,7 +644,6 @@
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lwh-3S-ne3">
                                                 <rect key="frame" x="51" y="390" width="50" height="50"/>
-                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="8V4-tF-M3d"/>
                                                     <constraint firstAttribute="width" constant="50" id="eC0-Ic-dum"/>
@@ -655,7 +651,6 @@
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2Cm-gl-I9B">
                                                 <rect key="frame" x="51" y="448" width="50" height="50"/>
-                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="50" id="Bvu-OR-xkK"/>
                                                     <constraint firstAttribute="height" constant="50" id="UUw-gz-LDS"/>
@@ -663,7 +658,6 @@
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="doa-Yf-Y3H">
                                                 <rect key="frame" x="51" y="506" width="50" height="50"/>
-                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="7LL-Cf-NtA"/>
                                                     <constraint firstAttribute="width" constant="50" id="SMR-AE-TNM"/>
@@ -689,7 +683,6 @@
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tt0-ip-A1u">
                                                 <rect key="frame" x="167" y="212" width="80" height="80"/>
-                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="80" id="H41-fy-FVi"/>
                                                     <constraint firstAttribute="width" constant="80" id="umu-un-xLy"/>
@@ -897,7 +890,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="CZ1-8P-CJo"/>
         <segue reference="fJC-KM-2cl"/>
-        <segue reference="SJz-B7-Fhz"/>
+        <segue reference="FQ1-Hm-oLy"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
