@@ -6,6 +6,7 @@
 //
 
 #import "ProfileView.h"
+#import "UIImageView+AFNetworking.h"
 
 @implementation ProfileView
 
@@ -120,22 +121,61 @@
 - (void)updateArtist1WithTopic: (Topic *) topic{
     self.artist1Label.text = topic.name;
     NSURL *imageURL = [NSURL URLWithString:topic.image];
-    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
-    self.artist1ImageView.image = [UIImage imageWithData:imageData];
+    NSURLRequest *request = [NSURLRequest requestWithURL:imageURL];
+    [self.artist1ImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+        if (response) {
+            self.artist1ImageView.alpha = 0;
+            self.artist1ImageView.image = image;
+            
+            [UIView animateWithDuration:0.3 animations:^{
+                self.artist1ImageView.alpha = 1;
+            }];
+        } else {
+            self.artist1ImageView.image = image;
+        }
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+        // for now do nothing when fails
+    }];
 }
 
 - (void)updateArtist2WithTopic: (Topic *) topic{
     self.artist2Label.text = topic.name;
     NSURL *imageURL = [NSURL URLWithString:topic.image];
-    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
-    self.artist2ImageView.image = [UIImage imageWithData:imageData];
+    NSURLRequest *request = [NSURLRequest requestWithURL:imageURL];
+    [self.artist2ImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+        if (response) {
+            self.artist2ImageView.alpha = 0;
+            self.artist2ImageView.image = image;
+            
+            [UIView animateWithDuration:0.3 animations:^{
+                self.artist2ImageView.alpha = 1;
+            }];
+        } else {
+            self.artist2ImageView.image = image;
+        }
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+        // for now do nothing when fails
+    }];
 }
 
 - (void)updateArtist3WithTopic: (Topic *) topic{
     self.artist3Label.text = topic.name;
     NSURL *imageURL = [NSURL URLWithString:topic.image];
-    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
-    self.artist3ImageView.image = [UIImage imageWithData:imageData];
+    NSURLRequest *request = [NSURLRequest requestWithURL:imageURL];
+    [self.artist3ImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+        if (response) {
+            self.artist3ImageView.alpha = 0;
+            self.artist3ImageView.image = image;
+            
+            [UIView animateWithDuration:0.3 animations:^{
+                self.artist3ImageView.alpha = 1;
+            }];
+        } else {
+            self.artist3ImageView.image = image;
+        }
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+        // for now do nothing when fails
+    }];
 }
 
 - (void)updateAllSongsWithTopics: (NSArray *) topics {
@@ -147,22 +187,61 @@
 - (void)updateSong1WithTopic: (Topic *) topic{
     self.song1Label.text = topic.name;
     NSURL *imageURL = [NSURL URLWithString:topic.image];
-    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
-    self.song1ImageView.image = [UIImage imageWithData:imageData];
+    NSURLRequest *request = [NSURLRequest requestWithURL:imageURL];
+    [self.song1ImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+        if (response) {
+            self.song1ImageView.alpha = 0;
+            self.song1ImageView.image = image;
+            
+            [UIView animateWithDuration:0.3 animations:^{
+                self.song1ImageView.alpha = 1;
+            }];
+        } else {
+            self.song1ImageView.image = image;
+        }
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+        // for now do nothing when fails
+    }];
 }
 
 - (void)updateSong2WithTopic: (Topic *) topic{
     self.song2Label.text = topic.name;
     NSURL *imageURL = [NSURL URLWithString:topic.image];
-    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
-    self.song2ImageView.image = [UIImage imageWithData:imageData];
+    NSURLRequest *request = [NSURLRequest requestWithURL:imageURL];
+    [self.song2ImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+        if (response) {
+            self.song2ImageView.alpha = 0;
+            self.song2ImageView.image = image;
+            
+            [UIView animateWithDuration:0.3 animations:^{
+                self.song2ImageView.alpha = 1;
+            }];
+        } else {
+            self.song2ImageView.image = image;
+        }
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+        // for now do nothing when fails
+    }];
 }
 
 - (void)updateSong3WithTopic: (Topic *) topic{
     self.song3Label.text = topic.name;
     NSURL *imageURL = [NSURL URLWithString:topic.image];
-    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
-    self.song3ImageView.image = [UIImage imageWithData:imageData];
+    NSURLRequest *request = [NSURLRequest requestWithURL:imageURL];
+    [self.song3ImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+        if (response) {
+            self.song3ImageView.alpha = 0;
+            self.song3ImageView.image = image;
+            
+            [UIView animateWithDuration:0.3 animations:^{
+                self.song3ImageView.alpha = 1;
+            }];
+        } else {
+            self.song3ImageView.image = image;
+        }
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+        // for now do nothing when fails
+    }];
 }
 
 
