@@ -41,9 +41,10 @@
     hud.label.text = @"Loading Recommended User";
     
     PFUser *currentUser = [PFUser currentUser];
+    NSArray *following = currentUser[@"following"];
     PFUser *recommendedUser = currentUser[@"recommendedUser"];
     
-    if (recommendedUser) {
+    if (recommendedUser && ![following containsObject:recommendedUser.objectId]) {
         NSMutableArray *recommendedUsers = [NSMutableArray array];
         [recommendedUsers addObject:recommendedUser];
         self.users = (NSArray *) recommendedUsers;

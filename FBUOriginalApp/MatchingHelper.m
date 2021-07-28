@@ -13,7 +13,9 @@
 // TODO: in future, implement some way to exclude some users from recommendation (ex. exclude already following users from recommendation)
 + (void)getUserMatchWithCompletion: (PFUser *)newUser completion:(void(^)(PFUser *, NSError *))completion{
     PFQuery *query = [PFUser query];
+    // make sure that the user we are starting off with calculating is not the user itself or any of the other users it follows
     [query whereKey:@"objectId" notEqualTo:newUser.objectId];
+    [query whereKey:@"objectId" notContainedIn:newUser[@"following"]];
     
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         PFUser *oldUser = (PFUser *) object;
@@ -40,6 +42,7 @@
                     PFQuery *query = [PFQuery queryWithClassName:@"CompatibilityScore"];
                     [query whereKey:@"user1" equalTo:user2]; // this gets all compatibiltiy scores that user2 has with other users already
                     [query whereKey:@"user2" notEqualTo:user1]; //exclude any already calculate values between these two users
+                    [query whereKey:@"user2" notContainedIn:user1[@"following"]]; //exclude any users user1 already follows
                     [query orderByAscending:@"score"]; // make Parse give us a sorted array so that we can search faster
                     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                         if (error != nil) {
