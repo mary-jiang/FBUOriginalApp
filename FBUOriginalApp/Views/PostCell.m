@@ -37,7 +37,14 @@
     _post = post;
     
     self.contentLabel.text = self.post[@"text"];
-    self.likesLabel.text = [NSString stringWithFormat:@"%@ Likes", self.post[@"likeCount"]];
+    if (self.post[@"likedBy"] != nil && [self.post[@"likedBy"] containsObject:[PFUser currentUser].objectId]) {
+        [self.likesButton setImage:[UIImage systemImageNamed:@"heart.fill"] forState:UIControlStateNormal];
+    } else {
+        [self.likesButton setImage:[UIImage systemImageNamed:@"heart"] forState:UIControlStateNormal];
+    }
+    [self.likesButton setTitle:[NSString stringWithFormat:@"%@", self.post[@"likeCount"]] forState:UIControlStateNormal];
+    self.likesButton.alpha = 1;
+    
 }
 
 - (void)setTopic:(Topic *)topic {
@@ -97,7 +104,7 @@
     
     self.usernameLabel.text = @"";
     self.topicLabel.text = @"";
-    self.likesLabel.text = @"";
+    self.likesButton.alpha = 0;
     self.contentLabel.text = @"";
 }
 
@@ -105,11 +112,14 @@
     for (UITouch* touch in touches) {
             if (touch.tapCount == 2)
             {
-                [self.delegate doubleTappedPostCell:self withPost:self.post];
+                [self.delegate likedPostCell:self withPost:self.post];
             }
         }
 
         [super touchesEnded:touches withEvent:event];
 }
 
+- (IBAction)didTapLike:(id)sender {
+    [self.delegate likedPostCell:self withPost:self.post];
+}
 @end

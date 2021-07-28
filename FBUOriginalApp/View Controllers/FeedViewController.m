@@ -19,7 +19,7 @@
 @interface FeedViewController () <UITableViewDelegate, UITableViewDataSource, PostCellDelegate>
 
 @property (strong, nonatomic) IBOutlet FeedView *feedView;
-@property (strong, nonatomic) NSArray *posts;
+@property (strong, nonatomic) NSMutableArray *posts;
 @property (strong, nonatomic) PFUser *user;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 
@@ -86,7 +86,7 @@
         if (error != nil) {
             NSLog(@"Fetch posts error: %@", error.localizedDescription);
         } else {
-            self.posts = posts;
+            self.posts = (NSMutableArray *) posts;
             [self.feedView.tableView reloadData];
         }
         [self.refreshControl endRefreshing];
@@ -127,7 +127,7 @@
     [self performSegueWithIdentifier:@"profileSegue" sender:user];
 }
 
-- (void)doubleTappedPostCell:(PostCell *)postCell withPost: (Post *)post {
+- (void)likedPostCell:(PostCell *)postCell withPost: (Post *)post {
     PFUser *user = [PFUser currentUser];
     [Post likePostWithId:post.objectId withUserId:user.objectId withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
@@ -138,6 +138,15 @@
                     NSLog(@"get updated like post error: %@", error.localizedDescription);
                 } else {
                     postCell.post = (Post *)object;
+                    
+                    // update the corrosponding post in the array as well so when this cell goes offscreen and has to be reloaded things update properly
+                    for (int i = 0; i < [self.posts count]; i++) {
+                        Post *postInArray = [self.posts objectAtIndex:i];
+                        if ([postInArray.objectId isEqualToString:object.objectId]) {
+                            self.posts[i] = (Post *)object;
+                            break;
+                        }
+                    }
                 }
             }];
         } else {
