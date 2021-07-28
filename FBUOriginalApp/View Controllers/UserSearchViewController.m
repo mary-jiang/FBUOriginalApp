@@ -40,18 +40,33 @@
     hud.mode = MBProgressHUDModeIndeterminate;
     hud.label.text = @"Loading Recommended User";
     
-    [MatchingHelper getUserMatchWithCompletion:[PFUser currentUser] completion:^(PFUser *user, NSError *error) {
-        if (error != nil) {
-            NSLog(@"Error recommending user: %@", error.localizedDescription);
-        } else {
-            NSMutableArray *recommendedUsers = [NSMutableArray array];
-            [recommendedUsers addObject:user];
-            self.users = (NSArray *) recommendedUsers;
-            self.showingRecommendation = true;
-            [self.userSearchView.tableView reloadData];
-            [hud hideAnimated:YES];
-        }
-    }];
+    PFUser *currentUser = [PFUser currentUser];
+    PFUser *recommendedUser = currentUser[@"recommendedUser"];
+    
+    if (recommendedUser) {
+        NSMutableArray *recommendedUsers = [NSMutableArray array];
+        [recommendedUsers addObject:recommendedUser];
+        self.users = (NSArray *) recommendedUsers;
+        self.showingRecommendation = true;
+        [self.userSearchView.tableView reloadData];
+        [hud hideAnimated:YES];
+    } else {
+        [MatchingHelper getUserMatchWithCompletion:[PFUser currentUser] completion:^(PFUser *user, NSError *error) {
+            if (error != nil) {
+                NSLog(@"Error recommending user: %@", error.localizedDescription);
+            } else {
+                currentUser[@"recommendedUser"] = user;
+                [currentUser saveInBackground];
+                
+                NSMutableArray *recommendedUsers = [NSMutableArray array];
+                [recommendedUsers addObject:user];
+                self.users = (NSArray *) recommendedUsers;
+                self.showingRecommendation = true;
+                [self.userSearchView.tableView reloadData];
+                [hud hideAnimated:YES];
+            }
+        }];
+    }
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
