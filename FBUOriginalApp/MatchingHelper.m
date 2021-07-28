@@ -11,7 +11,6 @@
 @implementation MatchingHelper
 
 // TODO: in future, implement some way to exclude some users from recommendation (ex. exclude already following users from recommendation)
-// TODO: (maybe, possible feature idea) store recommended user somewhere until user follows that user or asks for a new recommendation to avoid excess calculations
 + (void)getUserMatchWithCompletion: (PFUser *)newUser completion:(void(^)(PFUser *, NSError *))completion{
     PFQuery *query = [PFUser query];
     [query whereKey:@"objectId" notEqualTo:newUser.objectId];
@@ -178,8 +177,7 @@
     }];
 }
 
-// TODO: in future, make it so when adding scores if already score will update that score instead of ignoring (in case of music taste changes for example)
-// will never add repeat scores to Parse (if already a score between user1-user2 will not add a new one)
+// will never add repeat scores to Parse (if already a score between user1-user2 will not add a new one, instead updates the score between them)
 + (void)addScoreToParse: (NSNumber *)score user1: (PFUser *)user1 user2: (PFUser *)user2 {
     // first check if there is already a score between these two users, if there already is don't add a repeat
     PFQuery *query = [PFQuery queryWithClassName:@"CompatibilityScore"];
@@ -204,6 +202,33 @@
                 
                 [compatibilityScore1 saveInBackground];
                 [compatibilityScore2 saveInBackground];
+            } else {
+                // should only be 1 score object in objects but to cover all bases just iterate in case
+                for (PFObject *existingScore in objects) {
+                    existingScore[@"score"] = score;
+                    [existingScore saveInBackground];
+                }
+                
+                // find the corrosponding object in the other direction to update score for that one
+                PFQuery *query2 = [PFQuery queryWithClassName:@"CompatibilityScore"];
+                [query2 whereKey:@"user1" equalTo:user2];
+                [query2 whereKey:@"user2" equalTo:user1];
+                
+                [query2 findObjectsInBackgroundWithBlock:^(NSArray *objects2, NSError *error) {
+                    if (error != nil) {
+                        NSLog(@"Error with checking if score already exists in Parse or not 2: %@", error.localizedDescription);
+                    } else {
+                        // objects2 should not be nil if we get to this point with the way things are supposed to be structured but put in a check just in case
+                        if (objects2 == nil || [objects2 count] == 0) {
+                            NSLog(@"Error with checking if score already exists in Parse or not 2: %@", error.localizedDescription);
+                        } else {
+                            for (PFObject *existingScore in objects2) {
+                                existingScore[@"score"] = score;
+                                [existingScore saveInBackground];
+                            }
+                        }
+                    }
+                }];
             }
         }
     }];
