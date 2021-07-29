@@ -827,7 +827,7 @@
                                 <rect key="frame" x="0.0" y="56" width="414" height="703"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nDK-m8-gfY">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="205.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="255.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ksM-qf-4E2">
                                                 <rect key="frame" x="312" y="17.5" width="82" height="21"/>
@@ -876,27 +876,41 @@
                                                     <action selector="didTapLike:" destination="ZGb-4G-OcD" eventType="touchUpInside" id="fci-5t-nw8"/>
                                                 </connections>
                                             </button>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Leave a comment" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="heJ-mo-qRj">
+                                                <rect key="frame" x="20" y="213.5" width="335" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QRj-LY-4OC">
+                                                <rect key="frame" x="363" y="215.5" width="31" height="30"/>
+                                                <state key="normal" title="Post"/>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="J2n-f1-S65" firstAttribute="top" secondItem="TlL-mV-UkJ" secondAttribute="bottom" constant="16" id="5VX-Db-emr"/>
                                             <constraint firstAttribute="trailing" secondItem="TlL-mV-UkJ" secondAttribute="trailing" constant="20" id="5bQ-XK-2Fm"/>
+                                            <constraint firstItem="heJ-mo-qRj" firstAttribute="top" secondItem="J2n-f1-S65" secondAttribute="bottom" constant="16" id="8aj-4c-Bpb"/>
                                             <constraint firstItem="t7V-LN-LUy" firstAttribute="centerY" secondItem="O4f-MV-px8" secondAttribute="centerY" id="AU6-ZK-eUB"/>
                                             <constraint firstItem="ksM-qf-4E2" firstAttribute="centerY" secondItem="a1f-XO-eNS" secondAttribute="centerY" id="BhE-kN-wac"/>
                                             <constraint firstItem="zAf-uH-b9k" firstAttribute="firstBaseline" secondItem="J2n-f1-S65" secondAttribute="firstBaseline" id="DjK-WG-odS"/>
                                             <constraint firstAttribute="trailing" secondItem="t7V-LN-LUy" secondAttribute="trailing" constant="20" id="EYJ-D6-bnr"/>
+                                            <constraint firstItem="QRj-LY-4OC" firstAttribute="centerY" secondItem="heJ-mo-qRj" secondAttribute="centerY" id="FhZ-LV-0Q8"/>
+                                            <constraint firstItem="QRj-LY-4OC" firstAttribute="leading" secondItem="heJ-mo-qRj" secondAttribute="trailing" constant="8" id="Gd6-Kh-jMB"/>
                                             <constraint firstAttribute="trailing" secondItem="zAf-uH-b9k" secondAttribute="trailing" constant="20" id="I2h-LU-cHw"/>
                                             <constraint firstItem="a1f-XO-eNS" firstAttribute="top" secondItem="nDK-m8-gfY" secondAttribute="top" constant="8" id="NVu-9g-YaN"/>
                                             <constraint firstItem="zAf-uH-b9k" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="J2n-f1-S65" secondAttribute="trailing" constant="8" id="QiG-WJ-M6c"/>
                                             <constraint firstItem="J2n-f1-S65" firstAttribute="leading" secondItem="nDK-m8-gfY" secondAttribute="leading" constant="20" id="WWK-74-8pg"/>
                                             <constraint firstItem="O4f-MV-px8" firstAttribute="top" secondItem="a1f-XO-eNS" secondAttribute="bottom" constant="16" id="WZQ-9u-kh0"/>
+                                            <constraint firstItem="heJ-mo-qRj" firstAttribute="leading" secondItem="J2n-f1-S65" secondAttribute="leading" id="Xaj-2G-HFS"/>
                                             <constraint firstItem="ksM-qf-4E2" firstAttribute="leading" secondItem="a1f-XO-eNS" secondAttribute="trailing" constant="8" id="jfT-dI-KUs"/>
                                             <constraint firstAttribute="trailing" secondItem="ksM-qf-4E2" secondAttribute="trailing" constant="20" id="kej-Fr-Pvw"/>
                                             <constraint firstItem="TlL-mV-UkJ" firstAttribute="top" secondItem="O4f-MV-px8" secondAttribute="bottom" constant="16" id="ltc-db-S7y"/>
                                             <constraint firstItem="O4f-MV-px8" firstAttribute="leading" secondItem="nDK-m8-gfY" secondAttribute="leading" constant="20" id="pa4-j1-88R"/>
+                                            <constraint firstAttribute="bottom" secondItem="heJ-mo-qRj" secondAttribute="bottom" constant="8" id="qqM-hW-UKo"/>
                                             <constraint firstItem="TlL-mV-UkJ" firstAttribute="leading" secondItem="nDK-m8-gfY" secondAttribute="leading" constant="20" id="r0Q-Gx-NV2"/>
                                             <constraint firstItem="t7V-LN-LUy" firstAttribute="leading" secondItem="O4f-MV-px8" secondAttribute="trailing" constant="8" id="rBE-YP-dIc"/>
-                                            <constraint firstAttribute="bottom" secondItem="J2n-f1-S65" secondAttribute="bottom" constant="8" id="wxT-oS-Dzd"/>
+                                            <constraint firstItem="QRj-LY-4OC" firstAttribute="trailing" secondItem="zAf-uH-b9k" secondAttribute="trailing" id="w7y-Rs-4CS"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -920,7 +934,7 @@
                             <constraint firstItem="wSF-vh-jIf" firstAttribute="trailing" secondItem="eBL-jd-BHU" secondAttribute="trailing" id="sSF-F4-gWU"/>
                         </constraints>
                         <connections>
-                            <outlet property="contentLabel" destination="J2n-f1-S65" id="u65-p2-r16"/>
+                            <outlet property="contentLabel" destination="TlL-mV-UkJ" id="E5V-ZM-OGO"/>
                             <outlet property="likesButton" destination="zAf-uH-b9k" id="L7c-Dv-c3a"/>
                             <outlet property="profileImageView" destination="a1f-XO-eNS" id="ksD-OR-cxW"/>
                             <outlet property="timestampLabel" destination="J2n-f1-S65" id="3ag-ad-hze"/>

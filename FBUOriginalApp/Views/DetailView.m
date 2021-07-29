@@ -7,6 +7,7 @@
 
 #import "DetailView.h"
 #import "UIImageView+AFNetworking.h"
+#import "NSDate+DateTools.h"
 
 @implementation DetailView
 
@@ -38,6 +39,7 @@
     }
     [self.likesButton setTitle:[NSString stringWithFormat:@"%@", post[@"likeCount"]] forState:UIControlStateNormal];
     self.likesButton.alpha = 1;
+    self.timestampLabel.text = [self getRelativeTimeStampString:post.createdAt];
 }
 
 - (void)updateUIBasedOnTopic: (Topic *) topic {
@@ -89,7 +91,30 @@
 
 
 - (IBAction)didTapLike:(id)sender {
-    
+    [self.delegate didTapLike];
+}
+
+- (NSString *)getRelativeTimeStampString:(NSDate *)date {
+    NSDate *today = [NSDate date];
+    int minutes = (int)[today minutesFrom:date];
+    if(minutes > 10080){ // more than a week ago
+        //format MM/DD/YY
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateStyle = NSDateFormatterShortStyle;
+        formatter.timeStyle = NSDateFormatterShortStyle;
+        return [formatter stringFromDate:date];
+    }else if(minutes > 1440){ // more than a day ago, but less than a week ago
+        int days = (int)[today daysFrom:date];
+        return [NSString stringWithFormat:@"%d days ago", days];
+    }else if(minutes > 60){ // more than an hour ago, but less than a day ago
+        int hours = (int)[today hoursFrom:date];
+        return [NSString stringWithFormat:@"%d hours ago", hours];
+    }else if(minutes == 0){ // seconds ago, but less than a minute ago
+        int seconds = (int)[today secondsFrom:date];
+        return [NSString stringWithFormat:@"%d seconds ago", seconds];
+    }else{ // more than a minute ago, but less than an hour ago
+        return [NSString stringWithFormat:@"%d minutes ago", minutes];
+    }
 }
 
 @end
