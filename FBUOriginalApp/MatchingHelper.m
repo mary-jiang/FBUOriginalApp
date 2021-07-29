@@ -10,7 +10,6 @@
 
 @implementation MatchingHelper
 
-// TODO: in future, implement some way to exclude some users from recommendation (ex. exclude already following users from recommendation)
 + (void)getUserMatchWithCompletion: (PFUser *)newUser completion:(void(^)(PFUser *, NSError *))completion{
     PFQuery *query = [PFUser query];
     // make sure that the user we are starting off with calculating is not the user itself or any of the other users it follows
@@ -18,8 +17,13 @@
     [query whereKey:@"objectId" notContainedIn:newUser[@"following"]];
     
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        PFUser *oldUser = (PFUser *) object;
-        [MatchingHelper compareTwoUsersWithCompletion:newUser user2:oldUser previousScore:nil previousUser:nil completion:completion];
+        if (object) {
+            PFUser *oldUser = (PFUser *) object;
+            [MatchingHelper compareTwoUsersWithCompletion:newUser user2:oldUser previousScore:nil previousUser:nil completion:completion];
+        }
+        else {
+            completion(nil, error);
+        }
     }];
 }
 

@@ -15,6 +15,7 @@
 #import "PostCell.h"
 #import "Topic.h"
 #import "MBProgressHUD.h"
+#import "DetailViewController.h"
 
 @interface FeedViewController () <UITableViewDelegate, UITableViewDataSource, PostCellDelegate>
 
@@ -165,6 +166,12 @@
     if ([segue.identifier isEqual:@"profileSegue"]) {
         ProfileViewController *profileViewController = [segue destinationViewController];
         profileViewController.user = sender;
+    } else if ([segue.identifier isEqual:@"detailSegue"]) {
+        UITableViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.feedView.tableView indexPathForCell:tappedCell];
+        Post *post = self.posts[indexPath.row];
+        DetailViewController *detailViewController = [segue destinationViewController];
+        detailViewController.post = post;
     }
 }
 

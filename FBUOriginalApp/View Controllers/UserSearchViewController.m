@@ -44,7 +44,8 @@
     NSArray *following = currentUser[@"following"];
     PFUser *recommendedUser = currentUser[@"recommendedUser"];
     
-    if (recommendedUser && ![following containsObject:recommendedUser.objectId]) {
+    // check against nil and NSNull to be sure
+    if (recommendedUser && ![recommendedUser isEqual:[NSNull null]] && ![following containsObject:recommendedUser.objectId]) {
         NSMutableArray *recommendedUsers = [NSMutableArray array];
         [recommendedUsers addObject:recommendedUser];
         self.users = (NSArray *) recommendedUsers;
@@ -64,8 +65,9 @@
                 self.users = (NSArray *) recommendedUsers;
                 self.showingRecommendation = true;
                 [self.userSearchView.tableView reloadData];
-                [hud hideAnimated:YES];
             }
+            
+            [hud hideAnimated:YES];
         }];
     }
 }
