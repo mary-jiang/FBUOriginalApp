@@ -17,12 +17,12 @@
     [query whereKey:@"objectId" notContainedIn:newUser[@"following"]];
     
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-        if (object) {
-            PFUser *oldUser = (PFUser *) object;
-            [MatchingHelper compareTwoUsersWithCompletion:newUser user2:oldUser previousScore:nil previousUser:nil completion:completion];
+        if (error != nil) {
+            completion(nil, error);
         }
         else {
-            completion(nil, error);
+            PFUser *oldUser = (PFUser *) object;
+            [MatchingHelper compareTwoUsersWithCompletion:newUser user2:oldUser previousScore:nil previousUser:nil completion:completion];
         }
     }];
 }
