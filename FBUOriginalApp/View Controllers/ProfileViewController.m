@@ -75,7 +75,7 @@
     // TODO: Create a better way of pulling and displaying default top artists/songs for users who may not have 3 top based on spotify
     // for now just display "choose song/artist" if not enough data so that user can manually input tops if there is not enough data
     // check if the user already has top artists, if not pull them from spotify
-    if (self.user[@"artist1"] == nil || self.user[@"artist2"] == nil || self.user[@"artist3"] == nil ) {
+    if (self.user[@"artist1"] == nil || self.user[@"artist2"] == nil || self.user[@"artist3"] == nil) {
         [[APIManager shared] getTopArtistsWithCompletion:self.token numberOfArtists:3 completion:^(NSDictionary *results, NSError *error) {
             if (error != nil) {
                 NSLog(@"get top artists for updating profile error: %@", error.localizedDescription);
@@ -309,7 +309,7 @@
     return newImage;
 }
 
-- (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image {
+- (PFFileObject *)getPFFileFromImage:(UIImage * _Nullable)image {
  
     // check if image is not nil
     if (!image) {

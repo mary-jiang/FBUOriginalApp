@@ -18,7 +18,7 @@
 @dynamic likedBy;
 @dynamic likeCount;
 
-+ (void) createPostWithText: (NSString *)text withId: (NSString *)spotifyId withType: (NSString *)type withCompletion: (PFBooleanResultBlock  _Nullable)completion{
++ (void)createPostWithText:(NSString *)text withId:(NSString *)spotifyId withType:(NSString *)type withCompletion:(PFBooleanResultBlock  _Nullable)completion {
     // create the Post object and fill in the information
     Post *newPost = [[Post alloc] initWithClassName:@"Post"];
     newPost.author = [PFUser currentUser];
@@ -31,7 +31,7 @@
     [newPost saveInBackgroundWithBlock: completion];
 }
 
-+ (void) likePostWithId:(NSString *)postId withUserId: (NSString *)userId withCompletion: (PFBooleanResultBlock  _Nullable)completion{
++ (void)likePostWithId:(NSString *)postId withUserId:(NSString *)userId withCompletion:(PFBooleanResultBlock  _Nullable)completion {
     // look up post in backend in order to update
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query getObjectInBackgroundWithId:postId block:^(PFObject *post, NSError *error) {

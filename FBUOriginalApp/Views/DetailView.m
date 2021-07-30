@@ -44,7 +44,7 @@
     self.likesButton.alpha = 0;
 }
 
-- (void)updateUIBasedOnPost: (Post *)post {
+- (void)updateUIBasedOnPost:(Post *)post {
     self.contentLabel.text = post[@"text"];
     if (post[@"likedBy"] != nil && [post[@"likedBy"] containsObject:[PFUser currentUser].objectId]) {
         [self.likesButton setImage:[UIImage systemImageNamed:@"heart.fill"] forState:UIControlStateNormal];
@@ -56,7 +56,7 @@
     self.timestampLabel.text = [self getRelativeTimeStampString:post.createdAt];
 }
 
-- (void)updateUIBasedOnTopic: (Topic *) topic {
+- (void)updateUIBasedOnTopic:(Topic *)topic {
     self.topicLabel.text = topic.name;
     NSURL *imageURL = [NSURL URLWithString:topic.image];
     NSURLRequest *request = [NSURLRequest requestWithURL:imageURL];
@@ -76,7 +76,7 @@
     }];
 }
 
-- (void)updateUIBasedOnAuthor: (PFUser *)user {
+- (void)updateUIBasedOnAuthor:(PFUser *)user {
     self.usernameLabel.text = user[@"username"];
     
     NSURL *profileURL;

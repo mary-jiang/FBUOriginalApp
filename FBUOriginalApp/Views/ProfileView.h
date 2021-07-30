@@ -49,22 +49,22 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)createAllTapGestureRecognizers;
 - (void)disableFollowing;
-- (void)updateFollowButton: (BOOL) following;
-- (void)updateProfilePicture: (UIImage *)image;
-- (void)updateUIBasedOnUser: (PFUser *) user;
+- (void)updateFollowButton:(BOOL)following;
+- (void)updateProfilePicture:(UIImage *)image;
+- (void)updateUIBasedOnUser:(PFUser *)user;
 - (void)displayBeforeLoadingPlaceholders;
 - (void)displayNoArtistDataPlaceholders;
 - (void)displayNoSongDataPlaceholders;
 
-- (void)updateAllArtistsWithTopics: (NSArray *)topics;
-- (void)updateArtist1WithTopic: (Topic *) topic;
-- (void)updateArtist2WithTopic: (Topic *) topic;
-- (void)updateArtist3WithTopic: (Topic *) topic;
+- (void)updateAllArtistsWithTopics:(NSArray *)topics;
+- (void)updateArtist1WithTopic:(Topic *)topic;
+- (void)updateArtist2WithTopic:(Topic *)topic;
+- (void)updateArtist3WithTopic:(Topic *)topic;
 
-- (void)updateAllSongsWithTopics: (NSArray *) topics;
-- (void)updateSong1WithTopic: (Topic *) topic;
-- (void)updateSong2WithTopic: (Topic *) topic;
-- (void)updateSong3WithTopic: (Topic *) topic;
+- (void)updateAllSongsWithTopics:(NSArray *)topics;
+- (void)updateSong1WithTopic:(Topic *)topic;
+- (void)updateSong2WithTopic:(Topic *)topic;
+- (void)updateSong3WithTopic:(Topic *)topic;
 
 @end
 

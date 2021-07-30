@@ -87,7 +87,7 @@
     [query orderByDescending:@"createdAt"];
     [query whereKey:@"author" containedIn:following];
     
-    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError * error) {
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (error != nil) {
             NSLog(@"Fetch posts error: %@", error.localizedDescription);
         } else {
@@ -132,7 +132,7 @@
     [self performSegueWithIdentifier:@"profileSegue" sender:user];
 }
 
-- (void)likedPostCell:(PostCell *)postCell withPost: (Post *)post {
+- (void)likedPostCell:(PostCell *)postCell withPost:(Post *)post {
     PFUser *user = [PFUser currentUser];
     [Post likePostWithId:post.objectId withUserId:user.objectId withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {

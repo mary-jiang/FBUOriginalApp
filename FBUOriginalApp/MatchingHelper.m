@@ -10,7 +10,7 @@
 
 @implementation MatchingHelper
 
-+ (void)getUserMatchWithCompletion: (PFUser *)newUser completion:(void(^)(PFUser *, NSError *))completion{
++ (void)getUserMatchWithCompletion:(PFUser *)newUser completion:(void(^)(PFUser *, NSError *))completion{
     PFQuery *query = [PFUser query];
     // make sure that the user we are starting off with calculating is not the user itself or any of the other users it follows
     [query whereKey:@"objectId" notEqualTo:newUser.objectId];
@@ -27,8 +27,10 @@
     }];
 }
 
-+ (void)compareTwoUsersWithCompletion: (PFUser *)user1 user2: (PFUser *)user2
-                        previousScore: (NSNumber *) prevScore previousUser: (PFUser *) prevUser
++ (void)compareTwoUsersWithCompletion:(PFUser *)user1
+                                user2:(PFUser *)user2
+                        previousScore:(NSNumber *)prevScore
+                         previousUser:(PFUser *)prevUser
                            completion:(void(^)(PFUser *, NSError *))completion{
     // user 1 will always be the new user we are trying to add in which is guarenteed to have a valid token
     // user 2 may or may not have a valid token, refresh user 2's token to ensure it can be used before anything is done
@@ -121,7 +123,7 @@
     
 }
 
-+ (void)calculateCompatibilityWithCompletion: (NSString *)user1 user2: (NSString *)user2 completion:(void(^)(NSNumber *, NSError *))completion{
++ (void)calculateCompatibilityWithCompletion:(NSString *)user1 user2:(NSString *)user2 completion:(void(^)(NSNumber *, NSError *))completion{
     __block NSArray *user1Artists;
     __block NSArray *user2Artists;
     __block NSArray *user1Songs;
@@ -185,7 +187,7 @@
 }
 
 // will never add repeat scores to Parse (if already a score between user1-user2 will not add a new one, instead updates the score between them)
-+ (void)addScoreToParse: (NSNumber *)score user1: (PFUser *)user1 user2: (PFUser *)user2 {
++ (void)addScoreToParse:(NSNumber *)score user1:(PFUser *)user1 user2:(PFUser *)user2 {
     // first check if there is already a score between these two users, if there already is don't add a repeat
     PFQuery *query = [PFQuery queryWithClassName:@"CompatibilityScore"];
     [query whereKey:@"user1" equalTo:user1];
@@ -241,7 +243,7 @@
     }];
 }
 
-+ (NSArray *)spotifyIdArrayFromDictionaries: (NSArray *)dictionaries {
++ (NSArray *)spotifyIdArrayFromDictionaries:(NSArray *)dictionaries {
     NSMutableArray *ids = [NSMutableArray array];
     for (NSDictionary *dictionary in dictionaries) {
         [ids addObject:dictionary[@"id"]];
@@ -249,7 +251,7 @@
     return (NSArray *) ids;
 }
 
-+ (double)calculatePartialScore: (NSArray *)user1 user2: (NSArray *)user2 withMultipler: (double)multiplier{
++ (double)calculatePartialScore:(NSArray *)user1 user2:(NSArray *)user2 withMultipler:(double)multiplier{
     double scoreTotal = 0;
     
     NSMutableSet *set1 = [NSMutableSet setWithArray:user1];
@@ -305,7 +307,6 @@
             }];
             
             completion(sortedGenres, nil);
-            
         }
     }];
 }

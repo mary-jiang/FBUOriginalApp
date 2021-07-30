@@ -54,7 +54,7 @@
 }
 
 // if following is true make the button say "unfollow", else says "follow"
-- (void)updateFollowButton: (BOOL) following{
+- (void)updateFollowButton:(BOOL)following{
     if (following) {
         [self.followButton setTitle:@"Unfollow" forState:UIControlStateNormal];
     } else {
@@ -144,7 +144,7 @@
     self.profileImageView.image = image;
 }
 
-- (void)updateUIBasedOnUser: (PFUser *) user{
+- (void)updateUIBasedOnUser:(PFUser *)user{
     self.usernameLabel.text = user[@"username"];
     
     NSURL *profileURL;
@@ -158,13 +158,13 @@
     self.profileImageView.image = [UIImage imageWithData:profileData];
 }
 
-- (void)updateAllArtistsWithTopics: (NSArray *)topics {
+- (void)updateAllArtistsWithTopics:(NSArray *)topics {
     [self updateArtist1WithTopic:topics[0]];
     [self updateArtist2WithTopic:topics[1]];
     [self updateArtist3WithTopic:topics[2]];
 }
 
-- (void)updateArtist1WithTopic: (Topic *) topic{
+- (void)updateArtist1WithTopic:(Topic *)topic{
     self.artist1Label.text = topic.name;
     NSURL *imageURL = [NSURL URLWithString:topic.image];
     NSURLRequest *request = [NSURLRequest requestWithURL:imageURL];
@@ -184,7 +184,7 @@
     }];
 }
 
-- (void)updateArtist2WithTopic: (Topic *) topic{
+- (void)updateArtist2WithTopic:(Topic *)topic{
     self.artist2Label.text = topic.name;
     NSURL *imageURL = [NSURL URLWithString:topic.image];
     NSURLRequest *request = [NSURLRequest requestWithURL:imageURL];
@@ -204,7 +204,7 @@
     }];
 }
 
-- (void)updateArtist3WithTopic: (Topic *) topic{
+- (void)updateArtist3WithTopic:(Topic *)topic{
     self.artist3Label.text = topic.name;
     NSURL *imageURL = [NSURL URLWithString:topic.image];
     NSURLRequest *request = [NSURLRequest requestWithURL:imageURL];
@@ -224,13 +224,13 @@
     }];
 }
 
-- (void)updateAllSongsWithTopics: (NSArray *) topics {
+- (void)updateAllSongsWithTopics:(NSArray *)topics {
     [self updateSong1WithTopic:topics[0]];
     [self updateSong2WithTopic:topics[1]];
     [self updateSong3WithTopic:topics[2]];
 }
 
-- (void)updateSong1WithTopic: (Topic *) topic{
+- (void)updateSong1WithTopic:(Topic *)topic{
     self.song1Label.text = topic.name;
     NSURL *imageURL = [NSURL URLWithString:topic.image];
     NSURLRequest *request = [NSURLRequest requestWithURL:imageURL];
@@ -250,7 +250,7 @@
     }];
 }
 
-- (void)updateSong2WithTopic: (Topic *) topic{
+- (void)updateSong2WithTopic:(Topic *)topic{
     self.song2Label.text = topic.name;
     NSURL *imageURL = [NSURL URLWithString:topic.image];
     NSURLRequest *request = [NSURLRequest requestWithURL:imageURL];
@@ -270,7 +270,7 @@
     }];
 }
 
-- (void)updateSong3WithTopic: (Topic *) topic{
+- (void)updateSong3WithTopic:(Topic *)topic{
     self.song3Label.text = topic.name;
     NSURL *imageURL = [NSURL URLWithString:topic.image];
     NSURLRequest *request = [NSURLRequest requestWithURL:imageURL];

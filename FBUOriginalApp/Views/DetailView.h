@@ -36,9 +36,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)createTapGestureRecognizers;
 
 - (void)displayPlaceholders;
-- (void)updateUIBasedOnPost: (Post *)post;
-- (void)updateUIBasedOnTopic: (Topic *) topic;
-- (void)updateUIBasedOnAuthor: (PFUser *)user;
+- (void)updateUIBasedOnPost:(Post *)post;
+- (void)updateUIBasedOnTopic:(Topic *)topic;
+- (void)updateUIBasedOnAuthor:(PFUser *)user;
 
 @end
 

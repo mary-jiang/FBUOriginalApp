@@ -15,10 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)exchangeCodeForTokenWithCompletion:(NSString *)code completion:(void(^)(NSDictionary *, NSError *))completion;
 - (void)refreshTokenWithCompletion:(NSString *)refreshToken completion:(void(^)(NSDictionary *, NSError *))completion;
 - (void)searchSpotifyWithCompletion:(NSString *)query type:(NSString *)type authorization:(NSString *)authorization completion:(void(^)(NSDictionary *, NSError *))completion;
-- (void)getMultipleTopicsWithCompletion: (NSString *)ids type:(NSString *)type authorization:(NSString *)authorization completion:(void(^)(NSDictionary *, NSError *))completion;
-- (void)getTopicWithCompletion: (NSString *)spotifyId type:(NSString *)type authorization:(NSString *)authorization completion:(void(^)(NSDictionary *, NSError *))completion;
-- (void)getTopArtistsWithCompletion: (NSString *)authorization numberOfArtists:(int)numOfArtists completion:(void(^)(NSDictionary *, NSError *))completion;
-- (void)getTopSongsWithCompletion: (NSString *)authorization numberOfSongs:(int)numOfSongs completion:(void(^)(NSDictionary *, NSError *))completion;
+- (void)getMultipleTopicsWithCompletion:(NSString *)ids type:(NSString *)type authorization:(NSString *)authorization completion:(void(^)(NSDictionary *, NSError *))completion;
+- (void)getTopicWithCompletion:(NSString *)spotifyId type:(NSString *)type authorization:(NSString *)authorization completion:(void(^)(NSDictionary *, NSError *))completion;
+- (void)getTopArtistsWithCompletion:(NSString *)authorization numberOfArtists:(int)numOfArtists completion:(void(^)(NSDictionary *, NSError *))completion;
+- (void)getTopSongsWithCompletion:(NSString *)authorization numberOfSongs:(int)numOfSongs completion:(void(^)(NSDictionary *, NSError *))completion;
 
 @end
 

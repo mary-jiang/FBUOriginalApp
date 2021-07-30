@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) id<CreatePostViewDelegate> delegate;
 
 - (void)createTopicTapGestureRecognizer;
-- (void)updateTopic: (Topic *)topic;
+- (void)updateTopic:(Topic *)topic;
 
 @end
 

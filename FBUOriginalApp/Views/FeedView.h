@@ -11,8 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol FeedViewDelegate
 
-- (void)doubleTappedCell: (UITableViewCell *)cell;
-- (void)singleTappedCell: (UITableViewCell *)cell;
+- (void)doubleTappedCell:(UITableViewCell *)cell;
+- (void)singleTappedCell:(UITableViewCell *)cell;
 
 @end
 
