@@ -133,57 +133,99 @@
     
     __block double score = 0;
     
-    [[APIManager shared] getTopArtistsWithCompletion:user1 numberOfArtists:50 completion:^(NSDictionary *results, NSError *error) {
-        if (error != nil) {
-            completion(nil, error);
-        } else {
-            user1Artists = [MatchingHelper spotifyIdArrayFromDictionaries:results[@"items"]];
-            [[APIManager shared] getTopArtistsWithCompletion:user2 numberOfArtists:50 completion:^(NSDictionary *results, NSError *error) {
-                if (error != nil) {
-                    completion(nil, error);
-                } else {
-                    user2Artists = [MatchingHelper spotifyIdArrayFromDictionaries:results[@"items"]];
-                    [[APIManager shared] getTopSongsWithCompletion:user1 numberOfSongs:50 completion:^(NSDictionary *results, NSError *error) {
-                        if (error != nil) {
-                            completion(nil, error);
-                        } else {
-                            user1Songs = [MatchingHelper spotifyIdArrayFromDictionaries:results[@"items"]];
-                            [[APIManager shared] getTopSongsWithCompletion:user2 numberOfSongs:50 completion:^(NSDictionary *results, NSError *error) {
-                                if (error != nil) {
-                                    completion(nil, error);
-                                } else {
-                                    user2Songs = [MatchingHelper spotifyIdArrayFromDictionaries:results[@"items"]];
-                                    [MatchingHelper mostListenedToGenresWithCompletion:user1 completion:^(NSArray *results, NSError *error) {
-                                        if (error != nil) {
-                                            completion(nil, error);
-                                        } else {
-                                            user1Genres = results;
-                                            [MatchingHelper mostListenedToGenresWithCompletion:user2 completion:^(NSArray *results, NSError *error) {
-                                                if (error != nil) {
-                                                    completion(nil, error);
-                                                } else {
-                                                    user2Genres = results;
-                                                    
-                                                    double artistScore =
-                                                    [MatchingHelper calculatePartialScore:user1Artists user2:user2Artists withMultipler:2.0];
-                                                    double songScore = [MatchingHelper calculatePartialScore:user1Songs user2:user2Songs withMultipler:1.5];
-                                                    double genreScore = [MatchingHelper calculatePartialScore:user1Genres user2:user2Genres withMultipler:1.0];
-                                                    
-                                                    score = artistScore + songScore + genreScore;
-                                                    
-                                                    completion([NSNumber numberWithDouble:score], nil);
-                                                }
-                                            }];
-                                        }
-                                    }];
-                                }
-                            }];
-                        }
-                    }];
-                }
-            }];
-        }
-    }];
+    const int numToFetch = 50;
+    
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
+    // artist user 1
+    dispatch_group_async(group, queue, ^{
+        dispatch_group_enter(group);
+        [[APIManager shared] getTopArtistsWithCompletion:user1 numberOfArtists:numToFetch completion:^(NSDictionary *results, NSError *error) {
+            if (error != nil) {
+                completion(nil, error);
+            } else {
+                user1Artists = [MatchingHelper spotifyIdArrayFromDictionaries:results[@"items"]];
+            }
+            dispatch_group_leave(group);
+        }];
+    });
+    
+    // artist user 2
+    dispatch_group_async(group, queue, ^{
+        dispatch_group_enter(group);
+        [[APIManager shared] getTopArtistsWithCompletion:user2 numberOfArtists:numToFetch completion:^(NSDictionary *results, NSError *error) {
+            if (error != nil) {
+                completion(nil, error);
+            } else {
+                user2Artists = [MatchingHelper spotifyIdArrayFromDictionaries:results[@"items"]];
+            }
+            dispatch_group_leave(group);
+        }];
+    });
+    
+    // songs user 1
+    dispatch_group_async(group, queue, ^{
+        dispatch_group_enter(group);
+        [[APIManager shared] getTopSongsWithCompletion:user1 numberOfSongs:numToFetch completion:^(NSDictionary *results, NSError *error) {
+            if (error != nil) {
+                completion(nil, error);
+            } else {
+                user1Songs = [MatchingHelper spotifyIdArrayFromDictionaries:results[@"items"]];
+            }
+            dispatch_group_leave(group);
+        }];
+    });
+    
+    // songs user 2
+    dispatch_group_async(group, queue, ^{
+        dispatch_group_enter(group);
+        [[APIManager shared] getTopSongsWithCompletion:user2 numberOfSongs:numToFetch completion:^(NSDictionary *results, NSError *error) {
+            if (error != nil) {
+                completion(nil, error);
+            } else {
+                user2Songs = [MatchingHelper spotifyIdArrayFromDictionaries:results[@"items"]];
+            }
+            dispatch_group_leave(group);
+        }];
+    });
+    
+    // genres user 1
+    dispatch_group_async(group, queue, ^{
+        dispatch_group_enter(group);
+        [MatchingHelper mostListenedToGenresWithCompletion:user1 completion:^(NSArray *results, NSError *error) {
+            if (error != nil) {
+                completion(nil, error);
+            } else {
+                user1Genres = results;
+            }
+            dispatch_group_leave(group);
+        }];
+    });
+    
+    // genres user 2
+    dispatch_group_async(group, queue, ^{
+        dispatch_group_enter(group);
+        [MatchingHelper mostListenedToGenresWithCompletion:user2 completion:^(NSArray *results, NSError *error) {
+            if (error != nil) {
+                completion(nil, error);
+            } else {
+                user2Genres = results;
+            }
+            dispatch_group_leave(group);
+        }];
+    });
+    
+    dispatch_notify(group, queue, ^{
+        
+        double artistScore = [MatchingHelper calculatePartialScore:user1Artists user2:user2Artists withMultipler:2.0];
+        double songScore = [MatchingHelper calculatePartialScore:user1Songs user2:user2Songs withMultipler:1.5];
+        double genreScore = [MatchingHelper calculatePartialScore:user1Genres user2:user2Genres withMultipler:1.0];
+        
+        score = artistScore + songScore + genreScore;
+        
+        completion([NSNumber numberWithDouble:score], nil);
+    });
 }
 
 // will never add repeat scores to Parse (if already a score between user1-user2 will not add a new one, instead updates the score between them)

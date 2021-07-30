@@ -64,10 +64,13 @@
                 [recommendedUsers addObject:user];
                 self.users = (NSArray *) recommendedUsers;
                 self.showingRecommendation = true;
-                [self.userSearchView.tableView reloadData];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.userSearchView.tableView reloadData];
+                });
             }
-            
-            [hud hideAnimated:YES];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [hud hideAnimated:YES];
+            });
         }];
     }
 }
