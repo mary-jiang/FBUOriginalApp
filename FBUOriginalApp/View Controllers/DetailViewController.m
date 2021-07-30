@@ -9,8 +9,9 @@
 #import "DetailView.h"
 #import "APIManager.h"
 #import "ProfileViewController.h"
+#import "CommentCell.h"
 
-@interface DetailViewController () <DetailViewDelegate>
+@interface DetailViewController () <DetailViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet DetailView *detailView;
 @property (strong, nonatomic) PFUser *author;
@@ -47,7 +48,13 @@
         }
     }];
     
-    // TODO: finish displaying comments
+    self.detailView.tableView.delegate = self;
+    self.detailView.tableView.dataSource = self;
+    
+    [self fetchComments];
+}
+
+- (void)fetchComments {
     PFQuery *commentQuery = [PFQuery queryWithClassName:@"Comment"];
     [commentQuery orderByDescending:@"createdAt"];
     [commentQuery whereKey:@"post" equalTo:self.post];
@@ -56,8 +63,27 @@
             NSLog(@"error getting comments: %@", error.localizedDescription);
         } else {
             self.comments = objects;
+            [self.detailView.tableView reloadData];
         }
     }];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.comments.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    CommentCell *cell = [self.detailView.tableView dequeueReusableCellWithIdentifier:@"CommentCell"];
+    PFObject *comment = self.comments[indexPath.row];
+    cell.comment = comment;
+    [comment[@"author"] fetchIfNeededInBackgroundWithBlock:^(PFObject *author, NSError *error) {
+        if (error != nil) {
+            NSLog(@"get author for cell error: %@", error.localizedDescription);
+        } else {
+            cell.author = (PFUser *)author;
+        }
+    }];
+    return cell;
 }
 
 - (void)didTapLike {
@@ -90,7 +116,11 @@
     comment[@"text"] = text;
     comment[@"post"] = self.post;
     comment[@"author"] = [PFUser currentUser];
-    [comment saveInBackground];
+    [comment saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            [self fetchComments];
+        }
+    }];
 }
 
 
