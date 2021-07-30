@@ -15,6 +15,7 @@
 		AA57D1DE26A879C3004A2E55 /* MatchingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AA57D1DD26A879C3004A2E55 /* MatchingHelper.m */; };
 		AA9D262926B3050E00532061 /* DetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9D262826B3050E00532061 /* DetailView.m */; };
 		AA9D262C26B3051C00532061 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9D262B26B3051C00532061 /* DetailViewController.m */; };
+		AA9D262F26B35CBF00532061 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9D262E26B35CBF00532061 /* CommentCell.m */; };
 		AACE3BC3269C7ECB006699A6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3BC2269C7ECB006699A6 /* AppDelegate.m */; };
 		AACE3BC6269C7ECB006699A6 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AACE3BC5269C7ECB006699A6 /* SceneDelegate.m */; };
 		AACE3BCC269C7ECB006699A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AACE3BCA269C7ECB006699A6 /* Main.storyboard */; };
@@ -81,6 +82,8 @@
 		AA9D262826B3050E00532061 /* DetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailView.m; sourceTree = "<group>"; };
 		AA9D262A26B3051C00532061 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		AA9D262B26B3051C00532061 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		AA9D262D26B35CBF00532061 /* CommentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
+		AA9D262E26B35CBF00532061 /* CommentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
 		AACE3BBE269C7ECB006699A6 /* FBUOriginalApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FBUOriginalApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AACE3BC1269C7ECB006699A6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		AACE3BC2269C7ECB006699A6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -287,6 +290,8 @@
 				AACE3C3C269E0B62006699A6 /* SpotifyLoginView.m */,
 				AA9D262726B3050E00532061 /* DetailView.h */,
 				AA9D262826B3050E00532061 /* DetailView.m */,
+				AA9D262D26B35CBF00532061 /* CommentCell.h */,
+				AA9D262E26B35CBF00532061 /* CommentCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -580,6 +585,7 @@
 				AACE3C0D269CAE39006699A6 /* CreatePostViewController.m in Sources */,
 				AACE3C1C269CAFB5006699A6 /* UserSearchView.m in Sources */,
 				AACE3BFB269CADF4006699A6 /* LoginViewController.m in Sources */,
+				AA9D262F26B35CBF00532061 /* CommentCell.m in Sources */,
 				AACE3C3D269E0B62006699A6 /* SpotifyLoginView.m in Sources */,
 				AACE3C19269CAFAA006699A6 /* FeedView.m in Sources */,
 				AA27A349269F350600CF2BC5 /* Post.m in Sources */,

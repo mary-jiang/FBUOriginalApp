@@ -108,16 +108,18 @@
     self.contentLabel.text = @"";
 }
 
-- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    for (UITouch* touch in touches) {
-            if (touch.tapCount == 2)
-            {
-                [self.delegate likedPostCell:self withPost:self.post];
-            }
-        }
-
-        [super touchesEnded:touches withEvent:event];
-}
+//- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+//    for (UITouch* touch in touches) {
+//            if (touch.tapCount == 1) {
+//                [self performSelector:@selector(singleTap) withObject:self afterDelay:0.3];
+//            } else if (touch.tapCount == 2) {
+//                NSLog(@"tapped twice");
+//                [self.delegate likedPostCell:self withPost:self.post];
+//            }
+//        }
+//
+//        [super touchesEnded:touches withEvent:event];
+//}
 
 - (IBAction)didTapLike:(id)sender {
     [self.delegate likedPostCell:self withPost:self.post];

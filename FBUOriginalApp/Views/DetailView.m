@@ -19,6 +19,20 @@
 }
 */
 
+- (void)createTapGestureRecognizers {
+    UITapGestureRecognizer *profileTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapProfile)];
+    [self.profileImageView addGestureRecognizer:profileTapGestureRecognizer];
+    [self.profileImageView setUserInteractionEnabled:true];
+    
+    UITapGestureRecognizer *usernameTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapProfile)];
+    [self.usernameLabel addGestureRecognizer:usernameTapGestureRecognizer];
+    [self.usernameLabel setUserInteractionEnabled:true];
+}
+
+- (void)didTapProfile {
+    [self.delegate didTapProfile];
+}
+
 - (void)displayPlaceholders {
     self.profileImageView.image = nil;
     self.topicImageView.image = nil;
@@ -94,11 +108,15 @@
     [self.delegate didTapLike];
 }
 
+- (IBAction)didTapPost:(id)sender {
+    [self.delegate didTapPostCommentWithText:self.commentTextField.text];
+    self.commentTextField.text = @"";
+}
+
 - (NSString *)getRelativeTimeStampString:(NSDate *)date {
     NSDate *today = [NSDate date];
     int minutes = (int)[today minutesFrom:date];
     if(minutes > 10080){ // more than a week ago
-        //format MM/DD/YY
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         formatter.dateStyle = NSDateFormatterShortStyle;
         formatter.timeStyle = NSDateFormatterShortStyle;

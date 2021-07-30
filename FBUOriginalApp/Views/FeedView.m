@@ -17,4 +17,35 @@
 }
 */
 
+- (void)createTapGestureRecognizers {
+    UITapGestureRecognizer* doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];
+    doubleTap.numberOfTapsRequired = 2;
+    doubleTap.numberOfTouchesRequired = 1;
+    [self.tableView addGestureRecognizer:doubleTap];
+
+    UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTap:)];
+    singleTap.numberOfTapsRequired = 1;
+    singleTap.numberOfTouchesRequired = 1;
+    [singleTap requireGestureRecognizerToFail:doubleTap];
+    [self.tableView addGestureRecognizer:singleTap];
+}
+
+-(void)singleTap:(UITapGestureRecognizer*)tap {
+    if (UIGestureRecognizerStateEnded == tap.state) {
+        CGPoint p = [tap locationInView:tap.view];
+        NSIndexPath* indexPath = [self.tableView indexPathForRowAtPoint:p];
+        UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:indexPath];
+        [self.delegate singleTappedCell:cell];
+    }
+}
+
+-(void)doubleTap:(UITapGestureRecognizer*)tap {
+    if (UIGestureRecognizerStateEnded == tap.state) {
+        CGPoint p = [tap locationInView:tap.view];
+        NSIndexPath* indexPath = [self.tableView indexPathForRowAtPoint:p];
+        UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:indexPath];
+        [self.delegate doubleTappedCell:cell];
+    }
+}
+
 @end

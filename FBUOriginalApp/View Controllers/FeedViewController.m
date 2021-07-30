@@ -17,7 +17,7 @@
 #import "MBProgressHUD.h"
 #import "DetailViewController.h"
 
-@interface FeedViewController () <UITableViewDelegate, UITableViewDataSource, PostCellDelegate>
+@interface FeedViewController () <UITableViewDelegate, UITableViewDataSource, PostCellDelegate, FeedViewDelegate>
 
 @property (strong, nonatomic) IBOutlet FeedView *feedView;
 @property (strong, nonatomic) NSMutableArray *posts;
@@ -40,6 +40,10 @@
             [self fetchPosts];
         }];
     }];
+    
+    self.feedView.delegate = self;
+    
+    [self.feedView createTapGestureRecognizers];
     
     self.feedView.tableView.delegate = self;
     self.feedView.tableView.dataSource = self;
@@ -156,6 +160,16 @@
     }];
 }
 
+- (void)doubleTappedCell:(UITableViewCell *)cell {
+    PostCell *postCell = (PostCell *)cell;
+    [self likedPostCell:postCell withPost:postCell.post];
+}
+
+- (void)singleTappedCell:(UITableViewCell *)cell {
+    PostCell *postCell = (PostCell *)cell;
+    [self performSegueWithIdentifier:@"detailSegue" sender:postCell.post];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -167,11 +181,8 @@
         ProfileViewController *profileViewController = [segue destinationViewController];
         profileViewController.user = sender;
     } else if ([segue.identifier isEqual:@"detailSegue"]) {
-        UITableViewCell *tappedCell = sender;
-        NSIndexPath *indexPath = [self.feedView.tableView indexPathForCell:tappedCell];
-        Post *post = self.posts[indexPath.row];
         DetailViewController *detailViewController = [segue destinationViewController];
-        detailViewController.post = post;
+        detailViewController.post = sender;
     }
 }
 
