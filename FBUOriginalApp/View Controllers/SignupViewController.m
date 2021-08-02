@@ -27,20 +27,20 @@
     self.signupView.delegate = self;
 }
 
-// SpotifyView delegate method that is called when Sign Up button is pressed
 - (void)didSignup {
     [self registerUser];
 }
 
-// SpotifyView delegate method that is called when connect with spotify button is pressed
 - (void)didConnectWithSpotify {
     [self performSegueWithIdentifier:@"spotifyAuthSegue" sender:nil];
 }
 
-// SpotifyLoginViewController delegate method that gets called when the SpotifyLoginViewController successfully obtains the access token info from Spotify
+// called when the SpotifyLoginViewController successfully obtains the access token info from Spotify
 - (void)didGetToken:(NSDictionary *)token {
     self.accessToken = token[@"access_token"];
     self.refreshToken = token[@"refresh_token"];
+    
+    [self.signupView displayConnectedToSpotify];
 }
 
 - (void)registerUser {

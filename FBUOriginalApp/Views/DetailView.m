@@ -58,6 +58,9 @@
 
 - (void)updateUIBasedOnTopic:(Topic *)topic {
     self.topicLabel.text = topic.name;
+    
+    self.topicImageView.layer.cornerRadius = 5;
+    
     NSURL *imageURL = [NSURL URLWithString:topic.image];
     NSURLRequest *request = [NSURLRequest requestWithURL:imageURL];
     [self.topicImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
@@ -78,6 +81,8 @@
 
 - (void)updateUIBasedOnAuthor:(PFUser *)user {
     self.usernameLabel.text = user[@"username"];
+    
+    self.profileImageView.layer.cornerRadius = self.profileImageView.bounds.size.width / 2;
     
     NSURL *profileURL;
     PFFileObject *profilePicture = user[@"profilePicture"];

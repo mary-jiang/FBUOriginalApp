@@ -25,4 +25,9 @@
     [self.delegate didSignup];
 }
 
+- (void)displayConnectedToSpotify {
+    [self.connectSpotifyButton setTitle:@"Spotify Connected" forState:UIControlStateNormal];
+    [self.connectSpotifyButton setEnabled:false];
+}
+
 @end

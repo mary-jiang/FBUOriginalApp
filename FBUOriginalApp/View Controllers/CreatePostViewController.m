@@ -25,6 +25,8 @@
     
     self.createPostView.delegate = self;
     [self.createPostView createTopicTapGestureRecognizer];
+    
+    [self.createPostView displayTopicPlaceholder];
 }
 
 - (IBAction)didTapPost:(id)sender {

@@ -21,6 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) id<SignupViewDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UIButton *connectSpotifyButton;
+
+- (void)displayConnectedToSpotify;
 
 @end
 

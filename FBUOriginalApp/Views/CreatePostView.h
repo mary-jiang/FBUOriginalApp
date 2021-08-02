@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)createTopicTapGestureRecognizer;
 - (void)updateTopic:(Topic *)topic;
+- (void)displayTopicPlaceholder;
 
 @end
 

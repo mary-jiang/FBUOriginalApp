@@ -23,8 +23,9 @@
 - (void)setTopic:(Topic *)topic {
     _topic = topic;
     
-    // set the UI elements
     self.nameLabel.text = self.topic.name;
+    
+    self.associatedImageView.layer.cornerRadius = 5;
     NSURL *imageURL = [NSURL URLWithString:self.topic.image];
     NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
     self.associatedImageView.image = [UIImage imageWithData:imageData];

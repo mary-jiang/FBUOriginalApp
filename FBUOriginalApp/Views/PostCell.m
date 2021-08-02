@@ -51,6 +51,9 @@
     _topic = topic;
     
     self.topicLabel.text = self.topic.name;
+    
+    self.topicImageView.layer.cornerRadius = 5;
+    
     NSURL *imageURL = [NSURL URLWithString:self.topic.image];
     NSURLRequest *request = [NSURLRequest requestWithURL:imageURL];
     [self.topicImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
@@ -73,6 +76,8 @@
     _author = author;
     
     self.usernameLabel.text = self.author[@"username"];
+    
+    self.profileImageView.layer.cornerRadius = self.profileImageView.bounds.size.width / 2;
     
     NSURL *profileURL;
     PFFileObject *profilePicture = self.author[@"profilePicture"];

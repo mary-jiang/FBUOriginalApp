@@ -35,4 +35,10 @@
     self.chosenTopicImageView.image = [UIImage imageWithData:imageData];
 }
 
+- (void)displayTopicPlaceholder {
+    self.chosenTopicLabel.text = @"Choose A Topic";
+    self.chosenTopicImageView.layer.cornerRadius = 5;
+    self.chosenTopicImageView.image = nil;
+}
+
 @end

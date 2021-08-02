@@ -36,15 +36,12 @@
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    // get the search query and the type of music they want to searchh
     NSString *query = self.spotifySearchView.searchBar.text;
     NSString *type = [self.spotifySearchView getType];
     
-    // get the user's authorization information
     PFUser *user = [PFUser currentUser];
     NSString *accessCode = user[@"spotifyToken"];
     
-    // make the API call to spotify search API
     [[APIManager shared] searchSpotifyWithCompletion:query type:type authorization:accessCode completion:^(NSDictionary *results, NSError *error) {
         if (error != nil) {
             NSLog(@"Error making search: %@", error.localizedDescription);
