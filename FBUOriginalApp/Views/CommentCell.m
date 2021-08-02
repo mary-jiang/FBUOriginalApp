@@ -32,6 +32,8 @@
     
     self.usernameLabel.text = self.author[@"username"];
     
+    self.profileImageView.layer.cornerRadius = self.profileImageView.bounds.size.width / 2;
+    
     NSURL *profileURL;
     PFFileObject *profilePicture = self.author[@"profilePicture"];
     if (profilePicture != nil) {

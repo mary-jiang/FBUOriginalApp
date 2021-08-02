@@ -56,7 +56,7 @@
 
 - (void)fetchComments {
     PFQuery *commentQuery = [PFQuery queryWithClassName:@"Comment"];
-    [commentQuery orderByDescending:@"createdAt"];
+    [commentQuery orderByAscending:@"createdAt"];
     [commentQuery whereKey:@"post" equalTo:self.post];
     [commentQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error != nil) {

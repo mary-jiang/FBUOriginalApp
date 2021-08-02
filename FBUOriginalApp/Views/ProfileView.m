@@ -99,6 +99,10 @@
     self.artist2ImageView.image = nil;
     self.artist3ImageView.image = nil;
     
+    self.artist1ImageView.layer.cornerRadius = 5;
+    self.artist2ImageView.layer.cornerRadius = 5;
+    self.artist3ImageView.layer.cornerRadius = 5;
+    
     self.artist1Label.text = @"";
     self.artist2Label.text = @"";
     self.artist3Label.text = @"";
@@ -106,6 +110,10 @@
     self.song1ImageView.image = nil;
     self.song2ImageView.image = nil;
     self.song3ImageView.image = nil;
+    
+    self.song1ImageView.layer.cornerRadius = 5;
+    self.song2ImageView.layer.cornerRadius = 5;
+    self.song3ImageView.layer.cornerRadius = 5;
     
     self.song1Label.text = @"";
     self.song2Label.text = @"";
