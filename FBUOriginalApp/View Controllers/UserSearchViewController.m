@@ -79,6 +79,16 @@
     [self getUsersBasedOnQuery:self.userSearchView.searchBar.text];
 }
 
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    self.userSearchView.searchBar.showsCancelButton = true;
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    self.userSearchView.searchBar.showsCancelButton = false;
+    self.userSearchView.searchBar.text = @"";
+    [self.userSearchView.searchBar resignFirstResponder];
+}
+
 - (void)getUsersBasedOnQuery:(NSString *)search {
     NSString *formattedSearch = [NSString stringWithFormat:@"username BEGINSWITH '%@'", search];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:formattedSearch];
@@ -109,12 +119,6 @@
     return self.users.count;
 }
 
-//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-//    if (self.showingRecommendation) {
-//        return @"Recommended User";
-//    }
-//    return @"";
-//}
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (self.showingRecommendation) {

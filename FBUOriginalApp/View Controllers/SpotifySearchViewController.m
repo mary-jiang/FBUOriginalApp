@@ -53,6 +53,16 @@
     }];
 }
 
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    self.spotifySearchView.searchBar.showsCancelButton = true;
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    self.spotifySearchView.searchBar.showsCancelButton = false;
+    self.spotifySearchView.searchBar.text = @"";
+    [self.spotifySearchView.searchBar resignFirstResponder];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.results.count;
 }
