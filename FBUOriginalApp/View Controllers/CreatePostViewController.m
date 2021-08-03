@@ -33,11 +33,12 @@
     if (self.chosenTopic != nil) {
         [Post createPostWithText:self.createPostView.postTextView.text withId:self.chosenTopic.spotifyId withType:self.chosenTopic.type withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
             if (succeeded) {
-                [self dismissViewControllerAnimated:true completion:nil];
+                [self.delegate createdPost];
             } else {
                 NSLog(@"error creating post: %@", error.localizedDescription);
             }
         }];
+        [self dismissViewControllerAnimated:true completion:nil];
     }
 }
 

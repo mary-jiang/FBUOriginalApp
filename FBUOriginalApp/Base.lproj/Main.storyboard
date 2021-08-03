@@ -334,7 +334,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Create Post" id="cqD-sm-rGA">
                             <connections>
                                 <action selector="didTapCreatePost:" destination="yG3-tt-GuY" id="RHS-Fq-qhv"/>
-                                <segue destination="LIm-wI-sjo" kind="presentation" id="1U8-gQ-KVX"/>
+                                <segue destination="LIm-wI-sjo" kind="presentation" identifier="createSegue" id="1U8-gQ-KVX"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1160,7 +1160,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="pxI-X5-rce"/>
-        <segue reference="yVo-57-UdJ"/>
+        <segue reference="nda-9k-sb4"/>
         <segue reference="SJz-B7-Fhz"/>
     </inferredMetricsTieBreakers>
     <resources>

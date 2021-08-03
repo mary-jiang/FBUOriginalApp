@@ -16,8 +16,9 @@
 #import "Topic.h"
 #import "MBProgressHUD.h"
 #import "DetailViewController.h"
+#import "CreatePostViewController.h"
 
-@interface FeedViewController () <UITableViewDelegate, UITableViewDataSource, PostCellDelegate, FeedViewDelegate>
+@interface FeedViewController () <UITableViewDelegate, UITableViewDataSource, PostCellDelegate, FeedViewDelegate, CreatePostViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet FeedView *feedView;
 @property (strong, nonatomic) NSMutableArray *posts;
@@ -50,6 +51,7 @@
     
     //setup refresh control
     self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl setTintColor:[UIColor lightGrayColor]];
     [self.refreshControl addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
     [self.feedView.tableView insertSubview:self.refreshControl atIndex:0];
 }
@@ -170,6 +172,10 @@
     [self performSegueWithIdentifier:@"detailSegue" sender:postCell.post];
 }
 
+- (void)createdPost {
+    [self fetchPosts];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -183,6 +189,10 @@
     } else if ([segue.identifier isEqual:@"detailSegue"]) {
         DetailViewController *detailViewController = [segue destinationViewController];
         detailViewController.post = sender;
+    } else if ([segue.identifier isEqual:@"createSegue"]) {
+        UINavigationController *navigationController = [segue destinationViewController];
+        CreatePostViewController *createPostViewController = (CreatePostViewController *)navigationController.topViewController;
+        createPostViewController.delegate = self;
     }
 }
 
