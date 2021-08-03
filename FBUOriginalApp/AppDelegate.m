@@ -27,6 +27,8 @@
     }];
     
     [Parse initializeWithConfiguration:config];
+    
+    [[UISegmentedControl appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor whiteColor] } forState:UIControlStateNormal];
      
     return YES;
 }

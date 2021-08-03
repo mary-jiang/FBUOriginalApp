@@ -109,11 +109,28 @@
     return self.users.count;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+//    if (self.showingRecommendation) {
+//        return @"Recommended User";
+//    }
+//    return @"";
+//}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (self.showingRecommendation) {
-        return @"Recommended User";
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
+        [label setFont:[UIFont boldSystemFontOfSize:17]];
+        [label setTextColor:[UIColor whiteColor]];
+        [label setText:@"Recommended User"];
+        [view addSubview:label];
+        [view setBackgroundColor:[UIColor darkGrayColor]];
+        return view;
+    } else {
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 0)];
+        return view;
     }
-    return @"";
+    
 }
 
 
