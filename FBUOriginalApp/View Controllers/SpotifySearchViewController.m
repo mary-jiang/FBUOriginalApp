@@ -12,7 +12,7 @@
 #import "Topic.h"
 #import "SpotifyCell.h"
 
-@interface SpotifySearchViewController () <UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface SpotifySearchViewController () <UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, SpotifySearchViewDelegate>
 
 @property (strong, nonatomic) IBOutlet SpotifySearchView *spotifySearchView;
 @property (strong, nonatomic) NSArray *results;
@@ -24,6 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.spotifySearchView.delegate = self;
     self.spotifySearchView.searchBar.delegate = self;
     self.spotifySearchView.tableView.delegate = self;
     self.spotifySearchView.tableView.dataSource = self;
@@ -35,8 +36,12 @@
     }
 }
 
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    NSString *query = self.spotifySearchView.searchBar.text;
+- (void)changedType {
+    [self searchSpotify:self.spotifySearchView.searchBar.text];
+}
+
+- (void)searchSpotify:(NSString *)text {
+    NSString *query = text;
     NSString *type = [self.spotifySearchView getType];
     
     PFUser *user = [PFUser currentUser];
@@ -55,6 +60,13 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     self.spotifySearchView.searchBar.showsCancelButton = true;
+    
+    if (searchText.length != 0) {
+        [self searchSpotify:searchText];
+    } else {
+        self.results = nil;
+        [self.spotifySearchView.tableView reloadData];
+    }
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {

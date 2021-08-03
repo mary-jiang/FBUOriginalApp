@@ -75,12 +75,14 @@
     }
 }
 
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    [self getUsersBasedOnQuery:self.userSearchView.searchBar.text];
-}
-
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
     self.userSearchView.searchBar.showsCancelButton = true;
+    if (searchText.length != 0) {
+        [self getUsersBasedOnQuery:searchText];
+    } else {
+        self.users = nil;
+        [self.userSearchView.tableView reloadData];
+    }
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {

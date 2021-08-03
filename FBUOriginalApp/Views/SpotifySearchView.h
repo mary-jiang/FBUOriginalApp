@@ -9,11 +9,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol SpotifySearchViewDelegate
+
+- (void)changedType;
+
+@end
+
 @interface SpotifySearchView : UIView
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *typeSegmentedControl;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+
+@property (weak, nonatomic) id<SpotifySearchViewDelegate> delegate;
 
 - (NSString *)getType;
 - (void)artistsOnly; // sets the segmented control so that only artists can be searched

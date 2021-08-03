@@ -34,4 +34,8 @@
     self.typeSegmentedControl.selectedSegmentIndex = 2;
 }
 
+- (IBAction)indexChanged:(id)sender {
+    [self.delegate changedType];
+}
+
 @end
