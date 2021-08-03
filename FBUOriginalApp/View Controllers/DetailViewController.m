@@ -98,6 +98,7 @@
                 } else {
                     self.post = (Post *) object;
                     [self.detailView updateUIBasedOnPost:self.post];
+                    [self.delegate likedPostWithId:self.post.objectId];
                 }
             }];
         } else {

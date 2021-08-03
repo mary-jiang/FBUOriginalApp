@@ -18,7 +18,7 @@
 #import "DetailViewController.h"
 #import "CreatePostViewController.h"
 
-@interface FeedViewController () <UITableViewDelegate, UITableViewDataSource, PostCellDelegate, FeedViewDelegate, CreatePostViewControllerDelegate>
+@interface FeedViewController () <UITableViewDelegate, UITableViewDataSource, PostCellDelegate, FeedViewDelegate, CreatePostViewControllerDelegate, DetailViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet FeedView *feedView;
 @property (strong, nonatomic) NSMutableArray *posts;
@@ -176,6 +176,24 @@
     [self fetchPosts];
 }
 
+- (void)likedPostWithId:(NSString *)objectId {
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    [query getObjectInBackgroundWithId:objectId block:^(PFObject *object, NSError *error) {
+        if (error != nil) {
+            
+        } else {
+            for (int i = 0; i < [self.posts count]; i++) {
+                Post *postInArray = [self.posts objectAtIndex:i];
+                if ([postInArray.objectId isEqualToString:object.objectId]) {
+                    self.posts[i] = (Post *)object;
+                    [self.feedView.tableView reloadData];
+                    break;
+                }
+            }
+        }
+    }];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -188,6 +206,7 @@
         profileViewController.user = sender;
     } else if ([segue.identifier isEqual:@"detailSegue"]) {
         DetailViewController *detailViewController = [segue destinationViewController];
+        detailViewController.delegate = self;
         detailViewController.post = sender;
     } else if ([segue.identifier isEqual:@"createSegue"]) {
         UINavigationController *navigationController = [segue destinationViewController];

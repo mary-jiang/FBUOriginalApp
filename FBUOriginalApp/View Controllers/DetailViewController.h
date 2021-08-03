@@ -10,9 +10,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol DetailViewControllerDelegate
+
+- (void)likedPostWithId:(NSString *)objectId;
+
+@end
+
 @interface DetailViewController : UIViewController
 
 @property (strong, nonatomic) Post *post;
+@property (weak, nonatomic) id<DetailViewControllerDelegate> delegate;
 
 @end
 
