@@ -136,7 +136,26 @@
     }
     
     [self.profileView updateUIBasedOnUser:self.user];
-    [self getFollowers];
+    [self getFollowersWithCompletion:^(NSArray *followers, NSError *error) {
+        if (error != nil) {
+            NSLog(@"%@", error.localizedDescription);
+        } else {
+            [self.profileView updateFollowersLabelWithNumber:followers.count];
+        }
+    }];
+}
+
+- (void)getFollowersWithCompletion: (void(^)(NSArray *, NSError *))completion{
+    PFQuery *query = [PFUser query];
+    [query whereKey:@"following" equalTo:self.user.objectId];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error != nil) {
+            completion(nil, error);
+        } else {
+            completion(objects, nil);
+        }
+    }];
 }
 
 - (BOOL)alreadyFollowing {
@@ -207,18 +226,15 @@
 }
 
 - (void)didTapFollowers {
-    [self performSegueWithIdentifier:@"userListSegue" sender:nil];
-}
-
-- (void)getFollowers {
-    PFQuery *query = [PFUser query];
-    [query whereKey:@"following" equalTo:self.user.objectId];
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    [self getFollowersWithCompletion:^(NSArray *followers, NSError *error) {
         if (error != nil) {
             NSLog(@"%@", error.localizedDescription);
         } else {
-            [self.profileView updateFollowersLabelWithNumber:[objects count]];
+            NSMutableArray *followersIds = [NSMutableArray array];
+            for (PFUser *user in followers) {
+                [followersIds addObject:user.objectId];
+            }
+            [self performSegueWithIdentifier:@"userListSegue" sender:followersIds];
         }
     }];
 }

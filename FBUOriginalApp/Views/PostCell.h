@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *topicImageView;
 @property (weak, nonatomic) IBOutlet UIButton *likesButton;
+@property (weak, nonatomic) IBOutlet UIView *topicWrapper;
 
 @property (strong, nonatomic) Post *post;
 @property (strong, nonatomic) Topic *topic;
@@ -37,6 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)postCellUserTapped:(PostCell *)postCell user:(PFUser *)user;
 - (void)likedPostCell:(PostCell *)postCell withPost:(Post *)post;
+- (void)tappedTopic:(Topic *)topic;
 
 @end
 

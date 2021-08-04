@@ -17,6 +17,7 @@
 #import "MBProgressHUD.h"
 #import "DetailViewController.h"
 #import "CreatePostViewController.h"
+#import "TopicViewController.h"
 
 @interface FeedViewController () <UITableViewDelegate, UITableViewDataSource, PostCellDelegate, FeedViewDelegate, CreatePostViewControllerDelegate, DetailViewControllerDelegate>
 
@@ -195,6 +196,10 @@
     }];
 }
 
+- (void)tappedTopic:(Topic *)topic {
+    [self performSegueWithIdentifier:@"topicSegue" sender:topic];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -213,6 +218,9 @@
         UINavigationController *navigationController = [segue destinationViewController];
         CreatePostViewController *createPostViewController = (CreatePostViewController *)navigationController.topViewController;
         createPostViewController.delegate = self;
+    } else if ([segue.identifier isEqual:@"topicSegue"]) {
+        TopicViewController *topicViewController = [segue destinationViewController];
+        topicViewController.topic = sender;
     }
 }
 

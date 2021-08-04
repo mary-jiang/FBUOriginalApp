@@ -21,10 +21,18 @@
     UITapGestureRecognizer *usernameLabelTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapProfile)];
     [self.usernameLabel addGestureRecognizer:usernameLabelTapGestureRecognizer];
     [self.usernameLabel setUserInteractionEnabled:true];
+    
+    UITapGestureRecognizer *topicTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapTopic)];
+    [self.topicWrapper addGestureRecognizer:topicTapGestureRecognizer];
+    [self.topicWrapper setUserInteractionEnabled:true];
 }
 
 - (void)didTapProfile {
     [self.delegate postCellUserTapped:self user:self.author];
+}
+
+- (void)didTapTopic {
+    [self.delegate tappedTopic:self.topic];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
