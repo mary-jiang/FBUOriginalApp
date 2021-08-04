@@ -13,6 +13,8 @@
 		AA27A349269F350600CF2BC5 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = AA27A348269F350600CF2BC5 /* Post.m */; };
 		AA27A34F269F8B5100CF2BC5 /* Topic.m in Sources */ = {isa = PBXBuildFile; fileRef = AA27A34E269F8B5100CF2BC5 /* Topic.m */; };
 		AA57D1DE26A879C3004A2E55 /* MatchingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AA57D1DD26A879C3004A2E55 /* MatchingHelper.m */; };
+		AA7C9AF726BAEBDF008B9C99 /* UserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7C9AF626BAEBDF008B9C99 /* UserListViewController.m */; };
+		AA7C9AFA26BAEBEE008B9C99 /* UserListView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7C9AF926BAEBEE008B9C99 /* UserListView.m */; };
 		AA9D262926B3050E00532061 /* DetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9D262826B3050E00532061 /* DetailView.m */; };
 		AA9D262C26B3051C00532061 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9D262B26B3051C00532061 /* DetailViewController.m */; };
 		AA9D262F26B35CBF00532061 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9D262E26B35CBF00532061 /* CommentCell.m */; };
@@ -78,6 +80,10 @@
 		AA27A34E269F8B5100CF2BC5 /* Topic.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Topic.m; sourceTree = "<group>"; };
 		AA57D1DC26A879C3004A2E55 /* MatchingHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MatchingHelper.h; sourceTree = "<group>"; };
 		AA57D1DD26A879C3004A2E55 /* MatchingHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MatchingHelper.m; sourceTree = "<group>"; };
+		AA7C9AF526BAEBDF008B9C99 /* UserListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserListViewController.h; sourceTree = "<group>"; };
+		AA7C9AF626BAEBDF008B9C99 /* UserListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserListViewController.m; sourceTree = "<group>"; };
+		AA7C9AF826BAEBEE008B9C99 /* UserListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserListView.h; sourceTree = "<group>"; };
+		AA7C9AF926BAEBEE008B9C99 /* UserListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserListView.m; sourceTree = "<group>"; };
 		AA9D262726B3050E00532061 /* DetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailView.h; sourceTree = "<group>"; };
 		AA9D262826B3050E00532061 /* DetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailView.m; sourceTree = "<group>"; };
 		AA9D262A26B3051C00532061 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
@@ -292,6 +298,8 @@
 				AA9D262826B3050E00532061 /* DetailView.m */,
 				AA9D262D26B35CBF00532061 /* CommentCell.h */,
 				AA9D262E26B35CBF00532061 /* CommentCell.m */,
+				AA7C9AF826BAEBEE008B9C99 /* UserListView.h */,
+				AA7C9AF926BAEBEE008B9C99 /* UserListView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -328,6 +336,8 @@
 				AACE3C37269E088A006699A6 /* SpotifyLoginViewController.m */,
 				AA9D262A26B3051C00532061 /* DetailViewController.h */,
 				AA9D262B26B3051C00532061 /* DetailViewController.m */,
+				AA7C9AF526BAEBDF008B9C99 /* UserListViewController.h */,
+				AA7C9AF626BAEBDF008B9C99 /* UserListViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -590,6 +600,7 @@
 				AACE3C19269CAFAA006699A6 /* FeedView.m in Sources */,
 				AA27A349269F350600CF2BC5 /* Post.m in Sources */,
 				AACE3C0A269CAE33006699A6 /* UserSearchViewController.m in Sources */,
+				AA7C9AF726BAEBDF008B9C99 /* UserListViewController.m in Sources */,
 				AACE3C28269CDB45006699A6 /* SpotifyCell.m in Sources */,
 				AA27A34F269F8B5100CF2BC5 /* Topic.m in Sources */,
 				AACE3BC3269C7ECB006699A6 /* AppDelegate.m in Sources */,
@@ -600,6 +611,7 @@
 				AACE3BD4269C7ECC006699A6 /* main.m in Sources */,
 				AACE3BC6269C7ECB006699A6 /* SceneDelegate.m in Sources */,
 				AACE3C1F269CAFBB006699A6 /* ProfileView.m in Sources */,
+				AA7C9AFA26BAEBEE008B9C99 /* UserListView.m in Sources */,
 				AACE3C16269CAFA4006699A6 /* SignupView.m in Sources */,
 				AACE3C10269CAE78006699A6 /* SpotifySearchViewController.m in Sources */,
 				AACE3C01269CAE0B006699A6 /* FeedViewController.m in Sources */,

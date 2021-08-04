@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)didTapSong2;
 - (void)didTapSong3;
 
+- (void)didTapFollowers;
+- (void)didTapFollowing;
 - (void)didTapFollow;
 
 @end
@@ -44,6 +46,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *song2Label;
 @property (weak, nonatomic) IBOutlet UILabel *song3Label;
 @property (weak, nonatomic) IBOutlet UIButton *followButton;
+@property (weak, nonatomic) IBOutlet UILabel *followersLabel;
+@property (weak, nonatomic) IBOutlet UILabel *followingLabel;
 
 @property (weak, nonatomic) id<ProfileViewDelegate> delegate;
 
@@ -55,6 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)displayBeforeLoadingPlaceholders;
 - (void)displayNoArtistDataPlaceholders;
 - (void)displayNoSongDataPlaceholders;
+- (void)updateFollowersLabelWithNumber:(NSUInteger)numOfFollowers;
 
 - (void)updateAllArtistsWithTopics:(NSArray *)topics;
 - (void)updateArtist1WithTopic:(Topic *)topic;

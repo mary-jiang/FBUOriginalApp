@@ -134,6 +134,7 @@
     }
     
     [self.profileView updateUIBasedOnUser:self.user];
+    [self getFollowers];
 }
 
 - (BOOL)alreadyFollowing {
@@ -201,6 +202,27 @@
 - (void)didTapSong3 {
     self.itemToBeChanged = @"song3";
     [self performSegueWithIdentifier:@"spotifySegue" sender:@"song"];
+}
+
+- (void)didTapFollowers {
+    
+}
+
+- (void)getFollowers {
+    PFQuery *query = [PFUser query];
+    [query whereKey:@"following" equalTo:self.user.objectId];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error != nil) {
+            NSLog(@"%@", error.localizedDescription);
+        } else {
+            [self.profileView updateFollowersLabelWithNumber:[objects count]];
+        }
+    }];
+}
+
+- (void)didTapFollowing {
+    NSLog(@"tapped followin");
 }
 
 - (void)didTapFollow {

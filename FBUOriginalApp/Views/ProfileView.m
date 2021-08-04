@@ -46,6 +46,14 @@
     UITapGestureRecognizer *song3TapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapSong3)];
     [self.song3ImageView addGestureRecognizer:song3TapGestureRecognizer];
     [self.song3ImageView setUserInteractionEnabled:true];
+    
+    UITapGestureRecognizer *followersTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapFollowers)];
+    [self.followersLabel addGestureRecognizer:followersTapGestureRecognizer];
+    [self.followersLabel setUserInteractionEnabled:true];
+    
+    UITapGestureRecognizer *followingTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapFollowing)];
+    [self.followingLabel addGestureRecognizer:followingTapGestureRecognizer];
+    [self.followingLabel setUserInteractionEnabled:true];
 }
 
 - (void)disableFollowing {
@@ -88,6 +96,14 @@
 
 - (void)didTapSong3 {
     [self.delegate didTapSong3];
+}
+
+- (void)didTapFollowers {
+    [self.delegate didTapFollowers];
+}
+
+- (void)didTapFollowing {
+    [self.delegate didTapFollowing];
 }
 
 - (IBAction)followButtonPressed:(id)sender {
@@ -179,6 +195,13 @@
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
         // for now do nothing when fails
     }];
+    
+    NSArray *following = user[@"following"];
+    self.followingLabel.text = [NSString stringWithFormat:@"%lu Following", following.count];
+}
+
+- (void)updateFollowersLabelWithNumber:(NSUInteger)numOfFollowers {
+    self.followersLabel.text = [NSString stringWithFormat:@"%lu Followers", numOfFollowers];
 }
 
 - (void)updateAllArtistsWithTopics:(NSArray *)topics {
