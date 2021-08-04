@@ -94,6 +94,7 @@
             NSLog(@"Fetch posts error: %@", error.localizedDescription);
         } else {
             self.posts = (NSMutableArray *) posts;
+            [following removeObject:currentUser.objectId]; // no longer need to have the current user in their own following
             [self.feedView.tableView reloadData];
         }
         [self.refreshControl endRefreshing];

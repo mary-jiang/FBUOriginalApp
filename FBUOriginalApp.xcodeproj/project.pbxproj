@@ -15,6 +15,7 @@
 		AA57D1DE26A879C3004A2E55 /* MatchingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = AA57D1DD26A879C3004A2E55 /* MatchingHelper.m */; };
 		AA7C9AF726BAEBDF008B9C99 /* UserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7C9AF626BAEBDF008B9C99 /* UserListViewController.m */; };
 		AA7C9AFA26BAEBEE008B9C99 /* UserListView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7C9AF926BAEBEE008B9C99 /* UserListView.m */; };
+		AA7C9AFD26BB1AC6008B9C99 /* UserListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7C9AFC26BB1AC6008B9C99 /* UserListCell.m */; };
 		AA9D262926B3050E00532061 /* DetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9D262826B3050E00532061 /* DetailView.m */; };
 		AA9D262C26B3051C00532061 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9D262B26B3051C00532061 /* DetailViewController.m */; };
 		AA9D262F26B35CBF00532061 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9D262E26B35CBF00532061 /* CommentCell.m */; };
@@ -84,6 +85,8 @@
 		AA7C9AF626BAEBDF008B9C99 /* UserListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserListViewController.m; sourceTree = "<group>"; };
 		AA7C9AF826BAEBEE008B9C99 /* UserListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserListView.h; sourceTree = "<group>"; };
 		AA7C9AF926BAEBEE008B9C99 /* UserListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserListView.m; sourceTree = "<group>"; };
+		AA7C9AFB26BB1AC6008B9C99 /* UserListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserListCell.h; sourceTree = "<group>"; };
+		AA7C9AFC26BB1AC6008B9C99 /* UserListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserListCell.m; sourceTree = "<group>"; };
 		AA9D262726B3050E00532061 /* DetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailView.h; sourceTree = "<group>"; };
 		AA9D262826B3050E00532061 /* DetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailView.m; sourceTree = "<group>"; };
 		AA9D262A26B3051C00532061 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
@@ -300,6 +303,8 @@
 				AA9D262E26B35CBF00532061 /* CommentCell.m */,
 				AA7C9AF826BAEBEE008B9C99 /* UserListView.h */,
 				AA7C9AF926BAEBEE008B9C99 /* UserListView.m */,
+				AA7C9AFB26BB1AC6008B9C99 /* UserListCell.h */,
+				AA7C9AFC26BB1AC6008B9C99 /* UserListCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -593,6 +598,7 @@
 				AACE3C2B269CDBB0006699A6 /* UserCell.m in Sources */,
 				AA9D262926B3050E00532061 /* DetailView.m in Sources */,
 				AACE3C0D269CAE39006699A6 /* CreatePostViewController.m in Sources */,
+				AA7C9AFD26BB1AC6008B9C99 /* UserListCell.m in Sources */,
 				AACE3C1C269CAFB5006699A6 /* UserSearchView.m in Sources */,
 				AACE3BFB269CADF4006699A6 /* LoginViewController.m in Sources */,
 				AA9D262F26B35CBF00532061 /* CommentCell.m in Sources */,

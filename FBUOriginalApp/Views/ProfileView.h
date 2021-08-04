@@ -52,6 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) id<ProfileViewDelegate> delegate;
 
 - (void)createAllTapGestureRecognizers;
+- (void)createFollowRelatedTapGestureRecognizers;
 - (void)disableFollowing;
 - (void)updateFollowButton:(BOOL)following;
 - (void)updateProfilePicture:(UIImage *)image;

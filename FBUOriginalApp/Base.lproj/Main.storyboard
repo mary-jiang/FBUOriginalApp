@@ -880,6 +880,7 @@
                     <connections>
                         <outlet property="profileView" destination="7pJ-8E-eKe" id="1wE-Sv-iAY"/>
                         <segue destination="Ik8-az-hnI" kind="show" identifier="spotifySegue" id="FQ1-Hm-oLy"/>
+                        <segue destination="PZs-QE-yVr" kind="show" identifier="userListSegue" id="S8M-3C-d2l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AvR-Bn-7B6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -891,15 +892,72 @@
             <objects>
                 <viewController id="PZs-QE-yVr" customClass="UserListViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="D51-Ti-0HV" customClass="UserListView">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oAT-wW-rsE">
+                                <rect key="frame" x="0.0" y="56" width="414" height="703"/>
+                                <color key="backgroundColor" red="0.076802395280000005" green="0.076820276679999994" blue="0.076798491179999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserListCell" id="Hh8-sG-qXd" customClass="UserListCell">
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="66.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hh8-sG-qXd" id="SPe-lP-OTX">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="66.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zBd-EI-Wup">
+                                                    <rect key="frame" x="8" y="8" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="6bN-yx-sWU"/>
+                                                        <constraint firstAttribute="width" constant="50" id="Ydk-Be-0VV"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lkh-gC-dUw">
+                                                    <rect key="frame" x="66" y="22.5" width="328" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.076802395280000005" green="0.076820276679999994" blue="0.076798491179999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="zBd-EI-Wup" firstAttribute="leading" secondItem="SPe-lP-OTX" secondAttribute="leading" constant="8" id="KQJ-pT-pNW"/>
+                                                <constraint firstItem="zBd-EI-Wup" firstAttribute="top" secondItem="SPe-lP-OTX" secondAttribute="top" constant="8" id="Lid-BI-GC7"/>
+                                                <constraint firstItem="Lkh-gC-dUw" firstAttribute="leading" secondItem="zBd-EI-Wup" secondAttribute="trailing" constant="8" id="ja5-T9-wkL"/>
+                                                <constraint firstAttribute="trailing" secondItem="Lkh-gC-dUw" secondAttribute="trailing" constant="20" id="oel-PB-DuC"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="zBd-EI-Wup" secondAttribute="bottom" constant="8" id="pgZ-cV-KD4"/>
+                                                <constraint firstItem="Lkh-gC-dUw" firstAttribute="centerY" secondItem="zBd-EI-Wup" secondAttribute="centerY" id="yz3-NS-SZh"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="profileImageView" destination="zBd-EI-Wup" id="BTs-lE-oeS"/>
+                                            <outlet property="usernameLabel" destination="Lkh-gC-dUw" id="y9n-xp-acg"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="mh3-w9-M6Z"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="oAT-wW-rsE" firstAttribute="leading" secondItem="mh3-w9-M6Z" secondAttribute="leading" id="9Mp-XN-Gzy"/>
+                            <constraint firstItem="mh3-w9-M6Z" firstAttribute="trailing" secondItem="oAT-wW-rsE" secondAttribute="trailing" id="Kbt-K1-7gp"/>
+                            <constraint firstItem="oAT-wW-rsE" firstAttribute="top" secondItem="mh3-w9-M6Z" secondAttribute="top" id="g3t-A9-JdG"/>
+                            <constraint firstItem="mh3-w9-M6Z" firstAttribute="bottom" secondItem="oAT-wW-rsE" secondAttribute="bottom" id="ic6-Pl-FSo"/>
+                        </constraints>
+                        <connections>
+                            <outlet property="tableView" destination="oAT-wW-rsE" id="kMV-NR-MM2"/>
+                        </connections>
                     </view>
+                    <navigationItem key="navigationItem" id="6bG-eH-34k"/>
+                    <connections>
+                        <outlet property="userListView" destination="D51-Ti-0HV" id="dgD-SU-s4f"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vpN-gj-kFR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3971" y="1621"/>
+            <point key="canvasLocation" x="4042.0289855072465" y="1612.5"/>
         </scene>
         <!--Home-->
         <scene sceneID="Nw5-2J-guY">
@@ -1209,7 +1267,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="pxI-X5-rce"/>
-        <segue reference="nda-9k-sb4"/>
+        <segue reference="fJC-KM-2cl"/>
         <segue reference="FQ1-Hm-oLy"/>
     </inferredMetricsTieBreakers>
     <resources>

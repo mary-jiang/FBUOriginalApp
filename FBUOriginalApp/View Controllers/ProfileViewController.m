@@ -10,6 +10,7 @@
 #import "APIManager.h"
 #import "Topic.h"
 #import "SpotifySearchViewController.h"
+#import "UserListViewController.h"
 
 @interface ProfileViewController () <ProfileViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, SpotifySearchViewControllerDelegate>
 
@@ -60,6 +61,7 @@
         }
         
         [self.profileView updateFollowButton:[self alreadyFollowing]];
+        [self.profileView createFollowRelatedTapGestureRecognizers];
         
         // refresh the token for the user whose profile this is so that the authorization remains valid and usable
         [[APIManager shared] refreshTokenWithCompletion:self.user[@"refreshToken"] completion:^(NSDictionary *tokens, NSError *error) {
@@ -205,7 +207,7 @@
 }
 
 - (void)didTapFollowers {
-    
+    [self performSegueWithIdentifier:@"userListSegue" sender:nil];
 }
 
 - (void)getFollowers {
@@ -222,7 +224,7 @@
 }
 
 - (void)didTapFollowing {
-    NSLog(@"tapped followin");
+    [self performSegueWithIdentifier:@"userListSegue" sender:self.user[@"following"]];
 }
 
 - (void)didTapFollow {
@@ -368,6 +370,9 @@
             spotifySearchViewController.searchSongsOnly = false;
             spotifySearchViewController.searchArtistsOnly = false;
         }
+    } else if ([segue.identifier isEqual:@"userListSegue"]) {
+        UserListViewController *userListViewController = [segue destinationViewController];
+        userListViewController.users = sender;
     }
     
 }

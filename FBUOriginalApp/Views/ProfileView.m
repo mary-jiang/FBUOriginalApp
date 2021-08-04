@@ -56,6 +56,16 @@
     [self.followingLabel setUserInteractionEnabled:true];
 }
 
+- (void)createFollowRelatedTapGestureRecognizers {
+    UITapGestureRecognizer *followersTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapFollowers)];
+    [self.followersLabel addGestureRecognizer:followersTapGestureRecognizer];
+    [self.followersLabel setUserInteractionEnabled:true];
+    
+    UITapGestureRecognizer *followingTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapFollowing)];
+    [self.followingLabel addGestureRecognizer:followingTapGestureRecognizer];
+    [self.followingLabel setUserInteractionEnabled:true];
+}
+
 - (void)disableFollowing {
     [self.followButton setEnabled:false];
     self.followButton.alpha = 0;

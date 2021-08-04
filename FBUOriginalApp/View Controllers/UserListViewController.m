@@ -6,8 +6,12 @@
 //
 
 #import "UserListViewController.h"
+#import "UserListView.h"
+#import "UserListCell.h"
 
-@interface UserListViewController ()
+@interface UserListViewController () <UITableViewDelegate, UITableViewDataSource>
+
+@property (strong, nonatomic) IBOutlet UserListView *userListView;
 
 @end
 
@@ -16,7 +20,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.userListView.tableView.delegate = self;
+    self.userListView.tableView.dataSource = self;
+    
 }
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.users.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UserListCell *cell = [self.userListView.tableView dequeueReusableCellWithIdentifier:@"UserListCell"];
+    NSString *userId = self.users[indexPath.row];
+    PFQuery *query = [PFUser query];
+    [query getObjectInBackgroundWithId:userId block:^(PFObject *object, NSError *error) {
+        if (error != nil) {
+            NSLog(@"error getting user: %@", error.localizedDescription);
+        } else {
+            cell.user = (PFUser *)object;
+        }
+    }];
+    return cell;
+}
+
+
 
 /*
 #pragma mark - Navigation
