@@ -901,7 +901,7 @@
                                 <rect key="frame" x="0.0" y="56" width="414" height="703"/>
                                 <color key="backgroundColor" red="0.076802395280000005" green="0.076820276679999994" blue="0.076798491179999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserListCell" id="Hh8-sG-qXd" customClass="UserListCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" showsReorderControl="YES" indentationWidth="10" reuseIdentifier="UserListCell" id="Hh8-sG-qXd" customClass="UserListCell">
                                         <rect key="frame" x="0.0" y="24.5" width="414" height="66.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hh8-sG-qXd" id="SPe-lP-OTX">
@@ -961,7 +961,7 @@
             </objects>
             <point key="canvasLocation" x="4042.0289855072465" y="1612.5"/>
         </scene>
-        <!--Topic View Controller-->
+        <!--Topic-->
         <scene sceneID="NoE-YG-M6W">
             <objects>
                 <viewController id="m6e-nx-ry9" customClass="TopicViewController" sceneMemberID="viewController">
@@ -1064,9 +1064,11 @@
                             <outlet property="topicLabel" destination="0qW-KN-EkC" id="a8f-Pc-oUD"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" id="tkF-r6-Fv9"/>
+                    <navigationItem key="navigationItem" title="Topic" id="tkF-r6-Fv9"/>
                     <connections>
                         <outlet property="topicView" destination="hVa-If-EwQ" id="hKe-aZ-ecL"/>
+                        <segue destination="IO2-CL-0q2" kind="show" identifier="profileSegue" id="xw8-K5-lU9"/>
+                        <segue destination="RL3-fk-qpD" kind="show" identifier="detailSegue" id="7Bb-iX-iP5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Vp-p8-h1J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1381,7 +1383,8 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="pxI-X5-rce"/>
-        <segue reference="yVo-57-UdJ"/>
+        <segue reference="7Bb-iX-iP5"/>
+        <segue reference="xw8-K5-lU9"/>
         <segue reference="FQ1-Hm-oLy"/>
     </inferredMetricsTieBreakers>
     <resources>
