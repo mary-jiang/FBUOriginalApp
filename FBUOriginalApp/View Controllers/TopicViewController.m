@@ -10,6 +10,7 @@
 #import "TopicPostCell.h"
 #import <Parse/Parse.h>
 #import "ProfileViewController.h"
+#import "DetailViewController.h"
 
 @interface TopicViewController () <UITableViewDelegate, UITableViewDataSource, TopicPostCellDelegate>
 
@@ -67,6 +68,11 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Post *post = self.posts[indexPath.row];
+    [self performSegueWithIdentifier:@"detailSegue" sender:post];
+}
+
 - (void)tappedUser:(PFUser *)user {
     [self performSegueWithIdentifier:@"profileSegue" sender:user];
 }
@@ -108,6 +114,9 @@
     if ([segue.identifier isEqual:@"profileSegue"]) {
         ProfileViewController *profileViewController = [segue destinationViewController];
         profileViewController.user = sender;
+    } else if ([segue.identifier isEqual:@"detailSegue"]) {
+        DetailViewController *detailViewController = [segue destinationViewController];
+        detailViewController.post = sender;
     }
 }
 
