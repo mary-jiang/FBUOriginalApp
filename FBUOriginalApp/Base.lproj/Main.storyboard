@@ -980,7 +980,7 @@
                                 <rect key="frame" x="0.0" y="221" width="414" height="538"/>
                                 <color key="backgroundColor" red="0.11342895779999999" green="0.11345180119999999" blue="0.11342396590000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="aRf-52-cfI" customClass="TopicPostCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TopicPostCell" id="aRf-52-cfI" customClass="TopicPostCell">
                                         <rect key="frame" x="0.0" y="24.5" width="414" height="115"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aRf-52-cfI" id="1Ou-cx-wGU">
@@ -1032,7 +1032,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="contentLabel" destination="csq-O6-vXF" id="snI-lR-gyQ"/>
-                                            <outlet property="likeButton" destination="Wwg-TN-Oqn" id="5EE-lp-fYA"/>
+                                            <outlet property="likesButton" destination="Wwg-TN-Oqn" id="5EE-lp-fYA"/>
                                             <outlet property="profileImageView" destination="aX8-GX-7SJ" id="sKB-AZ-3ty"/>
                                             <outlet property="usernameLabel" destination="Kav-1M-AoO" id="oke-oy-oYF"/>
                                         </connections>
