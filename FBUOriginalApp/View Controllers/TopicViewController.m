@@ -16,6 +16,7 @@
 
 @property (strong, nonatomic) IBOutlet TopicView *topicView;
 @property (strong, nonatomic) NSMutableArray *posts;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
@@ -31,6 +32,11 @@
     self.topicView.tableView.dataSource = self;
     
     [self fetchPosts];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl setTintColor:[UIColor lightGrayColor]];
+    [self.refreshControl addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
+    [self.topicView.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
 - (void)fetchPosts {
@@ -41,11 +47,12 @@
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error != nil) {
-            
+            NSLog(@"error fetching posts: %@", error.localizedDescription);
         } else {
             self.posts = (NSMutableArray *)objects;
             [self.topicView.tableView reloadData];
         }
+        [self.refreshControl endRefreshing];
     }];
 }
 

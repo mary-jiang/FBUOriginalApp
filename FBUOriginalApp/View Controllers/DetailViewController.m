@@ -16,6 +16,7 @@
 @property (strong, nonatomic) IBOutlet DetailView *detailView;
 @property (strong, nonatomic) PFUser *author;
 @property (strong, nonatomic) NSArray *comments;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
@@ -52,6 +53,11 @@
     self.detailView.tableView.dataSource = self;
     
     [self fetchComments];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl setTintColor:[UIColor lightGrayColor]];
+    [self.refreshControl addTarget:self action:@selector(fetchComments) forControlEvents:UIControlEventValueChanged];
+    [self.detailView.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
 - (void)fetchComments {
@@ -65,6 +71,7 @@
             self.comments = objects;
             [self.detailView.tableView reloadData];
         }
+        [self.refreshControl endRefreshing];
     }];
 }
 
