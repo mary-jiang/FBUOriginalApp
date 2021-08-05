@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol TopicPostCellDelegate
 
 - (void)tappedUser:(PFUser *)user;
+- (void)likedTopicPostCell:(TopicPostCell *)cell withPost:(Post *)post;
 
 @end
 

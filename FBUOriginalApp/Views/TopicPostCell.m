@@ -77,4 +77,8 @@
     [self.delegate tappedUser:self.author];
 }
 
+- (IBAction)didTapLike:(id)sender {
+    [self.delegate likedTopicPostCell:self withPost:self.post];
+}
+
 @end
