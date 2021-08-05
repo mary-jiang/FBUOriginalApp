@@ -182,7 +182,7 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query getObjectInBackgroundWithId:objectId block:^(PFObject *object, NSError *error) {
         if (error != nil) {
-            
+            NSLog(@"get updated like post error: %@", error.localizedDescription);
         } else {
             for (int i = 0; i < [self.posts count]; i++) {
                 Post *postInArray = [self.posts objectAtIndex:i];

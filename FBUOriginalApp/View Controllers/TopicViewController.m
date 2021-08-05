@@ -12,7 +12,7 @@
 #import "ProfileViewController.h"
 #import "DetailViewController.h"
 
-@interface TopicViewController () <UITableViewDelegate, UITableViewDataSource, TopicPostCellDelegate>
+@interface TopicViewController () <UITableViewDelegate, UITableViewDataSource, TopicPostCellDelegate, DetailViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet TopicView *topicView;
 @property (strong, nonatomic) NSMutableArray *posts;
@@ -111,6 +111,24 @@
     }];
 }
 
+- (void)likedPostWithId:(NSString *)objectId {
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    [query getObjectInBackgroundWithId:objectId block:^(PFObject *object, NSError *error) {
+        if (error != nil) {
+            NSLog(@"get updated like post error: %@", error.localizedDescription);
+        } else {
+            for (int i = 0; i < [self.posts count]; i++) {
+                Post *postInArray = [self.posts objectAtIndex:i];
+                if ([postInArray.objectId isEqualToString:object.objectId]) {
+                    self.posts[i] = (Post *)object;
+                    [self.topicView.tableView reloadData];
+                    break;
+                }
+            }
+        }
+    }];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -123,6 +141,7 @@
         profileViewController.user = sender;
     } else if ([segue.identifier isEqual:@"detailSegue"]) {
         DetailViewController *detailViewController = [segue destinationViewController];
+        detailViewController.delegate = self;
         detailViewController.post = sender;
     }
 }

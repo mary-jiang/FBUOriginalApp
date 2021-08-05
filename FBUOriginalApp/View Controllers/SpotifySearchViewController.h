@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic) BOOL searchArtistsOnly;
 @property (nonatomic) BOOL searchSongsOnly;
+@property (strong, nonatomic) NSString *segueFromThisController; // if want to segue from this view controller put identifier here
 
 @property (weak, nonatomic) id<SpotifySearchViewControllerDelegate> delegate;
 

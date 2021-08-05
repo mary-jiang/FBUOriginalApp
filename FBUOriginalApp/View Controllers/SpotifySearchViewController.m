@@ -11,6 +11,7 @@
 #import <Parse/Parse.h>
 #import "Topic.h"
 #import "SpotifyCell.h"
+#import "TopicViewController.h"
 
 @interface SpotifySearchViewController () <UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, SpotifySearchViewDelegate>
 
@@ -88,18 +89,27 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Topic *topic = self.results[indexPath.row];
-    [self.delegate didChooseTopic:topic];
-    [self.navigationController popViewControllerAnimated:true];
+    if (self.segueFromThisController) {
+        [self performSegueWithIdentifier:self.segueFromThisController sender:topic];
+    } else {
+        [self.delegate didChooseTopic:topic];
+        [self.navigationController popViewControllerAnimated:true];
+    }
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    if ([segue.identifier isEqual:@"topicSegue"]) {
+        TopicViewController *topicViewController = [segue destinationViewController];
+        topicViewController.topic = sender;
+    }
 }
-*/
+
 
 @end

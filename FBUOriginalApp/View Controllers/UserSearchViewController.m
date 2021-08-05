@@ -12,6 +12,7 @@
 #import "ProfileViewController.h"
 #import "MatchingHelper.h"
 #import "MBProgressHUD.h"
+#import "SpotifySearchViewController.h"
 
 @interface UserSearchViewController () <UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource>
 
@@ -153,6 +154,9 @@
         PFUser *user = self.users[indexPath.row];
         ProfileViewController *profileViewController = [segue destinationViewController];
         profileViewController.user = user;
+    } else if ([segue.identifier isEqual:@"topicSegue"]) {
+        SpotifySearchViewController *spotifySearchViewController = [segue destinationViewController];
+        spotifySearchViewController.segueFromThisController = @"topicSegue";
     }
 }
 

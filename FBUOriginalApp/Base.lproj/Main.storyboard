@@ -543,6 +543,7 @@
                     <navigationItem key="navigationItem" id="FIJ-3C-DIi"/>
                     <connections>
                         <outlet property="spotifySearchView" destination="dNg-AY-U3k" id="aaX-by-UD7"/>
+                        <segue destination="m6e-nx-ry9" kind="show" identifier="topicSegue" id="Rkm-lA-9pd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="boP-30-FZH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -627,7 +628,13 @@
                             <outlet property="tableView" destination="kjm-Ou-HZs" id="0Iu-xE-zGr"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="Search Users" id="nj7-Ou-3yU"/>
+                    <navigationItem key="navigationItem" title="Search Users" id="nj7-Ou-3yU">
+                        <barButtonItem key="rightBarButtonItem" title="Search Topics" id="K7z-14-0bH">
+                            <connections>
+                                <segue destination="Ik8-az-hnI" kind="show" identifier="topicSegue" id="WwX-od-MNy"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="userSearchView" destination="ZkA-C3-JgN" id="5pN-uM-LO3"/>
                     </connections>
@@ -977,7 +984,7 @@
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rC8-pX-TOl">
-                                <rect key="frame" x="0.0" y="221" width="414" height="538"/>
+                                <rect key="frame" x="0.0" y="251" width="414" height="508"/>
                                 <color key="backgroundColor" red="0.11342895779999999" green="0.11345180119999999" blue="0.11342396590000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TopicPostCell" id="aRf-52-cfI" customClass="TopicPostCell">
@@ -1045,16 +1052,22 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Itm-qs-6WP">
+                                <rect key="frame" x="185" y="213" width="44" height="30"/>
+                                <state key="normal" title="Follow"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="C4a-Wf-EIk"/>
                         <color key="backgroundColor" red="0.076802395280000005" green="0.076820276679999994" blue="0.076798491179999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="0qW-KN-EkC" firstAttribute="centerX" secondItem="hVa-If-EwQ" secondAttribute="centerX" id="0c2-8Q-F8b"/>
+                            <constraint firstItem="rC8-pX-TOl" firstAttribute="top" secondItem="Itm-qs-6WP" secondAttribute="bottom" constant="8" id="Dwx-BN-hyr"/>
                             <constraint firstItem="C4a-Wf-EIk" firstAttribute="bottom" secondItem="rC8-pX-TOl" secondAttribute="bottom" id="MRN-lh-oL9"/>
                             <constraint firstItem="0qW-KN-EkC" firstAttribute="top" secondItem="O0q-9V-Xdz" secondAttribute="bottom" constant="8" id="S6W-el-zR2"/>
+                            <constraint firstItem="Itm-qs-6WP" firstAttribute="top" secondItem="0qW-KN-EkC" secondAttribute="bottom" constant="8" id="UAg-H9-TtY"/>
                             <constraint firstItem="rC8-pX-TOl" firstAttribute="leading" secondItem="C4a-Wf-EIk" secondAttribute="leading" id="VnY-wQ-aWQ"/>
-                            <constraint firstItem="rC8-pX-TOl" firstAttribute="top" secondItem="0qW-KN-EkC" secondAttribute="bottom" constant="16" id="abx-q5-H60"/>
                             <constraint firstItem="O0q-9V-Xdz" firstAttribute="top" secondItem="C4a-Wf-EIk" secondAttribute="top" constant="20" id="el3-Sk-cP2"/>
+                            <constraint firstItem="Itm-qs-6WP" firstAttribute="centerX" secondItem="hVa-If-EwQ" secondAttribute="centerX" id="f0y-2F-spz"/>
                             <constraint firstItem="O0q-9V-Xdz" firstAttribute="centerX" secondItem="hVa-If-EwQ" secondAttribute="centerX" id="wfg-uu-hdh"/>
                             <constraint firstItem="C4a-Wf-EIk" firstAttribute="trailing" secondItem="rC8-pX-TOl" secondAttribute="trailing" id="yNa-ex-lLS"/>
                         </constraints>
@@ -1073,7 +1086,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Vp-p8-h1J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3197.1014492753625" y="1961.3839285714284"/>
+            <point key="canvasLocation" x="-3152" y="2022"/>
         </scene>
         <!--Home-->
         <scene sceneID="Nw5-2J-guY">
@@ -1384,8 +1397,9 @@
     <inferredMetricsTieBreakers>
         <segue reference="pxI-X5-rce"/>
         <segue reference="7Bb-iX-iP5"/>
+        <segue reference="Rkm-lA-9pd"/>
         <segue reference="xw8-K5-lU9"/>
-        <segue reference="FQ1-Hm-oLy"/>
+        <segue reference="WwX-od-MNy"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="heart" catalog="system" width="128" height="109"/>
