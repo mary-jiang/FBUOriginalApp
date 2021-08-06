@@ -85,10 +85,16 @@
     }
     [following addObject:currentUser.objectId];
     
-    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    NSArray *followingTopics = currentUser[@"followingTopics"];
+    
+    NSPredicate *userPredicate = [NSPredicate predicateWithFormat:@"author IN %@", following];
+    NSPredicate *topicPredicate = [NSPredicate predicateWithFormat:@"spotifyId IN %@", followingTopics];
+    
+    NSPredicate *combinedPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:@[userPredicate, topicPredicate]];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Post" predicate:combinedPredicate];
     query.limit = 20;
     [query orderByDescending:@"createdAt"];
-    [query whereKey:@"author" containedIn:following];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (error != nil) {
