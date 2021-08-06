@@ -21,6 +21,8 @@
 - (void)updateUIBasedOnTopic:(Topic *)topic{
     self.topicLabel.text = topic.name;
     
+    self.typeLabel.text = [NSString stringWithFormat:@"  %@  ", topic.type.capitalizedString];
+    
     self.topicImageView.layer.cornerRadius = 5;
     
     NSURL *imageURL = [NSURL URLWithString:topic.image];

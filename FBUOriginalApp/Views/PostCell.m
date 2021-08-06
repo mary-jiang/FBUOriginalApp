@@ -60,6 +60,8 @@
     
     self.topicLabel.text = self.topic.name;
     
+    self.typeLabel.text = [NSString stringWithFormat:@"  %@  ", self.topic.type.capitalizedString];
+    
     self.topicImageView.layer.cornerRadius = 5;
     
     NSURL *imageURL = [NSURL URLWithString:self.topic.image];
@@ -117,6 +119,7 @@
     
     self.usernameLabel.text = @"";
     self.topicLabel.text = @"";
+    self.typeLabel.text = @"";
     self.likesButton.alpha = 0;
     self.contentLabel.text = @"";
 }

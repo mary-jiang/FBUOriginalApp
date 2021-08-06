@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIImageView *topicImageView;
 @property (weak, nonatomic) IBOutlet UIButton *likesButton;
 @property (weak, nonatomic) IBOutlet UIView *topicWrapper;
+@property (weak, nonatomic) IBOutlet UILabel *typeLabel;
 
 @property (strong, nonatomic) Post *post;
 @property (strong, nonatomic) Topic *topic;

@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton *followButton;
 @property (weak, nonatomic) id<TopicViewDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UILabel *typeLabel;
 
 - (void)updateUIBasedOnTopic:(Topic *)topic;
 - (void)updateFollowButton:(BOOL)following;

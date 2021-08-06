@@ -30,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIButton *likesButton;
 @property (weak, nonatomic) IBOutlet UITextField *commentTextField;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UILabel *typeLabel;
 
 @property (weak, nonatomic) id<DetailViewDelegate> delegate;
 
