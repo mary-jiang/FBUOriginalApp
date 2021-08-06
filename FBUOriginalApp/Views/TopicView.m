@@ -41,4 +41,16 @@
     }];
 }
 
+- (void)updateFollowButton:(BOOL)following{
+    if (following) {
+        [self.followButton setTitle:@"Unfollow" forState:UIControlStateNormal];
+    } else {
+        [self.followButton setTitle:@"Follow" forState:UIControlStateNormal];
+    }
+}
+
+- (IBAction)didTapFollow:(id)sender {
+    [self.delegate didTapFollow];
+}
+
 @end

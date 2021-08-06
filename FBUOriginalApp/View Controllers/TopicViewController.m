@@ -12,7 +12,7 @@
 #import "ProfileViewController.h"
 #import "DetailViewController.h"
 
-@interface TopicViewController () <UITableViewDelegate, UITableViewDataSource, TopicPostCellDelegate, DetailViewControllerDelegate>
+@interface TopicViewController () <UITableViewDelegate, UITableViewDataSource, TopicPostCellDelegate, DetailViewControllerDelegate, TopicViewDelegate>
 
 @property (strong, nonatomic) IBOutlet TopicView *topicView;
 @property (strong, nonatomic) NSMutableArray *posts;
@@ -26,7 +26,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.topicView.delegate = self;
+    
     [self.topicView updateUIBasedOnTopic:self.topic];
+    [self.topicView updateFollowButton:[self alreadyFollowingTopic]];
     
     self.topicView.tableView.delegate = self;
     self.topicView.tableView.dataSource = self;
@@ -78,6 +81,31 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Post *post = self.posts[indexPath.row];
     [self performSegueWithIdentifier:@"detailSegue" sender:post];
+}
+
+- (void)didTapFollow {
+    PFUser *user = [PFUser currentUser];
+    if ([self alreadyFollowingTopic]) {
+        [user removeObject:self.topic.spotifyId forKey:@"followingTopics"];
+    } else {
+        [user addObject:self.topic.spotifyId forKey:@"followingTopics"];
+    }
+    [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if (succeeded) {
+            [self.topicView updateFollowButton:[self alreadyFollowingTopic]];
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+}
+
+- (BOOL)alreadyFollowingTopic {
+    PFUser *user = [PFUser currentUser];
+    NSArray *followingTopics = user[@"followingTopics"];
+    if (followingTopics != nil && [followingTopics containsObject:self.topic.spotifyId]) {
+        return true;
+    }
+    return false;
 }
 
 - (void)tappedUser:(PFUser *)user {

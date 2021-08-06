@@ -1055,6 +1055,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Itm-qs-6WP">
                                 <rect key="frame" x="185" y="213" width="44" height="30"/>
                                 <state key="normal" title="Follow"/>
+                                <connections>
+                                    <action selector="didTapFollow:" destination="hVa-If-EwQ" eventType="touchUpInside" id="INT-xp-Z5n"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="C4a-Wf-EIk"/>
@@ -1072,6 +1075,7 @@
                             <constraint firstItem="C4a-Wf-EIk" firstAttribute="trailing" secondItem="rC8-pX-TOl" secondAttribute="trailing" id="yNa-ex-lLS"/>
                         </constraints>
                         <connections>
+                            <outlet property="followButton" destination="Itm-qs-6WP" id="M8P-z9-MsB"/>
                             <outlet property="tableView" destination="rC8-pX-TOl" id="3IL-Ov-I3N"/>
                             <outlet property="topicImageView" destination="O0q-9V-Xdz" id="AHA-81-RH2"/>
                             <outlet property="topicLabel" destination="0qW-KN-EkC" id="a8f-Pc-oUD"/>
@@ -1397,7 +1401,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="pxI-X5-rce"/>
         <segue reference="7Bb-iX-iP5"/>
-        <segue reference="Rkm-lA-9pd"/>
+        <segue reference="66s-Ek-FD7"/>
         <segue reference="xw8-K5-lU9"/>
         <segue reference="WwX-od-MNy"/>
     </inferredMetricsTieBreakers>
