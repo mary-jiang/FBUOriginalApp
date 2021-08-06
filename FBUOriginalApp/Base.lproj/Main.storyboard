@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZTZ-AT-e42">
-                                <rect key="frame" x="52" y="306" width="310.5" height="34"/>
+                                <rect key="frame" x="52" y="302.5" width="310.5" height="34"/>
                                 <color key="backgroundColor" red="0.11342895779999999" green="0.11345180119999999" blue="0.11342396590000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -30,11 +30,11 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ssm-VK-1qr">
-                                <rect key="frame" x="52" y="360" width="310.5" height="34"/>
+                                <rect key="frame" x="52" y="356.5" width="310.5" height="34"/>
                                 <color key="backgroundColor" red="0.11342895779999999" green="0.11345180119999999" blue="0.11342396590000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
                                         <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -49,7 +49,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H0l-JH-ybo">
-                                <rect key="frame" x="52" y="414" width="310.5" height="30"/>
+                                <rect key="frame" x="52" y="410.5" width="310.5" height="30"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
                                 <state key="normal" title="Log In">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -63,12 +63,19 @@
                                     <action selector="didTapLogIn:" destination="8bC-Xf-vdC" eventType="touchUpInside" id="nzG-LZ-C7n"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MuseMe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Gp-Nz-CAg">
+                                <rect key="frame" x="131.5" y="223.5" width="151" height="49"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="41"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.076802395280000005" green="0.076820276679999994" blue="0.076798491179999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="ZTZ-AT-e42" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-125" id="5BK-N7-eew"/>
+                            <constraint firstItem="ZTZ-AT-e42" firstAttribute="top" secondItem="0Gp-Nz-CAg" secondAttribute="bottom" constant="30" id="808-eB-meb"/>
                             <constraint firstItem="ZTZ-AT-e42" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" multiplier="0.75" id="BQ0-k8-Ars"/>
+                            <constraint firstItem="0Gp-Nz-CAg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="DMh-sX-XJ9"/>
                             <constraint firstItem="H0l-JH-ybo" firstAttribute="width" secondItem="Ssm-VK-1qr" secondAttribute="width" id="TyM-0b-ixK"/>
                             <constraint firstItem="Ssm-VK-1qr" firstAttribute="width" secondItem="ZTZ-AT-e42" secondAttribute="width" id="Zki-03-WFc"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="0uj-8J-CW2" secondAttribute="bottom" constant="20" id="cQQ-cV-xFm"/>
@@ -76,6 +83,7 @@
                             <constraint firstItem="0uj-8J-CW2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jf5-AS-Qf8"/>
                             <constraint firstItem="Ssm-VK-1qr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kLS-HT-wbd"/>
                             <constraint firstItem="ZTZ-AT-e42" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="m0g-Yd-jzi"/>
+                            <constraint firstItem="0Gp-Nz-CAg" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-200" id="nzo-u3-a8g"/>
                             <constraint firstItem="H0l-JH-ybo" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qKW-TZ-138"/>
                             <constraint firstItem="H0l-JH-ybo" firstAttribute="top" secondItem="Ssm-VK-1qr" secondAttribute="bottom" constant="20" id="vRj-kv-A0F"/>
                         </constraints>
@@ -475,7 +483,7 @@
                                 <segments>
                                     <segment title="Album"/>
                                     <segment title="Artist"/>
-                                    <segment title="Track"/>
+                                    <segment title="track"/>
                                 </segments>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="selectedSegmentTintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
